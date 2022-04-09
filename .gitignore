@@ -1,0 +1,34 @@
+# files for the dex VM
+*.dex
+
+# generated files
+bin/
+gen/
+infer-out/
+captures/
+
+# Local configuration file (sdk path, etc)
+local.properties
+gradlew
+gradlew.bat
+
+# Windows thumbnail db
+Thumbs.db
+
+# OSX files
+.DS_Store
+
+# Android Studio
+.idea
+/build
+.gradle
+
+# Android Studio Struct files
+/out
+*/build
+*/production
+*.iws
+*.ipr
+*~
+*.swp
+*.iml
