@@ -12,8 +12,13 @@ object Libs {
             const val activityCompose = "androidx.activity:activity-compose:${Versions.AndroidX.Activity.version}"
         }
 
+        object Lifecycle {
+            const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.AndroidX.Lifecycle.version}"
+        }
+
         object Compose {
             const val ui = "androidx.compose.ui:ui:${Versions.AndroidX.Compose.version}"
+            const val material = "androidx.compose.material:material:${Versions.AndroidX.Compose.version}"
             const val material3 = "androidx.compose.material3:material3:${Versions.AndroidX.Compose.material3}"
             const val materialIconsExtended = "androidx.compose.material:material-icons-extended:${Versions.AndroidX.Compose.version}"
 
@@ -22,15 +27,16 @@ object Libs {
             const val composeUiManifest = "androidx.compose.ui:ui-test-manifest:${Versions.AndroidX.Compose.version}"
         }
 
-        object Lifecycle {
-            const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.Lifecycle.version}"
-        }
-
         object Test {
-            const val junit = "junit:junit:${Versions.Test.junit}"
-            const val junitExt = "androidx.test.ext:junit:${Versions.Test.junitExt}"
+            const val junit = "junit:junit:${Versions.AndroidX.Test.junit}"
+            const val junitExt = "androidx.test.ext:junit:${Versions.AndroidX.Test.junitExt}"
             const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.AndroidX.Compose.version}"
             const val composeUiJunit = "androidx.compose.ui:ui-test-junit4:${Versions.AndroidX.Compose.version}"
         }
+    }
+
+    object Navigation {
+        const val destinations = "io.github.raamcosta.compose-destinations:core:${Versions.Navigation.version}"
+        const val compiler = "io.github.raamcosta.compose-destinations:ksp:${Versions.Navigation.version}"
     }
 }

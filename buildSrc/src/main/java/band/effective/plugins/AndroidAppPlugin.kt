@@ -15,7 +15,7 @@ class AndroidAppPlugin : Plugin<Project> {
     override fun apply(project: Project) {
         project.plugins.apply("org.jetbrains.kotlin.android")
         val androidExtension = project.extensions.getByName("android")
-        if(androidExtension is BaseExtension) {
+        if (androidExtension is BaseExtension) {
             with(androidExtension) {
                 applyAndroidSettings()
                 applyJava8(project)
@@ -61,7 +61,7 @@ class AndroidAppPlugin : Plugin<Project> {
 
     private fun BaseExtension.applyProguardSettings() {
         val proguardFile = "proguard-rules.pro"
-        when(this) {
+        when (this) {
             is LibraryExtension -> defaultConfig {
                 consumerProguardFiles(proguardFile)
             }
@@ -83,7 +83,11 @@ class AndroidAppPlugin : Plugin<Project> {
             targetCompatibility = JavaVersion.VERSION_1_8
         }
         project.tasks.withType<KotlinCompile>().configureEach {
-            kotlinOptions{
+            kotlinOptions {
+                freeCompilerArgs = freeCompilerArgs + listOf(
+                    "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                    "-Xuse-experimental=kotlinx.coroutines.ObsoleteCoroutinesApi"
+                )
                 jvmTarget = "1.8"
             }
         }
