@@ -26,18 +26,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
-            val focusManager = LocalFocusManager.current
-
             HeadlinesComposeTheme {
                 ProvideWindowInsets {
-                    Surface(
-                        modifier = Modifier.clickable(
-                            interactionSource = remember { MutableInteractionSource() },
-                            indication = null
-                        ) { focusManager.clearFocus() }
-                    ) {
-                        AppHost()
-                    }
+                    AppHost()
                 }
             }
         }

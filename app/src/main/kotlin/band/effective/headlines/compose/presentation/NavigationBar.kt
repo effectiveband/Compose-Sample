@@ -11,6 +11,7 @@ import androidx.compose.material.icons.outlined.Feed
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.ripple.LocalRippleTheme
+import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
@@ -63,13 +64,13 @@ private fun BottomNavigationItemIcon(item: BottomNavigationItem, selected: Boole
 
     if (selectedPainter != null) {
         Crossfade(targetState = selected) {
-            androidx.compose.material.Icon(
+            Icon(
                 painter = if (it) selectedPainter else painter,
                 contentDescription = stringResource(item.contentDescriptionResId),
             )
         }
     } else {
-        androidx.compose.material.Icon(
+        Icon(
             painter = painter,
             contentDescription = stringResource(item.contentDescriptionResId),
         )

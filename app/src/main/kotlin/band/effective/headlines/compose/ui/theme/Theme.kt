@@ -42,7 +42,7 @@ private val DarkColorScheme = darkColorScheme(
     outline = MountainMist,
     surfaceTint = Melrose,
     inverseSurface = BonJour,
-    inverseOnSurface = BalticSea,
+    inverseOnSurface = DarkCharcoal,
     inversePrimary = ButterflyBush
 )
 
@@ -63,15 +63,15 @@ private val LightColorScheme = lightColorScheme(
     onSecondary = Color.White,
     onSecondaryContainer = Mirage,
     onTertiary = Color.White,
-    onTertiaryContainer = Aubergine,
+    onTertiaryContainer = Tamarind,
     onSurface = BalticSea,
     onSurfaceVariant = ShipGray,
     onError = Color.White,
-    onErrorContainer = Aubergine,
+    onErrorContainer = VanCleef,
     onBackground = BalticSea,
     outline = Mobster,
-    surfaceTint = ButterflyBush,
-    inverseSurface = BalticSea,
+    surfaceTint = Snuff,
+    inverseSurface = DarkCharcoal,
     inverseOnSurface = Prim,
     inversePrimary = Melrose
 )

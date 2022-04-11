@@ -1,20 +1,18 @@
 package band.effective.headlines.compose.presentation
 
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.material.ScaffoldState
-import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import com.google.accompanist.insets.ui.Scaffold
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HeadlinesScaffold(
-    scaffoldState: ScaffoldState = rememberScaffoldState(),
     topBar: @Composable () -> Unit = {},
     bottomBar: @Composable () -> Unit = {},
     content: @Composable (PaddingValues) -> Unit
 ) {
     Scaffold(
-        scaffoldState = scaffoldState,
         topBar = { topBar() },
         bottomBar = { bottomBar() },
         content = content
