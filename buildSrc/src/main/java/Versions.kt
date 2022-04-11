@@ -5,6 +5,10 @@ object Versions {
     const val kotlin = "1.6.10"
     const val coroutines = "1.6.0"
 
+    object Accompanist {
+        const val version = "0.23.1"
+    }
+
     object AndroidX {
         const val core = "1.7.0"
 

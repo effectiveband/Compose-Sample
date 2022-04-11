@@ -85,8 +85,9 @@ class AndroidAppPlugin : Plugin<Project> {
         project.tasks.withType<KotlinCompile>().configureEach {
             kotlinOptions {
                 freeCompilerArgs = freeCompilerArgs + listOf(
-                    "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
-                    "-Xuse-experimental=kotlinx.coroutines.ObsoleteCoroutinesApi"
+                    "-Xopt-in=kotlin.RequiresOptIn",
+                    "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+                    "-opt-in=kotlinx.coroutines.ObsoleteCoroutinesApi"
                 )
                 jvmTarget = "1.8"
             }

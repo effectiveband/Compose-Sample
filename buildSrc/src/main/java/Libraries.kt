@@ -5,6 +5,13 @@ object Libs {
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
     }
 
+    object Accompanist {
+        const val insets = "com.google.accompanist:accompanist-insets:${Versions.Accompanist.version}"
+        const val insetsUi ="com.google.accompanist:accompanist-insets-ui:${Versions.Accompanist.version}"
+        const val systemUiController = "com.google.accompanist:accompanist-systemuicontroller:${Versions.Accompanist.version}"
+        const val swipeRefreshLayout = "com.google.accompanist:accompanist-swiperefresh:${Versions.Accompanist.version}"
+    }
+
     object AndroidX {
         const val coreKtx = "androidx.core:core-ktx:${Versions.AndroidX.core}"
 

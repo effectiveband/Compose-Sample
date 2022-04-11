@@ -10,31 +10,70 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.ViewCompat
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+    primary = Melrose,
+    primaryContainer = Gigas,
+    secondary = LavenderGray,
+    secondaryContainer = MulledWine,
+    tertiary = BeautyBush,
+    tertiaryContainer = Eggplant,
+    surface = BalticSea,
+    surfaceVariant = ShipGray,
+    background = BalticSea,
+    error = MandysPink,
+    errorContainer = FaluRed,
+    onPrimary = Meteorite,
+    onPrimaryContainer = BlueChalk,
+    onSecondary = Blackcurrant,
+    onSecondaryContainer = MoonRaker,
+    onTertiary = LividBrown,
+    onTertiaryContainer = PastelPink,
+    onSurface = BonJour,
+    onSurfaceVariant = GraySuit,
+    onError = DarkTan,
+    onErrorContainer = Cherub,
+    onBackground = BonJour,
+    outline = MountainMist,
+    surfaceTint = Melrose,
+    inverseSurface = BonJour,
+    inverseOnSurface = BalticSea,
+    inversePrimary = ButterflyBush
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
+    primary = ButterflyBush,
+    primaryContainer = BlueChalk,
+    secondary = BlackCoral,
+    secondaryContainer = MoonRaker,
+    tertiary = Ferra,
+    tertiaryContainer = PastelPink,
+    surface = Tutu,
+    surfaceVariant = Snuff,
+    background = Tutu,
+    error = RoofTerracotta,
+    errorContainer = Cherub,
     onPrimary = Color.White,
+    onPrimaryContainer = Paua,
     onSecondary = Color.White,
+    onSecondaryContainer = Mirage,
     onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+    onTertiaryContainer = Aubergine,
+    onSurface = BalticSea,
+    onSurfaceVariant = ShipGray,
+    onError = Color.White,
+    onErrorContainer = Aubergine,
+    onBackground = BalticSea,
+    outline = Mobster,
+    surfaceTint = ButterflyBush,
+    inverseSurface = BalticSea,
+    inverseOnSurface = Prim,
+    inversePrimary = Melrose
 )
 
 @Composable
@@ -51,13 +90,6 @@ fun HeadlinesComposeTheme(
         }
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
-    }
-    val view = LocalView.current
-    if (!view.isInEditMode) {
-        SideEffect {
-            (view.context as Activity).window.statusBarColor = colorScheme.primary.toArgb()
-            ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = darkTheme
-        }
     }
 
     MaterialTheme(
