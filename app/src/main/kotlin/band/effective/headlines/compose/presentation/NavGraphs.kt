@@ -3,7 +3,7 @@ package band.effective.headlines.compose.presentation
 import band.effective.headlines.compose.feed.presentation.destinations.FeedScreenDestination
 import band.effective.headlines.compose.presentation.destinations.AboutScreenDestination
 import band.effective.headlines.compose.presentation.destinations.HeadlineDetailsScreenDestination
-import band.effective.headlines.compose.presentation.destinations.SearchScreenDestination
+import band.effective.headlines.compose.search.presentation.destinations.SearchScreenDestination
 import com.ramcosta.composedestinations.dynamic.routedIn
 import com.ramcosta.composedestinations.spec.DestinationSpec
 import com.ramcosta.composedestinations.spec.NavGraphSpec
@@ -11,7 +11,7 @@ import com.ramcosta.composedestinations.spec.NavGraphSpec
 object NavGraphs {
 
     val feed = object : NavGraphSpec {
-        override val route = "headlines"
+        override val route = "feed"
         override val startRoute = FeedScreenDestination routedIn this
         override val destinationsByRoute = listOf<DestinationSpec<*>>(
             FeedScreenDestination,

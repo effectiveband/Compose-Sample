@@ -24,6 +24,7 @@ android {
 dependencies {
 
     implementation(project(":screens:feed"))
+    implementation(project(":screens:search"))
 
     testImplementation(Libs.AndroidX.Test.junit)
     androidTestImplementation(Libs.AndroidX.Test.junitExt)

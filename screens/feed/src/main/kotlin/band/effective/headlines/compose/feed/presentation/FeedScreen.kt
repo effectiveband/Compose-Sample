@@ -19,7 +19,7 @@ fun FeedScreen(navigator: FeedScreenNavigation) {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Headlines", modifier = Modifier)
+        Text(text = "Feed", modifier = Modifier)
         Button(onClick = navigator::openHeadlineDetails) {
             Text(text = "To Details")
         }

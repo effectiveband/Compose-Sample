@@ -1,4 +1,4 @@
-package band.effective.headlines.compose.presentation
+package band.effective.headlines.compose.search.presentation
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,16 +10,8 @@ import com.ramcosta.composedestinations.annotation.Destination
 
 @Destination
 @Composable
-fun HeadlineDetailsScreen() {
+fun SearchScreen() {
     Box(modifier = Modifier.fillMaxSize()) {
-        Text(text = "Headline details", modifier = Modifier.align(Alignment.Center))
-    }
-}
-
-@Destination
-@Composable
-fun AboutScreen() {
-    Box(modifier = Modifier.fillMaxSize()) {
-        Text(text = "About", modifier = Modifier.align(Alignment.Center))
+        Text(text = "Search", modifier = Modifier.align(Alignment.Center))
     }
 }
