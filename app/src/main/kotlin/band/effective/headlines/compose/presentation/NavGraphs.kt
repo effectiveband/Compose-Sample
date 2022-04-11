@@ -1,8 +1,8 @@
 package band.effective.headlines.compose.presentation
 
+import band.effective.headlines.compose.feed.presentation.destinations.FeedScreenDestination
 import band.effective.headlines.compose.presentation.destinations.AboutScreenDestination
 import band.effective.headlines.compose.presentation.destinations.HeadlineDetailsScreenDestination
-import band.effective.headlines.compose.presentation.destinations.HeadlinesScreenDestination
 import band.effective.headlines.compose.presentation.destinations.SearchScreenDestination
 import com.ramcosta.composedestinations.dynamic.routedIn
 import com.ramcosta.composedestinations.spec.DestinationSpec
@@ -10,11 +10,11 @@ import com.ramcosta.composedestinations.spec.NavGraphSpec
 
 object NavGraphs {
 
-    val headlines = object : NavGraphSpec {
+    val feed = object : NavGraphSpec {
         override val route = "headlines"
-        override val startRoute = HeadlinesScreenDestination routedIn this
+        override val startRoute = FeedScreenDestination routedIn this
         override val destinationsByRoute = listOf<DestinationSpec<*>>(
-            HeadlinesScreenDestination,
+            FeedScreenDestination,
             HeadlineDetailsScreenDestination
         ).routedIn(this).associateBy { it.route }
     }
@@ -38,8 +38,8 @@ object NavGraphs {
 
     val root = object :NavGraphSpec {
         override val route = "root"
-        override val startRoute = headlines
+        override val startRoute = feed
         override val destinationsByRoute = emptyMap<String, DestinationSpec<*>>()
-        override val nestedNavGraphs = listOf(headlines, search, about)
+        override val nestedNavGraphs = listOf(feed, search, about)
     }
 }

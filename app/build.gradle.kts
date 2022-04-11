@@ -1,6 +1,5 @@
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
     id("band.effective.module.screen")
 }
 
@@ -23,6 +22,8 @@ android {
 }
 
 dependencies {
+
+    implementation(project(":screens:feed"))
 
     testImplementation(Libs.AndroidX.Test.junit)
     androidTestImplementation(Libs.AndroidX.Test.junitExt)

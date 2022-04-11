@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import band.effective.headlines.compose.feed.presentation.FeedScreenNavigation
 import band.effective.headlines.compose.presentation.destinations.HeadlineDetailsScreenDestination
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.dynamic.within
@@ -29,7 +30,7 @@ fun AppNavigation(
 class CommonNavGraphNavigator(
     private val navGraph: NavGraphSpec,
     private val navController: NavController
-):HeadlinesScreenNavigation {
+): FeedScreenNavigation {
 
     override fun navigateUp() {
         navController.navigateUp()

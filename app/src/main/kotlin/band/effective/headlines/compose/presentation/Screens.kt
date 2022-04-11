@@ -11,28 +11,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.ramcosta.composedestinations.annotation.Destination
 
-interface HeadlinesScreenNavigation {
-
-    fun navigateUp()
-
-    fun openHeadlineDetails()
-}
-
-@Destination
-@Composable
-fun HeadlinesScreen(navigator: HeadlinesScreenNavigation) {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(text = "Headlines", modifier = Modifier)
-        Button(onClick = { navigator.openHeadlineDetails() }) {
-            Text(text = "To Details")
-        }
-    }
-}
-
 @Destination
 @Composable
 fun HeadlineDetailsScreen() {

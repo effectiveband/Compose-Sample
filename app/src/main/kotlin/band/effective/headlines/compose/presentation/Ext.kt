@@ -23,7 +23,7 @@ import kotlin.math.ln
 @Stable
 @Composable
 fun NavController.currentBottomItemAsState(): State<NavGraphSpec> {
-    val selectedItem = remember { mutableStateOf(NavGraphs.headlines) }
+    val selectedItem = remember { mutableStateOf(NavGraphs.feed) }
 
     DisposableEffect(this) {
         val listener = NavController.OnDestinationChangedListener { _, destination, _ ->

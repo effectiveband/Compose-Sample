@@ -7,13 +7,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Feed
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Weekend
 import androidx.compose.material.icons.outlined.Feed
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Search
-import androidx.compose.material.icons.outlined.Weekend
 import androidx.compose.material.ripple.LocalRippleTheme
-import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
@@ -25,13 +22,7 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import band.effective.headlines.compose.R
-import band.effective.headlines.compose.presentation.destinations.AboutScreenDestination
-import band.effective.headlines.compose.presentation.destinations.Destination
-import band.effective.headlines.compose.presentation.destinations.HeadlinesScreenDestination
-import band.effective.headlines.compose.presentation.destinations.SearchScreenDestination
 import band.effective.headlines.compose.ui.theme.NoRippleTheme
-import com.ramcosta.composedestinations.spec.Direction
-import com.ramcosta.composedestinations.spec.DirectionDestinationSpec
 import com.ramcosta.composedestinations.spec.NavGraphSpec
 
 @Composable
@@ -109,7 +100,7 @@ sealed class BottomNavigationItem(
 
 val BottomNavigationItems = listOf(
     BottomNavigationItem.ImageVectorIcon(
-        screen = NavGraphs.headlines,
+        screen = NavGraphs.feed,
         labelResId = R.string.headlines,
         contentDescriptionResId = R.string.headlines,
         iconImageVector = Icons.Outlined.Feed,
