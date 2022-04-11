@@ -11,4 +11,4 @@ dependencyResolutionManagement {
 rootProject.name = "Headlines Compose"
 
 include (":app")
-include(":screens:feed", ":screens:search", ":screens:about")
+include(":screens:feed", ":screens:search", ":screens:about", ":screens:news-details")

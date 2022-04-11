@@ -8,7 +8,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import band.effective.headlines.compose.feed.presentation.FeedScreenNavigation
 import com.ramcosta.composedestinations.annotation.Destination
 
 @Destination
@@ -20,7 +19,7 @@ fun FeedScreen(navigator: FeedScreenNavigation) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = "Feed", modifier = Modifier)
-        Button(onClick = navigator::openHeadlineDetails) {
+        Button(onClick = navigator::openNewsDetails) {
             Text(text = "To Details")
         }
     }

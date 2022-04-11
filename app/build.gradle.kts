@@ -26,6 +26,7 @@ dependencies {
     implementation(project(":screens:feed"))
     implementation(project(":screens:search"))
     implementation(project(":screens:about"))
+    implementation(project(":screens:news-details"))
 
     testImplementation(Libs.AndroidX.Test.junit)
     androidTestImplementation(Libs.AndroidX.Test.junitExt)

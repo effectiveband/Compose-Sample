@@ -4,5 +4,5 @@ interface FeedScreenNavigation {
 
     fun navigateUp()
 
-    fun openHeadlineDetails()
+    fun openNewsDetails()
 }

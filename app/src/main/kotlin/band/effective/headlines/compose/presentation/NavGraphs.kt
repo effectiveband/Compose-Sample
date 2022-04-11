@@ -2,7 +2,7 @@ package band.effective.headlines.compose.presentation
 
 import band.effective.headlines.compose.about.presentation.destinations.AboutScreenDestination
 import band.effective.headlines.compose.feed.presentation.destinations.FeedScreenDestination
-import band.effective.headlines.compose.presentation.destinations.HeadlineDetailsScreenDestination
+import band.effective.headlines.compose.news_details.presentation.destinations.NewsDetailsScreenDestination
 import band.effective.headlines.compose.search.presentation.destinations.SearchScreenDestination
 import com.ramcosta.composedestinations.dynamic.routedIn
 import com.ramcosta.composedestinations.spec.DestinationSpec
@@ -15,7 +15,7 @@ object NavGraphs {
         override val startRoute = FeedScreenDestination routedIn this
         override val destinationsByRoute = listOf<DestinationSpec<*>>(
             FeedScreenDestination,
-            HeadlineDetailsScreenDestination
+            NewsDetailsScreenDestination
         ).routedIn(this).associateBy { it.route }
     }
 
@@ -23,8 +23,7 @@ object NavGraphs {
         override val route = "search"
         override val startRoute = SearchScreenDestination routedIn this
         override val destinationsByRoute = listOf<DestinationSpec<*>>(
-            SearchScreenDestination,
-            HeadlineDetailsScreenDestination
+            SearchScreenDestination
         ).routedIn(this).associateBy { it.route }
     }
 

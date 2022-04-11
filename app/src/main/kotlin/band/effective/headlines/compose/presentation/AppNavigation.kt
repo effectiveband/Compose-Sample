@@ -5,7 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import band.effective.headlines.compose.feed.presentation.FeedScreenNavigation
-import band.effective.headlines.compose.presentation.destinations.HeadlineDetailsScreenDestination
+import band.effective.headlines.compose.news_details.presentation.destinations.NewsDetailsScreenDestination
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.dynamic.within
 import com.ramcosta.composedestinations.navigation.dependency
@@ -36,7 +36,7 @@ class CommonNavGraphNavigator(
         navController.navigateUp()
     }
 
-    override fun openHeadlineDetails() {
-        navController.navigateTo(HeadlineDetailsScreenDestination within navGraph)
+    override fun openNewsDetails() {
+        navController.navigateTo(NewsDetailsScreenDestination within navGraph)
     }
 }
