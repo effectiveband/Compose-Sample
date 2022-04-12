@@ -21,6 +21,10 @@ gradlePlugin {
             id = "band.effective.module.compose"
             implementationClass = "band.effective.plugins.ComposeModulePlugin"
         }
+        register("network-config-plugin") {
+            id = "band.effective.network.config"
+            implementationClass = "band.effective.plugins.NetworkConfigPlugin"
+        }
     }
 }
 

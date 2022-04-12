@@ -97,6 +97,7 @@ class BuildConfigPlugin : Plugin<Project> {
     private fun applyBaseDependencies(project: Project) {
         project.dependencies {
             add("implementation", Libs.Coroutines.android)
+            add("implementation", Libs.Timber.timber)
         }
     }
 }

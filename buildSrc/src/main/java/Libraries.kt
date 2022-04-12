@@ -1,5 +1,25 @@
 object Libs {
 
+    object Timber {
+        const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
+    }
+
+    object Retrofit {
+        const val client = "com.squareup.retrofit2:retrofit:${Versions.Retrofit.version}"
+        const val moshiConverter = "com.squareup.retrofit2:converter-moshi:${Versions.Retrofit.version}"
+    }
+
+    object OkHttp {
+        const val client = "com.squareup.okhttp3:okhttp:${Versions.OkHttp.version}"
+        const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.OkHttp.version}"
+    }
+
+    object Moshi {
+        const val kotlin = "com.squareup.moshi:moshi-kotlin:${Versions.Moshi.version}"
+        const val compiler = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.Moshi.version}"
+        const val adapters = "com.squareup.moshi:moshi-adapters:${Versions.Moshi.version}"
+    }
+
     object Dagger2 {
         const val annotations = "com.google.dagger:dagger:${Versions.Dagger2.version}"
         const val compiler = "com.google.dagger:dagger-compiler:${Versions.Dagger2.version}"

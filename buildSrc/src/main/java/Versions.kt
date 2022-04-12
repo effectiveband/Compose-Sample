@@ -4,6 +4,19 @@ object Versions {
     const val ksp = "1.6.10-1.0.4"
     const val kotlin = "1.6.10"
     const val coroutines = "1.6.0"
+    const val timber = "5.0.1"
+
+    object Retrofit {
+        const val version = "2.9.0"
+    }
+
+    object OkHttp {
+        const val version = "4.9.3"
+    }
+
+    object Moshi {
+        const val version = "1.13.0"
+    }
 
     object Dagger2 {
         const val version = "2.41"
