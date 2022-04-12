@@ -10,6 +10,7 @@ import band.effective.headlines.compose.di.modules.AppModule
 import band.effective.headlines.compose.di.modules.ComponentDependenciesModule
 import band.effective.headlines.compose.main.di.MainComponentDependencies
 import band.effective.headlines.compose.network.di.NetworkModule
+import band.effective.headlines.compose.news_api.di.NewsApiDependencies
 import dagger.BindsInstance
 import dagger.Component
 
@@ -22,7 +23,7 @@ import dagger.Component
         StringResolverModule::class
     ]
 )
-interface AppComponent : CommonDependencies, MainComponentDependencies {
+interface AppComponent : CommonDependencies, MainComponentDependencies, NewsApiDependencies {
 
     @Component.Factory
     interface Factory {

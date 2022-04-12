@@ -40,6 +40,11 @@ object Libs {
     object AndroidX {
         const val coreKtx = "androidx.core:core-ktx:${Versions.AndroidX.core}"
 
+        object Paging {
+            const val runtime = "androidx.paging:paging-runtime:${Versions.AndroidX.Paging.version}"
+            const val compose = "androidx.paging:paging-compose:${Versions.AndroidX.Paging.compose}"
+        }
+
         object Activity {
             const val activityCompose = "androidx.activity:activity-compose:${Versions.AndroidX.Activity.version}"
         }

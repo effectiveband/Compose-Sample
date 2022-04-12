@@ -25,6 +25,7 @@ android {
 dependencies {
 
     implementation(project(":network"))
+    implementation(project(":news-api"))
 
     implementation(project(":screens:feed"))
     implementation(project(":screens:search"))

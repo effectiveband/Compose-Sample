@@ -50,7 +50,7 @@ interface NetworkModule {
 
         @BaseNetwork
         @Provides
-        @Singleton
+        @AppScope
         fun provideBaseRetrofit(
             @BaseNetwork client: OkHttpClient,
             moshi: Moshi

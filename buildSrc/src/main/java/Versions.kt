@@ -29,6 +29,11 @@ object Versions {
     object AndroidX {
         const val core = "1.7.0"
 
+        object Paging {
+            const val version = "3.1.1"
+            const val compose = "1.0.0-alpha14"
+        }
+
         object Activity {
             const val version = "1.4.0"
         }
