@@ -1,4 +1,4 @@
-package band.effective.headlines.compose.presentation
+package band.effective.headlines.compose.navigation
 
 import band.effective.headlines.compose.about.presentation.destinations.AboutScreenDestination
 import band.effective.headlines.compose.feed.presentation.destinations.FeedScreenDestination

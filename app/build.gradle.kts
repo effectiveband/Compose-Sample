@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("band.effective.module.screen")
+    id("band.effective.module.dagger")
 }
 
 android {

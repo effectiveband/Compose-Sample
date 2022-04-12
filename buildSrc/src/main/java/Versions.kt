@@ -5,6 +5,10 @@ object Versions {
     const val kotlin = "1.6.10"
     const val coroutines = "1.6.0"
 
+    object Dagger2 {
+        const val version = "2.41"
+    }
+
     object Accompanist {
         const val version = "0.23.1"
     }

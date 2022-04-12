@@ -1,5 +1,10 @@
 object Libs {
 
+    object Dagger2 {
+        const val annotations = "com.google.dagger:dagger:${Versions.Dagger2.version}"
+        const val compiler = "com.google.dagger:dagger-compiler:${Versions.Dagger2.version}"
+    }
+
     object Coroutines {
         const val android =
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
@@ -21,6 +26,8 @@ object Libs {
 
         object Lifecycle {
             const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.AndroidX.Lifecycle.version}"
+            const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.AndroidX.Lifecycle.version}"
+            const val viewModelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.AndroidX.Lifecycle.version}"
         }
 
         object Compose {

@@ -10,7 +10,7 @@ import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-class AndroidAppPlugin : Plugin<Project> {
+class BuildConfigPlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
         project.plugins.apply("org.jetbrains.kotlin.android")

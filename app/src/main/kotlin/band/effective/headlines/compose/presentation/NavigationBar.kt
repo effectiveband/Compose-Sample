@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import band.effective.headlines.compose.R
+import band.effective.headlines.compose.navigation.NavGraphs
 import band.effective.headlines.compose.ui.theme.NoRippleTheme
 import com.ramcosta.composedestinations.spec.NavGraphSpec
 

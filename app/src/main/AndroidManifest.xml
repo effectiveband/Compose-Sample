@@ -4,6 +4,7 @@
     package="band.effective.headlines.compose">
 
     <application
+        android:name=".HeadlinesComposeApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"

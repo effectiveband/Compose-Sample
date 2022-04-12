@@ -16,6 +16,8 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
+import band.effective.headlines.compose.navigation.CommonNavGraphNavigator
+import band.effective.headlines.compose.navigation.NavGraphs
 import com.ramcosta.composedestinations.scope.DestinationScope
 import com.ramcosta.composedestinations.spec.NavGraphSpec
 import kotlin.math.ln
@@ -55,7 +57,7 @@ fun ArrayDeque<NavBackStackEntry>.print(prefix: String = "stack") {
     Log.d("NAVIGATION", "$prefix = $stack")
 }
 
-fun DestinationScope<*>.currentNavigator(): CommonNavGraphNavigator{
+fun DestinationScope<*>.currentNavigator(): CommonNavGraphNavigator {
     return CommonNavGraphNavigator(
         navBackStackEntry.destination.navGraph(),
         navController

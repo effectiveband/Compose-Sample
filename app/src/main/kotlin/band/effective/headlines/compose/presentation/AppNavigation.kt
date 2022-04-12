@@ -2,15 +2,10 @@ package band.effective.headlines.compose.presentation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import band.effective.headlines.compose.feed.presentation.FeedScreenNavigation
-import band.effective.headlines.compose.news_details.presentation.destinations.NewsDetailsScreenDestination
+import band.effective.headlines.compose.navigation.NavGraphs
 import com.ramcosta.composedestinations.DestinationsNavHost
-import com.ramcosta.composedestinations.dynamic.within
 import com.ramcosta.composedestinations.navigation.dependency
-import com.ramcosta.composedestinations.navigation.navigateTo
-import com.ramcosta.composedestinations.spec.NavGraphSpec
 
 @Composable
 fun AppNavigation(
@@ -25,18 +20,4 @@ fun AppNavigation(
             dependency(currentNavigator())
         }
     )
-}
-
-class CommonNavGraphNavigator(
-    private val navGraph: NavGraphSpec,
-    private val navController: NavController
-): FeedScreenNavigation {
-
-    override fun navigateUp() {
-        navController.navigateUp()
-    }
-
-    override fun openNewsDetails() {
-        navController.navigateTo(NewsDetailsScreenDestination within navGraph)
-    }
 }
