@@ -40,6 +40,8 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
+import band.effective.headlines.compose.core_ui.components.ErrorMessageWithButton
+import band.effective.headlines.compose.core_ui.components.FullScreenErrorMessage
 import band.effective.headlines.compose.core_ui.di.daggerViewModel
 import band.effective.headlines.compose.core_ui.di.rememberFlowWithLifecycle
 import band.effective.headlines.compose.feed.di.feedComponent
@@ -97,7 +99,7 @@ private fun FeedScreen(viewModel: FeedViewModel, openArticle: () -> Unit) {
             }
             is LoadState.Error -> {
                 val message = (refresh.error as? NewsLoadException)?.reason?.message
-                ErrorMessageWithButton(message = message, modifier = Modifier.fillMaxSize()) {
+                FullScreenErrorMessage(message = message, modifier = Modifier.fillMaxSize()) {
                     viewModel.sendEvent(FeedUiEvent.OnRetry)
                 }
             }
@@ -220,24 +222,4 @@ private fun HeadlineCard(headline: HeadlineItemUi, modifier: Modifier = Modifier
     }
 }
 
-@Composable
-private fun ErrorMessageWithButton(
-    message: String?,
-    modifier: Modifier = Modifier,
-    onRetry: () -> Unit
-) {
-    Column(
-        modifier = modifier,
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = message
-                ?: stringResource(id = band.effective.headlines.compose.core_ui.R.string.unknown_error)
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        Button(onClick = { onRetry() }) {
-            Text(text = stringResource(id = band.effective.headlines.compose.core_ui.R.string.retry))
-        }
-    }
-}
+
