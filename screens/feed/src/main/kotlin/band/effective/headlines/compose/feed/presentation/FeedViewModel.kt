@@ -2,6 +2,7 @@ package band.effective.headlines.compose.feed.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import androidx.paging.map
 import band.effective.headlines.compose.feed.presentation.models.mappers.asHeadlineItemUI
 import band.effective.headlines.compose.news_api.data.NewsRepository
@@ -13,6 +14,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 internal class FeedViewModel @Inject constructor(
@@ -26,6 +28,7 @@ internal class FeedViewModel @Inject constructor(
     val effect = _effect.asSharedFlow()
 
     init {
+        Timber.d("FeedViewModelStarted")
         loadFeed()
     }
 
@@ -34,7 +37,7 @@ internal class FeedViewModel @Inject constructor(
             is FeedUiEvent.OnHeadline -> {
                 viewModelScope.launch { _effect.emit(FeedUiEffect.NavigateToArticle(event.url)) }
             }
-            FeedUiEvent.OnRefresh -> {
+            FeedUiEvent.OnRetry -> {
                 _uiState.update { it.copy(isRefreshing = true) }
                 loadFeed()
             }
@@ -42,9 +45,10 @@ internal class FeedViewModel @Inject constructor(
     }
 
     private fun loadFeed() {
-        val feed = newsRepository.getHeadlinesPagedFlow().mapLatest { data ->
-            data.map(ArticleDomain::asHeadlineItemUI)
-        }
+        val feed =
+            newsRepository.getHeadlinesPagedFlow().cachedIn(viewModelScope).mapLatest { data ->
+                data.map(ArticleDomain::asHeadlineItemUI)
+            }
         _uiState.update { it.copy(isLoading = false, isRefreshing = false, feed = feed) }
     }
 }

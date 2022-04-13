@@ -19,11 +19,11 @@ internal data class FeedUiState(
 }
 
 internal sealed class FeedUiEvent {
-    object OnRefresh: FeedUiEvent()
-    class OnHeadline(val url: String): FeedUiEvent()
+    object OnRetry : FeedUiEvent()
+    class OnHeadline(val url: String) : FeedUiEvent()
 }
 
 internal sealed class FeedUiEffect {
-    class NavigateToArticle(val url: String): FeedUiEffect()
+    class NavigateToArticle(val url: String) : FeedUiEffect()
 }
 
