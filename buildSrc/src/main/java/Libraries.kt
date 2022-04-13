@@ -39,6 +39,7 @@ object Libs {
         const val insetsUi ="com.google.accompanist:accompanist-insets-ui:${Versions.Accompanist.version}"
         const val systemUiController = "com.google.accompanist:accompanist-systemuicontroller:${Versions.Accompanist.version}"
         const val swipeRefreshLayout = "com.google.accompanist:accompanist-swiperefresh:${Versions.Accompanist.version}"
+        const val placeholer = "com.google.accompanist:accompanist-placeholder-material:${Versions.Accompanist.version}"
     }
 
     object AndroidX {

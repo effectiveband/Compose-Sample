@@ -11,6 +11,7 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavControllerVisibleEntries
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -25,7 +26,7 @@ fun AppHost() {
     val navController = rememberNavController()
     val systemUiController = rememberSystemUiController()
     val useDarkIcons = !isSystemInDarkTheme()
-    val surfaceColorWithScrim = MaterialTheme.colorScheme.surface.copy(0.3F)
+    val surfaceColorWithScrim = MaterialTheme.colorScheme.surface.copy(0.8F)
     val navigationBarColor = MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp)
     val visibleEntries by navController.visibleEntries.collectAsState()
     val isBottomNavigationBarVisible = visibleEntries.any { entry ->
@@ -41,7 +42,7 @@ fun AppHost() {
                 darkIcons = useDarkIcons
             )
             setNavigationBarColor(
-                color = if (isBottomNavigationBarVisible) navigationBarColor else surfaceColorWithScrim,
+                color = if (isBottomNavigationBarVisible) navigationBarColor else Color.Transparent,
                 darkIcons = useDarkIcons
             )
         }

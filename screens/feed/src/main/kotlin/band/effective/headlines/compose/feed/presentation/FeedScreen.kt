@@ -1,6 +1,7 @@
 package band.effective.headlines.compose.feed.presentation
 
 import android.app.Activity
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,6 +19,8 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Adjust
+import androidx.compose.material.icons.outlined.BrokenImage
+import androidx.compose.material.icons.outlined.Image
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
@@ -32,6 +35,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
@@ -48,7 +52,16 @@ import band.effective.headlines.compose.feed.di.feedComponent
 import band.effective.headlines.compose.feed.presentation.models.HeadlineItemUi
 import band.effective.headlines.compose.news_api.data.headlines.remote.models.NewsLoadException
 import coil.compose.AsyncImage
+import coil.compose.AsyncImagePainter
+import coil.compose.SubcomposeAsyncImage
+import coil.compose.SubcomposeAsyncImageContent
+import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
 import com.google.accompanist.insets.statusBarsPadding
+import com.google.accompanist.placeholder.PlaceholderHighlight
+import com.google.accompanist.placeholder.material.fade
+import com.google.accompanist.placeholder.material.placeholder
+import com.google.accompanist.placeholder.placeholder
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.ramcosta.composedestinations.annotation.Destination
@@ -180,15 +193,29 @@ private fun HeadlineCard(headline: HeadlineItemUi, modifier: Modifier = Modifier
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
             if (headline.imageUrl != null) {
-                AsyncImage(
-                    model = headline.imageUrl,
+                SubcomposeAsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(headline.imageUrl)
+                        .crossfade(true)
+                        .build(),
                     contentDescription = null,
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(150.dp)
                         .clip(RoundedCornerShape(12.dp)),
                     contentScale = ContentScale.Crop
-                )
+                ) {
+                    when (painter.state) {
+                        AsyncImagePainter.State.Empty -> {}
+                        is AsyncImagePainter.State.Loading -> {
+                            PlaceholderImage(modifier = Modifier.fillMaxSize())
+                        }
+                        is AsyncImagePainter.State.Success -> SubcomposeAsyncImageContent()
+                        is AsyncImagePainter.State.Error -> {
+                            ErrorImage(modifier = Modifier.fillMaxSize())
+                        }
+                    }
+                }
             }
         }
         Text(
@@ -222,4 +249,25 @@ private fun HeadlineCard(headline: HeadlineItemUi, modifier: Modifier = Modifier
     }
 }
 
+@Composable
+private fun PlaceholderImage(modifier: Modifier) {
+    Box(
+        modifier = modifier.placeholder(
+            visible = true,
+            highlight = PlaceholderHighlight.fade()
+        )
+    )
+}
 
+@Composable
+private fun ErrorImage(modifier: Modifier) {
+    Box(modifier = modifier) {
+        Icon(
+            imageVector = Icons.Outlined.BrokenImage,
+            contentDescription = null,
+            modifier = Modifier
+                .align(Alignment.Center)
+                .size(64.dp)
+        )
+    }
+}
