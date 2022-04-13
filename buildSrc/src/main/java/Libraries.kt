@@ -1,5 +1,9 @@
 object Libs {
 
+    object Coil {
+        const val coil = "io.coil-kt:coil-compose:${Versions.Coil.version}"
+    }
+
     object Timber {
         const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     }

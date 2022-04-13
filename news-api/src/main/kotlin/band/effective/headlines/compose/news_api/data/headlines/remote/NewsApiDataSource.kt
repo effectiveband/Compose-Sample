@@ -9,7 +9,7 @@ import retrofit2.http.Query
 internal interface NewsApiDataSource {
 
     companion object {
-        const val DEFAULT_PAGE_SIZE = 10
+        const val DEFAULT_PAGE_SIZE = 20
         const val START_PAGE = 1
     }
 

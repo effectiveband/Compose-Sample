@@ -24,12 +24,12 @@ internal class NewsPagingSource @Inject constructor(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ArticleDomain> {
         val page = params.key ?: START_PAGE
-        val response = newsApiDataSource.getHeadlines("")
+        val response = newsApiDataSource.getHeadlines("us", page)
         return response.unpack(
             success = { news ->
                 LoadResult.Page(
                     data = news.articles.map(ArticleResponse::asDomain),
-                    prevKey = (page - 1).takeIf { it >= 0 },
+                    prevKey = (page - 1).takeIf { it >= 1 },
                     nextKey = (page + 1).takeIf { news.articles.size == DEFAULT_PAGE_SIZE },
                 )
             },

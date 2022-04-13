@@ -6,6 +6,10 @@ object Versions {
     const val coroutines = "1.6.0"
     const val timber = "5.0.1"
 
+    object Coil {
+        const val version = "2.0.0-rc03"
+    }
+
     object Retrofit {
         const val version = "2.9.0"
     }

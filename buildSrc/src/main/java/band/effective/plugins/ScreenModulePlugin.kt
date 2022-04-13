@@ -9,12 +9,18 @@ import org.gradle.kotlin.dsl.project
 class ScreenModulePlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
-        project.plugins.apply("band.effective.module.compose")
+        with(project.plugins) {
+            apply("band.effective.build.config")
+            apply("band.effective.module.dagger")
+            apply("band.effective.module.compose")
+        }
         val androidExtension = project.extensions.getByName("android")
         if (androidExtension is BaseExtension) {
             project.dependencies {
                 add("implementation", project(":core"))
                 add("implementation", project(":core-ui"))
+
+                add("implementation", Libs.Coil.coil)
             }
         }
     }

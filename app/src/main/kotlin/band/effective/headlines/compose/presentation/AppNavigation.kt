@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import band.effective.headlines.compose.navigation.NavGraphs
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.navigation.dependency
+import com.ramcosta.composedestinations.rememberNavHostEngine
 
 @Composable
 fun AppNavigation(
@@ -13,6 +14,7 @@ fun AppNavigation(
     modifier: Modifier = Modifier,
 ) {
     DestinationsNavHost(
+        engine = rememberNavHostEngine(),
         navGraph = NavGraphs.root,
         navController = navController,
         modifier = modifier,
