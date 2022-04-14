@@ -7,4 +7,6 @@ import kotlinx.coroutines.flow.Flow
 interface NewsRepository {
 
     fun getHeadlinesPagedFlow(): Flow<PagingData<ArticleDomain>>
+
+    fun getEverythingPagedFlow(searchQuery: String): Flow<PagingData<ArticleDomain>>
 }

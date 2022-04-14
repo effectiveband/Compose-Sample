@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 internal class FeedViewModel @Inject constructor(
@@ -28,7 +27,6 @@ internal class FeedViewModel @Inject constructor(
     val effect = _effect.asSharedFlow()
 
     init {
-        Timber.d("FeedViewModelStarted")
         loadFeed()
     }
 

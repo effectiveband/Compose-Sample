@@ -6,8 +6,6 @@ import java.util.Date
 
 @JsonClass(generateAdapter = true)
 internal class NewsPageResponse(
-    @Json(name = "totalResults")
-    val total: Int,
     @Json(name = "articles")
     val articles: List<ArticleResponse>
 )

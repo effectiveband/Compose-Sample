@@ -17,7 +17,22 @@ internal class NewsRepositoryImpl @Inject constructor(
     override fun getHeadlinesPagedFlow(): Flow<PagingData<ArticleDomain>> {
         return Pager(
             config = PagingConfig(pageSize = DEFAULT_PAGE_SIZE, enablePlaceholders = true),
-            pagingSourceFactory = { NewsPagingSource(newsApiDataSource) }
+            pagingSourceFactory = {
+                NewsPagingSource { page, pageSize ->
+                    newsApiDataSource.getHeadlines("us", page, pageSize)
+                }
+            }
+        ).flow
+    }
+
+    override fun getEverythingPagedFlow(searchQuery: String): Flow<PagingData<ArticleDomain>> {
+        return Pager(
+            config = PagingConfig(pageSize = DEFAULT_PAGE_SIZE, enablePlaceholders = true),
+            pagingSourceFactory = {
+                NewsPagingSource { page, pageSize ->
+                    newsApiDataSource.getEverything(searchQuery, page, pageSize)
+                }
+            }
         ).flow
     }
 }

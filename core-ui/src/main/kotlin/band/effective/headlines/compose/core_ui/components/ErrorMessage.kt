@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import band.effective.headlines.compose.core_ui.R
 
@@ -35,8 +36,8 @@ fun FullScreenErrorMessage(
         )
         Spacer(modifier = Modifier.height(16.dp))
         Text(
-            text = message
-                ?: stringResource(id = R.string.unknown_error)
+            text = message ?: stringResource(id = R.string.unknown_error),
+            textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = { onRetry() }) {
@@ -57,8 +58,8 @@ fun ErrorMessageWithButton(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = message
-                ?: stringResource(id = R.string.unknown_error)
+            text = message ?: stringResource(id = R.string.unknown_error),
+            textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(8.dp))
         Button(onClick = { onRetry() }) {

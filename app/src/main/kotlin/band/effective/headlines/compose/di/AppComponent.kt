@@ -11,8 +11,8 @@ import band.effective.headlines.compose.di.modules.ComponentDependenciesModule
 import band.effective.headlines.compose.feed.di.FeedDependencies
 import band.effective.headlines.compose.main.di.MainComponentDependencies
 import band.effective.headlines.compose.network.di.NetworkModule
-import band.effective.headlines.compose.network.di.NewsNetworkModule
 import band.effective.headlines.compose.news_api.di.NewsApiDependencies
+import band.effective.headlines.compose.search.di.SearchDependencies
 import dagger.BindsInstance
 import dagger.Component
 
@@ -25,7 +25,12 @@ import dagger.Component
         StringResolverModule::class
     ]
 )
-interface AppComponent : CommonDependencies, MainComponentDependencies, NewsApiDependencies, FeedDependencies {
+interface AppComponent :
+    CommonDependencies,
+    MainComponentDependencies,
+    NewsApiDependencies,
+    FeedDependencies,
+    SearchDependencies {
 
     @Component.Factory
     interface Factory {

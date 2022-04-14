@@ -1,16 +1,16 @@
-package band.effective.headlines.compose.feed.presentation.models.mappers
+package band.effective.headlines.compose.search.presentation.models.mappers
 
 import android.text.format.DateUtils
-import band.effective.headlines.compose.feed.presentation.models.HeadlineItemUi
 import band.effective.headlines.compose.news_api.domain.models.ArticleDomain
+import band.effective.headlines.compose.search.presentation.models.SearchItemUi
 
-internal fun ArticleDomain.asHeadlineItemUI(): HeadlineItemUi {
+internal fun ArticleDomain.asSearchItemUI(): SearchItemUi {
     val relativeDateString = DateUtils.getRelativeTimeSpanString(
         date.time,
         System.currentTimeMillis(),
         DateUtils.DAY_IN_MILLIS
     )
-    return HeadlineItemUi(
+    return SearchItemUi(
         title = title,
         source = source,
         url = url,
