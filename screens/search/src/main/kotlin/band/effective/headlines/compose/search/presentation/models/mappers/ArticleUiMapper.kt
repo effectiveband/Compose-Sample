@@ -15,6 +15,8 @@ internal fun ArticleDomain.asSearchItemUI(): SearchItemUi {
         source = source,
         url = url,
         imageUrl = imageUrl,
-        date = relativeDateString.toString()
+        date = relativeDateString.toString(),
+        description = description,
+        content = content
     )
 }

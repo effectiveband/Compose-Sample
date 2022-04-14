@@ -4,10 +4,10 @@ import java.util.Date
 
 class ArticleDomain(
     val title: String,
-    val description: String,
+    val description: String?,
     val source: String,
     val url: String,
     val imageUrl: String?,
     val date: Date,
-    val content: String
+    val content: String?
 )

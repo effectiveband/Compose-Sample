@@ -6,4 +6,6 @@ internal class HeadlineItemUi(
     val url: String,
     val imageUrl: String?,
     val date: String,
+    val description: String?,
+    val content: String?
 )
