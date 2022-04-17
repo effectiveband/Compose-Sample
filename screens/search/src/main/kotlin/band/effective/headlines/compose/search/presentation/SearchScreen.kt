@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -19,7 +18,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.collectAsLazyPagingItems
 import band.effective.headlines.compose.core_ui.di.daggerViewModel
-import band.effective.headlines.compose.core_ui.di.rememberFlowWithLifecycle
+import band.effective.headlines.compose.core_ui.rememberStateWithLifecycle
 import band.effective.headlines.compose.search.di.searchComponent
 import band.effective.headlines.compose.search.presentation.components.ArticlesListPagingHolder
 import band.effective.headlines.compose.search.presentation.components.SearchField
@@ -42,7 +41,7 @@ fun SearchScreen(navigator: SearchScreenNavigation) {
 
 @Composable
 private fun SearchScreen(viewModel: SearchViewModel, openArticle: () -> Unit) {
-    val uiState by rememberFlowWithLifecycle(viewModel.uiState).collectAsState(SearchUiState.Empty)
+    val uiState by rememberStateWithLifecycle(viewModel.uiState)
     val articlesItems = uiState.searchResult.collectAsLazyPagingItems()
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()

@@ -4,13 +4,12 @@ import android.app.Activity
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.paging.compose.collectAsLazyPagingItems
 import band.effective.headlines.compose.core_ui.di.daggerViewModel
-import band.effective.headlines.compose.core_ui.di.rememberFlowWithLifecycle
+import band.effective.headlines.compose.core_ui.rememberStateWithLifecycle
 import band.effective.headlines.compose.feed.di.feedComponent
 import band.effective.headlines.compose.feed.presentation.components.FeedListPagingHolder
 import com.google.accompanist.swiperefresh.SwipeRefresh
@@ -29,7 +28,7 @@ fun FeedScreen(navigator: FeedScreenNavigation) {
 
 @Composable
 private fun FeedScreen(viewModel: FeedViewModel, openArticle: () -> Unit) {
-    val uiState by rememberFlowWithLifecycle(viewModel.uiState).collectAsState(FeedUiState.Empty)
+    val uiState by rememberStateWithLifecycle(viewModel.uiState)
     val feedItems = uiState.feed.collectAsLazyPagingItems()
 
     LaunchedEffect(Unit) {
