@@ -45,7 +45,7 @@ internal class SearchViewModel @Inject constructor(
     @OptIn(FlowPreview::class)
     private fun loadSearchResult(query: String) {
         val result = newsRepository.getEverythingPagedFlow(query)
-            .debounce(500)
+            .debounce(300)
             .distinctUntilChanged()
             .cachedIn(viewModelScope)
             .mapLatest { data ->

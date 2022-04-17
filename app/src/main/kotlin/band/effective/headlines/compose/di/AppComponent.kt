@@ -4,7 +4,6 @@ import android.app.Application
 import band.effective.headlines.compose.HeadlinesComposeApp
 import band.effective.headlines.compose.MainActivity
 import band.effective.headlines.compose.core.di.CommonDependencies
-import band.effective.headlines.compose.core.di.modules.StringResolverModule
 import band.effective.headlines.compose.core.di.scope.AppScope
 import band.effective.headlines.compose.di.modules.AppModule
 import band.effective.headlines.compose.di.modules.ComponentDependenciesModule
@@ -21,8 +20,7 @@ import dagger.Component
     modules = [
         AppModule::class,
         NetworkModule::class,
-        ComponentDependenciesModule::class,
-        StringResolverModule::class
+        ComponentDependenciesModule::class
     ]
 )
 interface AppComponent :
