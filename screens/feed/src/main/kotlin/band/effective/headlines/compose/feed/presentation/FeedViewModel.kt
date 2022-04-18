@@ -14,21 +14,19 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 internal class FeedViewModel @Inject constructor(
     private val newsRepository: NewsRepository
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(FeedUiState.Empty)
-    val uiState = _uiState.asStateFlow()
+    private val _state = MutableStateFlow(FeedUiState.Empty)
+    val state = _state.asStateFlow()
 
     private val _effect = MutableSharedFlow<FeedUiEffect>()
     val effect = _effect.asSharedFlow()
 
     init {
-        Timber.d("FeedViewModelStarted")
         loadFeed()
     }
 
@@ -38,7 +36,7 @@ internal class FeedViewModel @Inject constructor(
                 viewModelScope.launch { _effect.emit(FeedUiEffect.NavigateToArticle(event.url)) }
             }
             FeedUiEvent.OnRetry -> {
-                _uiState.update { it.copy(isRefreshing = true) }
+                _state.update { it.copy(isRefreshing = true) }
                 loadFeed()
             }
         }
@@ -49,6 +47,6 @@ internal class FeedViewModel @Inject constructor(
             newsRepository.getHeadlinesPagedFlow().cachedIn(viewModelScope).mapLatest { data ->
                 data.map(ArticleDomain::asHeadlineItemUI)
             }
-        _uiState.update { it.copy(isLoading = false, isRefreshing = false, feed = feed) }
+        _state.update { it.copy(isLoading = false, isRefreshing = false, feed = feed) }
     }
 }

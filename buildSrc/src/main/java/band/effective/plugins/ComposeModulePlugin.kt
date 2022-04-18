@@ -51,6 +51,8 @@ class ComposeModulePlugin: Plugin<Project> {
             add("implementation", Libs.Accompanist.swipeRefreshLayout)
             add("implementation", Libs.Accompanist.placeholer)
 
+            add("implementation", Libs.Coil.coil)
+
             add("androidTestImplementation", Libs.AndroidX.Test.composeUiJunit)
         }
     }

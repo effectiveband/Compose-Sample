@@ -4,15 +4,14 @@ import android.app.Application
 import band.effective.headlines.compose.HeadlinesComposeApp
 import band.effective.headlines.compose.MainActivity
 import band.effective.headlines.compose.core.di.CommonDependencies
-import band.effective.headlines.compose.core.di.modules.StringResolverModule
 import band.effective.headlines.compose.core.di.scope.AppScope
 import band.effective.headlines.compose.di.modules.AppModule
 import band.effective.headlines.compose.di.modules.ComponentDependenciesModule
 import band.effective.headlines.compose.feed.di.FeedDependencies
 import band.effective.headlines.compose.main.di.MainComponentDependencies
 import band.effective.headlines.compose.network.di.NetworkModule
-import band.effective.headlines.compose.network.di.NewsNetworkModule
 import band.effective.headlines.compose.news_api.di.NewsApiDependencies
+import band.effective.headlines.compose.search.di.SearchDependencies
 import dagger.BindsInstance
 import dagger.Component
 
@@ -21,11 +20,15 @@ import dagger.Component
     modules = [
         AppModule::class,
         NetworkModule::class,
-        ComponentDependenciesModule::class,
-        StringResolverModule::class
+        ComponentDependenciesModule::class
     ]
 )
-interface AppComponent : CommonDependencies, MainComponentDependencies, NewsApiDependencies, FeedDependencies {
+interface AppComponent :
+    CommonDependencies,
+    MainComponentDependencies,
+    NewsApiDependencies,
+    FeedDependencies,
+    SearchDependencies {
 
     @Component.Factory
     interface Factory {

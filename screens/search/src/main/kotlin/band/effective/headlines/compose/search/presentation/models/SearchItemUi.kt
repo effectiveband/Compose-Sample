@@ -1,6 +1,6 @@
-package band.effective.headlines.compose.feed.presentation.models
+package band.effective.headlines.compose.search.presentation.models
 
-internal class HeadlineItemUi(
+internal class SearchItemUi(
     val title: String,
     val source: String,
     val url: String,

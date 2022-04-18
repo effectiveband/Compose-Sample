@@ -19,8 +19,6 @@ class ScreenModulePlugin : Plugin<Project> {
             project.dependencies {
                 add("implementation", project(":core"))
                 add("implementation", project(":core-ui"))
-
-                add("implementation", Libs.Coil.coil)
             }
         }
     }

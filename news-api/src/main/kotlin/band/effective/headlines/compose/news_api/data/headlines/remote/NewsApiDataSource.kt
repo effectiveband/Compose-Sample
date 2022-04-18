@@ -19,4 +19,12 @@ internal interface NewsApiDataSource {
         @Query("page") page: Int = START_PAGE,
         @Query("pageSize") pageSize: Int = DEFAULT_PAGE_SIZE
     ): Either<ErrorReason, NewsPageResponse>
+
+    @GET("everything")
+    suspend fun getEverything(
+        @Query("q") query: String,
+        @Query("page") page: Int = START_PAGE,
+        @Query("pageSize") pageSize: Int = DEFAULT_PAGE_SIZE,
+        @Query("sortBy") sortBy: String = "popularity",
+    ): Either<ErrorReason, NewsPageResponse>
 }

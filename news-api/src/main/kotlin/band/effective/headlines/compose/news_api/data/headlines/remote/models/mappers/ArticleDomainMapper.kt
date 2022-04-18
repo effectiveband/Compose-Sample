@@ -6,11 +6,11 @@ import band.effective.headlines.compose.news_api.domain.models.ArticleDomain
 internal fun ArticleResponse.asDomain(): ArticleDomain {
     return ArticleDomain(
         title = title,
-        description = description.orEmpty(),
+        description = description,
         source = source.name,
         url = url,
         imageUrl = imageUrl,
         date = date,
-        content = content.orEmpty()
+        content = content
     )
 }
