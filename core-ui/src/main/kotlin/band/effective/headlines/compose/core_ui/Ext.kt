@@ -23,9 +23,12 @@ fun LazyListScope.pagingLoadStateItem(
     }
     when(loadState.prepend) {
         LoadState.Loading -> {
-            item(key = "loadingFooter", content = loadingContent)
+            item(key = "loadingHeader", content = loadingContent)
         }
-        is LoadState.Error -> {}
+        is LoadState.Error -> {
+            val message = (loadState.append as LoadState.Error).error.localizedMessage
+            item(key = "errorHeader", content = { errorContent(message) })
+        }
         is LoadState.NotLoading -> {}
     }
 }

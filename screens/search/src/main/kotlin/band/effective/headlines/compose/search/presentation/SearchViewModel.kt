@@ -22,8 +22,8 @@ internal class SearchViewModel @Inject constructor(
     private val newsRepository: NewsRepository
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(SearchUiState.Empty)
-    val uiState = _uiState.asStateFlow()
+    private val _state = MutableStateFlow(SearchUiState.Empty)
+    val state = _state.asStateFlow()
 
     private val _effect = MutableSharedFlow<SearchUiEffect>()
     val effect = _effect.asSharedFlow()
@@ -32,12 +32,12 @@ internal class SearchViewModel @Inject constructor(
         when (event) {
             is SearchUiEvent.OnNews -> TODO()
             is SearchUiEvent.OnSearchType -> {
-                _uiState.update { it.copy(isLoading = true, searchQuery = event.query) }
+                _state.update { it.copy(isLoading = true, searchQuery = event.query) }
                 loadSearchResult(event.query)
             }
             SearchUiEvent.OnRetry -> {
-                _uiState.update { it.copy(isRefreshing = true) }
-                loadSearchResult(_uiState.value.searchQuery)
+                _state.update { it.copy(isRefreshing = true) }
+                loadSearchResult(_state.value.searchQuery)
             }
         }
     }
@@ -51,6 +51,6 @@ internal class SearchViewModel @Inject constructor(
             .mapLatest { data ->
                 data.map(ArticleDomain::asSearchItemUI)
             }
-        _uiState.update { it.copy(isLoading = false, isRefreshing = false, searchResult = result) }
+        _state.update { it.copy(isLoading = false, isRefreshing = false, searchResult = result) }
     }
 }

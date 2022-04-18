@@ -14,7 +14,7 @@ import retrofit2.Retrofit
 import javax.inject.Named
 
 @Module
-interface NewsNetworkModule {
+internal interface NewsNetworkModule {
 
     companion object {
 

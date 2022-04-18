@@ -37,6 +37,28 @@ internal fun FeedList(
         item {
             Spacer(modifier = Modifier.statusBarsPadding())
         }
+        pagingLoadStateItem(
+            loadState = feedItems.loadState,
+            loadingContent = {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 16.dp)
+                ) {
+                    CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+                }
+            },
+            errorContent = { message ->
+                ErrorMessageWithButton(
+                    message = message,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 16.dp)
+                ) {
+                    onRetry()
+                }
+            }
+        )
         itemsIndexed(items = feedItems) { _, item ->
             item?.let {
                 HeadlineCard(headline = item, modifier = modifier.fillMaxWidth())
@@ -55,7 +77,7 @@ internal fun FeedList(
             },
             errorContent = { message ->
                 ErrorMessageWithButton(
-                    message = message ?: stringResource(id = R.string.unknown_error),
+                    message = message,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 16.dp)

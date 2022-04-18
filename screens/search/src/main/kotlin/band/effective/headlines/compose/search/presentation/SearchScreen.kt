@@ -41,7 +41,7 @@ fun SearchScreen(navigator: SearchScreenNavigation) {
 
 @Composable
 private fun SearchScreen(viewModel: SearchViewModel, openArticle: () -> Unit) {
-    val uiState by rememberStateWithLifecycle(viewModel.uiState)
+    val uiState by rememberStateWithLifecycle(viewModel.state)
     val articlesItems = uiState.searchResult.collectAsLazyPagingItems()
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()

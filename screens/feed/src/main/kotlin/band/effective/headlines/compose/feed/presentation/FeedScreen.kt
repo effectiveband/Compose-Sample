@@ -28,7 +28,7 @@ fun FeedScreen(navigator: FeedScreenNavigation) {
 
 @Composable
 private fun FeedScreen(viewModel: FeedViewModel, openArticle: () -> Unit) {
-    val uiState by rememberStateWithLifecycle(viewModel.uiState)
+    val uiState by rememberStateWithLifecycle(viewModel.state)
     val feedItems = uiState.feed.collectAsLazyPagingItems()
 
     LaunchedEffect(Unit) {
