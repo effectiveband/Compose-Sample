@@ -2,6 +2,7 @@ package band.effective.headlines.compose.presentation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import band.effective.headlines.compose.navigation.NavGraphs
 import com.ramcosta.composedestinations.DestinationsNavHost
@@ -19,7 +20,7 @@ fun AppNavigation(
         navController = navController,
         modifier = modifier,
         dependenciesContainerBuilder = {
-            dependency(currentNavigator())
+            dependency(currentNavigator(LocalContext.current))
         }
     )
 }

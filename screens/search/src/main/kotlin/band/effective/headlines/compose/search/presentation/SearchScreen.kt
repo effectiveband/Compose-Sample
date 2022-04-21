@@ -7,8 +7,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
@@ -26,6 +28,7 @@ import com.google.accompanist.insets.LocalWindowInsets
 import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.launch
 
@@ -43,12 +46,18 @@ fun SearchScreen(navigator: SearchScreenNavigation) {
 private fun SearchScreen(viewModel: SearchViewModel, openArticle: () -> Unit) {
     val uiState by rememberStateWithLifecycle(viewModel.state)
     val articlesItems = uiState.searchResult.collectAsLazyPagingItems()
+    val surfaceColorWithScrim = MaterialTheme.colorScheme.surface.copy(0.8F)
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
+    val systemUiController = rememberSystemUiController()
     val focusManager = LocalFocusManager.current
     val topPaddingModifier = Modifier
         .statusBarsPadding()
         .padding(top = 12.dp)
+
+    SideEffect {
+        systemUiController.setStatusBarColor(surfaceColorWithScrim)
+    }
 
     LaunchedEffect(listState.isScrollInProgress) {
         focusManager.clearFocus()
@@ -80,7 +89,6 @@ private fun SearchScreen(viewModel: SearchViewModel, openArticle: () -> Unit) {
                     .fillMaxSize(),
             ) {
                 articlesItems.retry()
-                //viewModel.sendEvent(SearchUiEvent.OnRetry)
             }
         }
         SearchField(

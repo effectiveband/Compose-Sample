@@ -30,7 +30,7 @@ dependencies {
     implementation(project(":screens:feed"))
     implementation(project(":screens:search"))
     implementation(project(":screens:about"))
-    implementation(project(":screens:news-details"))
+    implementation(project(":screens:article-details"))
 
     implementation(Libs.Retrofit.client)
     implementation(Libs.Retrofit.moshiConverter)

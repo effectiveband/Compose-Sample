@@ -3,6 +3,7 @@ package band.effective.headlines.compose.di
 import android.app.Application
 import band.effective.headlines.compose.HeadlinesComposeApp
 import band.effective.headlines.compose.MainActivity
+import band.effective.headlines.compose.article_details.di.ArticleDetailsDependencies
 import band.effective.headlines.compose.core.di.CommonDependencies
 import band.effective.headlines.compose.core.di.scope.AppScope
 import band.effective.headlines.compose.di.modules.AppModule
@@ -28,7 +29,8 @@ interface AppComponent :
     MainComponentDependencies,
     NewsApiDependencies,
     FeedDependencies,
-    SearchDependencies {
+    SearchDependencies,
+    ArticleDetailsDependencies {
 
     @Component.Factory
     interface Factory {

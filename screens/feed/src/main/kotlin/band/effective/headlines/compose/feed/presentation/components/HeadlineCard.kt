@@ -21,9 +21,13 @@ import band.effective.headlines.compose.feed.presentation.models.HeadlineItemUi
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun HeadlineCard(headline: HeadlineItemUi, modifier: Modifier = Modifier) {
+internal fun HeadlineCard(
+    headline: HeadlineItemUi,
+    modifier: Modifier = Modifier,
+    openArticle: (HeadlineItemUi) -> Unit,
+) {
     Card(
-        onClick = { /*TODO*/ },
+        onClick = { openArticle(headline) },
         modifier = modifier
     ) {
         if (headline.imageUrl != null) {

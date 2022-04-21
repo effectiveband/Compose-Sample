@@ -19,6 +19,7 @@ import band.effective.headlines.compose.news_api.data.headlines.remote.models.Ne
 internal fun FeedListPagingHolder(
     feedItems: LazyPagingItems<HeadlineItemUi>,
     modifier: Modifier = Modifier,
+    openArticle: (HeadlineItemUi) -> Unit,
     onRetry: () -> Unit
 ) {
     when(val refresh = feedItems.loadState.refresh) {
@@ -29,7 +30,7 @@ internal fun FeedListPagingHolder(
         }
         is LoadState.NotLoading -> {
             if (feedItems.itemCount != 0) {
-                FeedList(feedItems = feedItems, onRetry = onRetry)
+                FeedList(feedItems = feedItems, openArticle = {openArticle(it)}, onRetry = onRetry)
             }
         }
         is LoadState.Error -> {

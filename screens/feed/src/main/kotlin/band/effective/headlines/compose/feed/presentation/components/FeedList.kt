@@ -12,11 +12,9 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemsIndexed
-import band.effective.headlines.compose.core_ui.R
 import band.effective.headlines.compose.core_ui.components.ErrorMessageWithButton
 import band.effective.headlines.compose.core_ui.pagingLoadStateItem
 import band.effective.headlines.compose.feed.presentation.models.HeadlineItemUi
@@ -26,6 +24,7 @@ import com.google.accompanist.insets.statusBarsPadding
 internal fun FeedList(
     feedItems: LazyPagingItems<HeadlineItemUi>,
     modifier: Modifier = Modifier,
+    openArticle: (HeadlineItemUi) -> Unit,
     onRetry: () -> Unit
 ) {
     LazyColumn(
@@ -61,7 +60,9 @@ internal fun FeedList(
         )
         itemsIndexed(items = feedItems) { _, item ->
             item?.let {
-                HeadlineCard(headline = item, modifier = modifier.fillMaxWidth())
+                HeadlineCard(headline = item, modifier = modifier.fillMaxWidth()) {
+                    openArticle(it)
+                }
             }
         }
         pagingLoadStateItem(

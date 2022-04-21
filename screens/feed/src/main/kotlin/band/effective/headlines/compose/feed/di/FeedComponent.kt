@@ -9,7 +9,7 @@ import band.effective.headlines.compose.core.di.viewmodel.DaggerViewModelFactory
 import band.effective.headlines.compose.feed.di.modules.FeedViewModelModule
 import dagger.Component
 
-val feedComponent = featureComponent<FeedComponent, Activity> { activity ->
+internal val feedComponent = featureComponent<FeedComponent, Activity> { activity ->
     DaggerFeedComponent.factory().create(activity.findComponentDependencies())
 }
 
@@ -18,7 +18,7 @@ val feedComponent = featureComponent<FeedComponent, Activity> { activity ->
     modules = [ViewModelModule::class, FeedViewModelModule::class],
     dependencies = [FeedDependencies::class]
 )
-interface FeedComponent {
+internal interface FeedComponent {
 
     @Component.Factory
     interface Factory {

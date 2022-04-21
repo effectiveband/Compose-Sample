@@ -1,5 +1,6 @@
 package band.effective.headlines.compose.di.modules
 
+import band.effective.headlines.compose.article_details.di.ArticleDetailsDependencies
 import band.effective.headlines.compose.core.di.ComponentDependencies
 import band.effective.headlines.compose.core.di.ComponentDependenciesKey
 import band.effective.headlines.compose.di.AppComponent
@@ -43,4 +44,9 @@ interface ComponentDependenciesModule {
     @IntoMap
     @ComponentDependenciesKey(SearchDependencies::class)
     fun bindSearchDependencies(appComponent: AppComponent): ComponentDependencies
+
+    @Binds
+    @IntoMap
+    @ComponentDependenciesKey(ArticleDetailsDependencies::class)
+    fun bindArticleDetailsDependencies(appComponent: AppComponent): ComponentDependencies
 }

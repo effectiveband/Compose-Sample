@@ -9,7 +9,7 @@ import band.effective.headlines.compose.core.di.viewmodel.DaggerViewModelFactory
 import band.effective.headlines.compose.search.di.modules.SearchViewModelModule
 import dagger.Component
 
-val searchComponent = featureComponent<SearchComponent, Activity> { activity ->
+internal val searchComponent = featureComponent<SearchComponent, Activity> { activity ->
     DaggerSearchComponent.factory().create(activity.findComponentDependencies())
 }
 
@@ -18,7 +18,7 @@ val searchComponent = featureComponent<SearchComponent, Activity> { activity ->
     modules = [ViewModelModule::class, SearchViewModelModule::class],
     dependencies = [SearchDependencies::class]
 )
-interface SearchComponent {
+internal interface SearchComponent {
 
     @Component.Factory
     interface Factory {

@@ -34,6 +34,7 @@ class ComposeModulePlugin: Plugin<Project> {
             add("implementation", Libs.AndroidX.Lifecycle.runtime)
             add("implementation", Libs.AndroidX.Lifecycle.viewModel)
             add("implementation", Libs.AndroidX.Lifecycle.viewModelCompose)
+            add("implementation", Libs.AndroidX.Lifecycle.viewModelSavedState)
 
             add("implementation", Libs.AndroidX.Activity.activityCompose)
 

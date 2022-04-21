@@ -5,4 +5,5 @@ plugins {
 
 dependencies {
     implementation(Libs.AndroidX.Lifecycle.viewModel)
+    implementation(Libs.AndroidX.Lifecycle.viewModelSavedState)
 }
