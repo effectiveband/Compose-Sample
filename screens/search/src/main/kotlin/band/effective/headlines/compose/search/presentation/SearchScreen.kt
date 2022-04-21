@@ -24,6 +24,8 @@ import band.effective.headlines.compose.core_ui.rememberStateWithLifecycle
 import band.effective.headlines.compose.search.di.searchComponent
 import band.effective.headlines.compose.search.presentation.components.ArticlesListPagingHolder
 import band.effective.headlines.compose.search.presentation.components.SearchField
+import band.effective.headlines.compose.search.presentation.models.SearchItemNavArg
+import band.effective.headlines.compose.search.presentation.models.asNavArg
 import com.google.accompanist.insets.LocalWindowInsets
 import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.swiperefresh.SwipeRefresh
@@ -43,7 +45,7 @@ fun SearchScreen(navigator: SearchScreenNavigation) {
 }
 
 @Composable
-private fun SearchScreen(viewModel: SearchViewModel, openArticle: () -> Unit) {
+private fun SearchScreen(viewModel: SearchViewModel, openArticle: (SearchItemNavArg) -> Unit) {
     val uiState by rememberStateWithLifecycle(viewModel.state)
     val articlesItems = uiState.searchResult.collectAsLazyPagingItems()
     val surfaceColorWithScrim = MaterialTheme.colorScheme.surface.copy(0.8F)
@@ -66,7 +68,7 @@ private fun SearchScreen(viewModel: SearchViewModel, openArticle: () -> Unit) {
     LaunchedEffect(Unit) {
         viewModel.effect.collect { effect ->
             when (effect) {
-                is SearchUiEffect.NavigateToArticle -> TODO()
+                is SearchUiEffect.NavigateToArticle -> openArticle(effect.article)
             }
         }
     }
@@ -87,9 +89,13 @@ private fun SearchScreen(viewModel: SearchViewModel, openArticle: () -> Unit) {
                     .then(topPaddingModifier)
                     .padding(horizontal = 32.dp)
                     .fillMaxSize(),
-            ) {
-                articlesItems.retry()
-            }
+                openArticle = {
+                    viewModel.sendEvent(SearchUiEvent.OnNews(it.asNavArg()))
+                },
+                onRetry = {
+                    articlesItems.retry()
+                }
+            )
         }
         SearchField(
             text = uiState.searchQuery,

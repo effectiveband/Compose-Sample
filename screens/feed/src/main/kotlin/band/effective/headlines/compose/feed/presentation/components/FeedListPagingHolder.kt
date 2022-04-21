@@ -22,7 +22,7 @@ internal fun FeedListPagingHolder(
     openArticle: (HeadlineItemUi) -> Unit,
     onRetry: () -> Unit
 ) {
-    when(val refresh = feedItems.loadState.refresh) {
+    when (val refresh = feedItems.loadState.refresh) {
         LoadState.Loading -> {
             Box(modifier = modifier) {
                 CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
@@ -30,7 +30,11 @@ internal fun FeedListPagingHolder(
         }
         is LoadState.NotLoading -> {
             if (feedItems.itemCount != 0) {
-                FeedList(feedItems = feedItems, openArticle = {openArticle(it)}, onRetry = onRetry)
+                FeedList(
+                    feedItems = feedItems,
+                    openArticle = { openArticle(it) },
+                    onRetry = onRetry
+                )
             }
         }
         is LoadState.Error -> {

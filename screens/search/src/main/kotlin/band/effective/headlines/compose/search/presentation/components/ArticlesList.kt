@@ -27,6 +27,7 @@ internal fun ArticlesList(
     articles: LazyPagingItems<SearchItemUi>,
     listState: LazyListState,
     modifier: Modifier = Modifier,
+    openArticle: (SearchItemUi) -> Unit,
     onRetry: () -> Unit
 ) {
     LazyColumn(
@@ -44,7 +45,9 @@ internal fun ArticlesList(
         }
         itemsIndexed(items = articles) { _, item ->
             item?.let {
-                ArticleCard(article = item, modifier = modifier.fillMaxWidth())
+                ArticleCard(article = item, modifier = modifier.fillMaxWidth()) {
+                    openArticle(it)
+                }
             }
         }
         pagingLoadStateItem(

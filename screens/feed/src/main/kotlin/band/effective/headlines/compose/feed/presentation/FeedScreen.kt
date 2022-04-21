@@ -61,9 +61,10 @@ private fun FeedScreen(viewModel: FeedViewModel, openArticle: (HeadlineNavArg) -
             modifier = Modifier.fillMaxSize(),
             openArticle = {
                 viewModel.sendEvent(FeedUiEvent.OnHeadline(it.asNavArg()))
+            },
+            onRetry = {
+                feedItems.retry()
             }
-        ) {
-            feedItems.retry()
-        }
+        )
     }
 }

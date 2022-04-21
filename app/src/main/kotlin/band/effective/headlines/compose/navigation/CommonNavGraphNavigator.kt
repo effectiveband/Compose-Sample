@@ -10,6 +10,7 @@ import band.effective.headlines.compose.feed.presentation.FeedScreenNavigation
 import band.effective.headlines.compose.feed.presentation.models.HeadlineNavArg
 import band.effective.headlines.compose.navigation.models.mappers.asArticle
 import band.effective.headlines.compose.search.presentation.SearchScreenNavigation
+import band.effective.headlines.compose.search.presentation.models.SearchItemNavArg
 import com.ramcosta.composedestinations.dynamic.within
 import com.ramcosta.composedestinations.navigation.navigateTo
 import com.ramcosta.composedestinations.spec.NavGraphSpec
@@ -25,7 +26,8 @@ class CommonNavGraphNavigator(
     }
 
     override fun openLinkInBrowser(url: String) {
-        val intent = Intent.makeMainSelectorActivity(Intent.ACTION_MAIN, Intent.CATEGORY_APP_BROWSER)
+        val intent =
+            Intent.makeMainSelectorActivity(Intent.ACTION_MAIN, Intent.CATEGORY_APP_BROWSER)
         intent.data = Uri.parse(url)
         context.startActivity(intent)
     }
@@ -36,7 +38,9 @@ class CommonNavGraphNavigator(
         )
     }
 
-    override fun openArticleDetails() {
-        TODO("Not yet implemented")
+    override fun openArticleDetails(searchItemNavArg: SearchItemNavArg) {
+        navController.navigateTo(
+            ArticleDetailsScreenDestination(article = searchItemNavArg.asArticle()) within navGraph
+        )
     }
 }
