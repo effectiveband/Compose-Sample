@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.navigation.NavController
+import band.effective.headlines.compose.about.presentation.AboutScreenNavigation
 import band.effective.headlines.compose.article_details.presentation.ArticleDetailsScreenNavigation
 import band.effective.headlines.compose.article_details.presentation.destinations.ArticleDetailsScreenDestination
 import band.effective.headlines.compose.feed.presentation.FeedScreenNavigation
@@ -19,7 +20,10 @@ class CommonNavGraphNavigator(
     private val context: Context,
     private val navGraph: NavGraphSpec,
     private val navController: NavController
-) : FeedScreenNavigation, SearchScreenNavigation, ArticleDetailsScreenNavigation {
+) : FeedScreenNavigation,
+    SearchScreenNavigation,
+    ArticleDetailsScreenNavigation,
+    AboutScreenNavigation {
 
     override fun navigateUp() {
         navController.navigateUp()
