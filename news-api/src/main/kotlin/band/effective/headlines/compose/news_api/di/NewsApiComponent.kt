@@ -1,15 +1,13 @@
 package band.effective.headlines.compose.news_api.di
 
 import band.effective.headlines.compose.core.di.scope.AppScope
-import band.effective.headlines.compose.core.di.scope.FeatureScope
-import band.effective.headlines.compose.network.di.NetworkModule
 import band.effective.headlines.compose.news_api.data.NewsRepository
 import band.effective.headlines.compose.news_api.di.modules.NewsApiModule
 import dagger.Component
 
 @AppScope
 @Component(
-    modules = [NewsApiModule::class, NetworkModule::class],
+    modules = [NewsApiModule::class],
     dependencies = [NewsApiDependencies::class]
 )
 internal interface NewsApiComponent {
