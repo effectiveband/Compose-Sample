@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 internal class SearchViewModel @Inject constructor(
@@ -30,7 +31,11 @@ internal class SearchViewModel @Inject constructor(
 
     fun sendEvent(event: SearchUiEvent) {
         when (event) {
-            is SearchUiEvent.OnNews -> TODO()
+            is SearchUiEvent.OnNews -> {
+                viewModelScope.launch {
+                    _effect.emit(SearchUiEffect.NavigateToArticle(event.article))
+                }
+            }
             is SearchUiEvent.OnSearchType -> {
                 _state.update { it.copy(isLoading = true, searchQuery = event.query) }
                 loadSearchResult(event.query)

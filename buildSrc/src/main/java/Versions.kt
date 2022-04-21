@@ -58,6 +58,6 @@ object Versions {
     }
 
     object Navigation {
-        const val version = "1.4.3-beta"
+        const val version = "1.5.0-beta"
     }
 }

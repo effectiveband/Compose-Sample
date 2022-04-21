@@ -58,6 +58,7 @@ object Libs {
             const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.AndroidX.Lifecycle.version}"
             const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.AndroidX.Lifecycle.version}"
             const val viewModelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.AndroidX.Lifecycle.version}"
+            const val viewModelSavedState = "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.AndroidX.Lifecycle.version}"
         }
 
         object Compose {

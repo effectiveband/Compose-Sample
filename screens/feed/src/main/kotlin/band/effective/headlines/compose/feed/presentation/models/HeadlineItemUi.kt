@@ -9,3 +9,7 @@ internal class HeadlineItemUi(
     val description: String?,
     val content: String?
 )
+
+internal fun HeadlineItemUi.asNavArg(): HeadlineNavArg {
+    return HeadlineNavArg(title, source, url, imageUrl, date, description, content)
+}

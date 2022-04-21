@@ -9,3 +9,7 @@ internal class SearchItemUi(
     val description: String?,
     val content: String?
 )
+
+internal fun SearchItemUi.asNavArg(): SearchItemNavArg {
+    return SearchItemNavArg(title, source, url, imageUrl, date, description, content)
+}

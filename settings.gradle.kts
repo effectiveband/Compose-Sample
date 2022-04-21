@@ -12,4 +12,4 @@ rootProject.name = "Headlines Compose"
 
 include(":app")
 include(":core", ":core-ui", ":network", ":news-api")
-include(":screens:feed", ":screens:search", ":screens:about", ":screens:news-details")
+include(":screens:feed", ":screens:search", ":screens:about", ":screens:article-details")

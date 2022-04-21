@@ -21,6 +21,7 @@ internal fun ArticlesListPagingHolder(
     articlesItems: LazyPagingItems<SearchItemUi>,
     listState: LazyListState,
     modifier: Modifier = Modifier,
+    openArticle: (SearchItemUi) -> Unit,
     onRetry: () -> Unit
 ) {
     when (val refresh = articlesItems.loadState.refresh) {
@@ -29,6 +30,7 @@ internal fun ArticlesListPagingHolder(
                 ArticlesList(
                     articles = articlesItems,
                     listState = listState,
+                    openArticle = { openArticle(it) },
                     onRetry = onRetry
                 )
             } else {

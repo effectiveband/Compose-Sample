@@ -13,7 +13,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 class BuildConfigPlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
-        project.plugins.apply("org.jetbrains.kotlin.android")
+        with(project.plugins) {
+            apply("org.jetbrains.kotlin.android")
+            apply("kotlin-parcelize")
+        }
         val androidExtension = project.extensions.getByName("android")
         if (androidExtension is BaseExtension) {
             with(androidExtension) {

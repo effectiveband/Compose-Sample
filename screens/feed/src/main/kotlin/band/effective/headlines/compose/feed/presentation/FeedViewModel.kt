@@ -33,7 +33,7 @@ internal class FeedViewModel @Inject constructor(
     fun sendEvent(event: FeedUiEvent) {
         when (event) {
             is FeedUiEvent.OnHeadline -> {
-                viewModelScope.launch { _effect.emit(FeedUiEffect.NavigateToArticle(event.url)) }
+                viewModelScope.launch { _effect.emit(FeedUiEffect.NavigateToArticle(event.article)) }
             }
             FeedUiEvent.OnRetry -> {
                 _state.update { it.copy(isRefreshing = true) }

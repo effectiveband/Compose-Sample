@@ -17,9 +17,13 @@ import band.effective.headlines.compose.search.presentation.models.SearchItemUi
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun ArticleCard(article: SearchItemUi, modifier: Modifier = Modifier) {
+internal fun ArticleCard(
+    article: SearchItemUi,
+    modifier: Modifier = Modifier,
+    openArticle: (SearchItemUi) -> Unit,
+) {
     Card(
-        onClick = { /*TODO*/ },
+        onClick = { openArticle(article) },
         modifier = modifier
     ) {
         if (article.imageUrl != null) {

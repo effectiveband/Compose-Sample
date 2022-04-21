@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavControllerVisibleEntries
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.rememberNavController
+import band.effective.headlines.compose.core_ui.surfaceColorAtElevation
 import com.google.accompanist.insets.navigationBarsPadding
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ramcosta.composedestinations.navigation.navigateTo
@@ -25,8 +26,6 @@ import com.ramcosta.composedestinations.navigation.navigateTo
 fun AppHost() {
     val navController = rememberNavController()
     val systemUiController = rememberSystemUiController()
-    val useDarkIcons = !isSystemInDarkTheme()
-    val surfaceColorWithScrim = MaterialTheme.colorScheme.surface.copy(0.8F)
     val navigationBarColor = MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp)
     val visibleEntries by navController.visibleEntries.collectAsState()
     val isBottomNavigationBarVisible = visibleEntries.any { entry ->
@@ -37,13 +36,8 @@ fun AppHost() {
 
     SideEffect {
         with(systemUiController) {
-            setStatusBarColor(
-                color = surfaceColorWithScrim,
-                darkIcons = useDarkIcons
-            )
             setNavigationBarColor(
                 color = if (isBottomNavigationBarVisible) navigationBarColor else Color.Transparent,
-                darkIcons = useDarkIcons
             )
         }
     }
