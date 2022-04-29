@@ -63,7 +63,7 @@ internal fun ArticlesList(
             },
             errorContent = { message ->
                 ErrorMessageWithButton(
-                    message = message ?: stringResource(id = R.string.unknown_error),
+                    message = message  ?: stringResource(id = R.string.unknown_error),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 16.dp)

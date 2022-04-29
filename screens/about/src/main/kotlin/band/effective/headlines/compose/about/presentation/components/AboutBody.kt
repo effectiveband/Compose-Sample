@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import band.effective.headlines.compose.core.R
 
@@ -32,7 +33,7 @@ internal fun AboutBody(
     ) {
         Image(
             painter = painterResource(id = R.drawable.ic_launcher_foreground),
-            contentDescription = null,
+            contentDescription = stringResource(id = band.effective.headlines.compose.about.R.string.article_main_image),
             modifier = Modifier.size(256.dp),
         )
         Text(text = appName, style = MaterialTheme.typography.headlineMedium)

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_description">Just one more news app. In compose BTW</string>
+    <string name="open_api_icon">Open api web page</string>
+    <string name="article_main_image">Article main image</string>
 </resources>

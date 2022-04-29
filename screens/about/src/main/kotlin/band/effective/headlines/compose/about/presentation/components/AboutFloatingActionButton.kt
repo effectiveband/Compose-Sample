@@ -6,6 +6,8 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import band.effective.headlines.compose.about.R
 
 @Composable
 internal fun AboutFloatingActionButton(
@@ -16,6 +18,9 @@ internal fun AboutFloatingActionButton(
         onClick = { onClick() },
         modifier = modifier
     ) {
-        Icon(imageVector = Icons.Outlined.OpenInBrowser, contentDescription = null)
+        Icon(
+            imageVector = Icons.Outlined.OpenInBrowser,
+            contentDescription = stringResource(id = R.string.open_api_icon)
+        )
     }
 }

@@ -5,6 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import band.effective.headlines.compose.core_ui.R
 import coil.compose.AsyncImagePainter
 import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
@@ -20,7 +22,7 @@ fun ImageWithPlaceholder(
             .data(imageUrl)
             .crossfade(true)
             .build(),
-        contentDescription = null,
+        contentDescription = stringResource(id = R.string.article_image),
         modifier = modifier,
         contentScale = ContentScale.Crop
     ) {

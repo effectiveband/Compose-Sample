@@ -21,7 +21,12 @@ internal fun SearchField(text: String, modifier: Modifier = Modifier, onType: (S
         onValueChange = { onType(it) },
         modifier = modifier,
         placeholder = { Text(text = stringResource(id = R.string.search)) },
-        leadingIcon = { Icon(imageVector = Icons.Outlined.Search, contentDescription = null) },
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Outlined.Search,
+                contentDescription = stringResource(id = R.string.search_icon)
+            )
+        },
         singleLine = true,
         maxLines = 1,
         shape = RoundedCornerShape(28.dp),

@@ -12,7 +12,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import band.effective.headlines.compose.article_details.R
 
 @Composable
 internal fun ArticleTopAppBar(
@@ -28,7 +30,10 @@ internal fun ArticleTopAppBar(
             title = {},
             navigationIcon = {
                 IconButton(onClick = onBack) {
-                    Icon(imageVector = Icons.Default.ArrowBack, contentDescription = null)
+                    Icon(
+                        imageVector = Icons.Default.ArrowBack,
+                        contentDescription = stringResource(id = R.string.back_nav_icon)
+                    )
                 }
             },
             modifier = Modifier.padding(contentPadding),

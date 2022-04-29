@@ -16,7 +16,7 @@ import band.effective.headlines.compose.core_ui.R
 
 @Composable
 fun ErrorMessageWithButton(
-    message: String?,
+    message: String,
     modifier: Modifier = Modifier,
     onRetry: () -> Unit
 ) {
@@ -26,7 +26,7 @@ fun ErrorMessageWithButton(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = message ?: stringResource(id = R.string.unknown_error),
+            text = message,
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(16.dp))

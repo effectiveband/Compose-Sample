@@ -26,7 +26,7 @@ internal fun EmptySearch(modifier: Modifier = Modifier) {
     ) {
         Icon(
             imageVector = Icons.Outlined.Search,
-            contentDescription = null,
+            contentDescription = stringResource(id = R.string.search_icon),
             modifier = Modifier.size(160.dp)
         )
         Spacer(modifier = Modifier.height(16.dp))

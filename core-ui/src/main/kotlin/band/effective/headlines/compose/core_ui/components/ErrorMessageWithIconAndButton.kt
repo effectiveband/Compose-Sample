@@ -31,7 +31,7 @@ fun ErrorMessageWithIconAndButton(
     ) {
         Icon(
             imageVector = Icons.Outlined.ErrorOutline,
-            contentDescription = null,
+            contentDescription = stringResource(id = R.string.error_icon),
             modifier = iconModifier
         )
         Spacer(modifier = Modifier.height(16.dp))

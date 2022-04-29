@@ -12,7 +12,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import band.effective.headlines.compose.feed.R
 
 @Composable
 internal fun HeadlineSourceWithDateChip(
@@ -28,7 +30,7 @@ internal fun HeadlineSourceWithDateChip(
             Text(text = source, style = MaterialTheme.typography.bodyMedium)
             Icon(
                 imageVector = Icons.Default.Adjust,
-                contentDescription = null,
+                contentDescription = stringResource(id = R.string.delimiter_icon),
                 modifier = Modifier
                     .padding(horizontal = 4.dp)
                     .size(16.dp)

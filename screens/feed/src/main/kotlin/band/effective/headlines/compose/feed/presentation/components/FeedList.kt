@@ -12,9 +12,11 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.itemsIndexed
+import band.effective.headlines.compose.core_ui.R
 import band.effective.headlines.compose.core_ui.components.ErrorMessageWithButton
 import band.effective.headlines.compose.core_ui.pagingLoadStateItem
 import band.effective.headlines.compose.feed.presentation.models.HeadlineItemUi
@@ -49,7 +51,7 @@ internal fun FeedList(
             },
             errorContent = { message ->
                 ErrorMessageWithButton(
-                    message = message,
+                    message = message  ?: stringResource(id = R.string.unknown_error),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 16.dp)
@@ -78,7 +80,7 @@ internal fun FeedList(
             },
             errorContent = { message ->
                 ErrorMessageWithButton(
-                    message = message,
+                    message = message  ?: stringResource(id = R.string.unknown_error),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 16.dp)
