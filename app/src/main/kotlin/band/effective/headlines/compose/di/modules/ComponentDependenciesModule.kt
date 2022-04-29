@@ -22,8 +22,7 @@ interface ComponentDependenciesModule {
     companion object {
 
         @Provides
-        fun provideNewsApi(appComponent: AppComponent): NewsRepository =
-            NewsApiFactory.create(appComponent)
+        fun provideNewsApi(appComponent: AppComponent) = NewsApiFactory.create(appComponent)
     }
 
     @Binds

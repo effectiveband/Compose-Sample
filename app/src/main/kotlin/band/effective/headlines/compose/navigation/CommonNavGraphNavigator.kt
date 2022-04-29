@@ -30,10 +30,11 @@ class CommonNavGraphNavigator(
     }
 
     override fun openLinkInBrowser(url: String) {
-        val intent =
-            Intent.makeMainSelectorActivity(Intent.ACTION_MAIN, Intent.CATEGORY_APP_BROWSER)
-        intent.data = Uri.parse(url)
-        context.startActivity(intent)
+        context.startActivity(
+            Intent.makeMainSelectorActivity(Intent.ACTION_MAIN, Intent.CATEGORY_APP_BROWSER).apply {
+                data = Uri.parse(url)
+            }
+        )
     }
 
     override fun openArticleDetails(headlineNavArg: HeadlineNavArg) {

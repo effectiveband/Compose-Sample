@@ -40,10 +40,10 @@ fun BottomNavigationBar(
                     selected = selectedNavigation == destination.screen,
                     onClick = { onNavigationSelected(destination.screen) },
                     icon = {
-                           BottomNavigationItemIcon(
-                               item = destination,
-                               selected = selectedNavigation == destination.screen
-                           )
+                        BottomNavigationItemIcon(
+                            item = destination,
+                            selected = selectedNavigation == destination.screen
+                        )
                     },
                     label = { Text(text = stringResource(id = destination.labelResId)) }
                 )
@@ -60,7 +60,11 @@ private fun BottomNavigationItemIcon(item: BottomNavigationItem, selected: Boole
     }
     val selectedPainter = when (item) {
         is BottomNavigationItem.ResourceIcon -> item.selectedIconResId?.let { painterResource(it) }
-        is BottomNavigationItem.ImageVectorIcon -> item.selectedImageVector?.let { rememberVectorPainter(it) }
+        is BottomNavigationItem.ImageVectorIcon -> item.selectedImageVector?.let {
+            rememberVectorPainter(
+                it
+            )
+        }
     }
 
     if (selectedPainter != null) {

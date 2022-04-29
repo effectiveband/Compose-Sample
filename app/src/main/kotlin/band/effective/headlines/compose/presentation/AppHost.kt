@@ -3,7 +3,6 @@ package band.effective.headlines.compose.presentation
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -35,11 +34,9 @@ fun AppHost() {
     }
 
     SideEffect {
-        with(systemUiController) {
-            setNavigationBarColor(
-                color = if (isBottomNavigationBarVisible) navigationBarColor else Color.Transparent,
-            )
-        }
+        systemUiController.setNavigationBarColor(
+            color = if (isBottomNavigationBarVisible) navigationBarColor else Color.Transparent
+        )
     }
 
     HeadlinesScaffold(
@@ -49,7 +46,7 @@ fun AppHost() {
                 enter = expandVertically(),
                 exit = shrinkVertically()
             ) {
-                val currentSelectedItem by navController.currentBottomItemAsState()
+                val currentSelectedItem by navController.currentBottomItemToState()
                 BottomNavigationBar(
                     selectedNavigation = currentSelectedItem,
                     onNavigationSelected = { selected ->

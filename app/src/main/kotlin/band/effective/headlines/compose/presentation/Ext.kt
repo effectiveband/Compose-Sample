@@ -20,7 +20,7 @@ import timber.log.Timber
 
 @Stable
 @Composable
-fun NavController.currentBottomItemAsState(): State<NavGraphSpec> {
+fun NavController.currentBottomItemToState(): State<NavGraphSpec> {
     val selectedItem = remember { mutableStateOf(NavGraphs.feed) }
 
     DisposableEffect(this) {
