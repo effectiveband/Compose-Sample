@@ -5,7 +5,6 @@ plugins {
 }
 
 android {
-
     defaultConfig {
         applicationId = "band.effective.headlines.compose"
         versionCode = 1

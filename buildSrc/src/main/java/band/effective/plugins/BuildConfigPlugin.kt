@@ -9,6 +9,7 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.io.File
 
 class BuildConfigPlugin : Plugin<Project> {
 
@@ -22,8 +23,9 @@ class BuildConfigPlugin : Plugin<Project> {
             with(androidExtension) {
                 applyAndroidSettings()
                 applyJava8(project)
+                applySigningConfig(project)
                 applyBuildTypes()
-                applyProguardSettings()
+                applyProguardSettings(project)
                 applyBaseDependencies(project)
             }
         }
@@ -37,14 +39,28 @@ class BuildConfigPlugin : Plugin<Project> {
         }
     }
 
+    private fun BaseExtension.applySigningConfig(project: Project) {
+        signingConfigs {
+            create("internal") {
+                storeFile = File("${project.rootDir}/internalKeystore/headlineskey")
+                storePassword = "effectivepswd"
+                keyAlias = "effectivekey"
+                keyPassword = "effectivepswd"
+            }
+        }
+    }
+
+    @Suppress("USELESS_IS_CHECK")
     private fun BaseExtension.applyBuildTypes() {
         flavorDimensions("default", "drawer")
         productFlavors {
             create("dev") {
                 dimension = "default"
+                if (this is AppExtension) applicationIdSuffix = ".dev"
             }
             create("prod") {
                 dimension = "default"
+                signingConfig = signingConfigs.getByName("internal")
             }
             create("withDrawer") {
                 dimension = "drawer"
@@ -62,18 +78,30 @@ class BuildConfigPlugin : Plugin<Project> {
         }
     }
 
-    private fun BaseExtension.applyProguardSettings() {
-        val proguardFile = "proguard-rules.pro"
+    private fun BaseExtension.applyProguardSettings(project: Project) {
+        val proguardFolder = "${project.projectDir}/proguard"
+        val coroutines = "$proguardFolder/coroutines.pro"
+        val okhttp = "$proguardFolder/okhttp3.pro"
+        val okio = "$proguardFolder/okio.pro"
+        val retrofit2 = "$proguardFolder/retrofit2.pro"
         when (this) {
             is LibraryExtension -> defaultConfig {
-                consumerProguardFiles(proguardFile)
+                consumerProguardFiles(
+                    coroutines,
+                    okhttp,
+                    okio,
+                    retrofit2
+                )
             }
             is AppExtension -> buildTypes {
                 getByName("release") {
                     isMinifyEnabled = true
                     proguardFiles(
                         getDefaultProguardFile("proguard-android-optimize.txt"),
-                        proguardFile
+                        coroutines,
+                        okhttp,
+                        okio,
+                        retrofit2
                     )
                 }
             }
