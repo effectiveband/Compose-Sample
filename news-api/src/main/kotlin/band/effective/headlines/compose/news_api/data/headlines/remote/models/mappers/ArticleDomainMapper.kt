@@ -3,7 +3,7 @@ package band.effective.headlines.compose.news_api.data.headlines.remote.models.m
 import band.effective.headlines.compose.news_api.data.headlines.remote.models.ArticleResponse
 import band.effective.headlines.compose.news_api.domain.models.ArticleDomain
 
-internal fun ArticleResponse.asDomain(): ArticleDomain {
+internal fun ArticleResponse.toArticle(): ArticleDomain {
     return ArticleDomain(
         title = title,
         description = description,

@@ -10,7 +10,7 @@ import band.effective.headlines.compose.news_api.data.headlines.remote.NewsApiDa
 import band.effective.headlines.compose.news_api.data.headlines.remote.models.ArticleResponse
 import band.effective.headlines.compose.news_api.data.headlines.remote.models.NewsLoadException
 import band.effective.headlines.compose.news_api.data.headlines.remote.models.NewsPageResponse
-import band.effective.headlines.compose.news_api.data.headlines.remote.models.mappers.asDomain
+import band.effective.headlines.compose.news_api.data.headlines.remote.models.mappers.toArticle
 import band.effective.headlines.compose.news_api.domain.models.ArticleDomain
 import javax.inject.Inject
 
@@ -30,7 +30,7 @@ internal class NewsPagingSource @Inject constructor(
         return loadPage(page, DEFAULT_PAGE_SIZE).unpack(
             success = { news ->
                 LoadResult.Page(
-                    data = news.articles.map(ArticleResponse::asDomain),
+                    data = news.articles.map(ArticleResponse::toArticle),
                     prevKey = (page - 1).takeIf { it >= 1 },
                     nextKey = (page + 1).takeIf { news.articles.size == DEFAULT_PAGE_SIZE },
                 )

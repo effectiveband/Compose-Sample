@@ -21,7 +21,7 @@ internal fun ArticleContent(
     modifier: Modifier = Modifier
 ) {
     Column(modifier = modifier) {
-        ArticleImage(imageUrl = imageUrl, modifier = Modifier.fillMaxWidth())
+        if (imageUrl != null) ArticleImage(imageUrl = imageUrl, modifier = Modifier.fillMaxWidth())
         Column(
             modifier = Modifier
                 .padding(horizontal = 16.dp)

@@ -9,13 +9,11 @@ import androidx.compose.ui.unit.dp
 import band.effective.headlines.compose.core_ui.components.ImageWithPlaceholder
 
 @Composable
-internal fun ArticleImage(imageUrl: String?, modifier: Modifier = Modifier) {
-    if (imageUrl != null) {
-        ImageWithPlaceholder(
-            imageUrl = imageUrl,
-            modifier
-                .heightIn(max = 250.dp)
-                .clip(RoundedCornerShape(bottomEnd = 12.dp, bottomStart = 12.dp))
-        )
-    }
+internal fun ArticleImage(imageUrl: String, modifier: Modifier = Modifier) {
+    ImageWithPlaceholder(
+        imageUrl = imageUrl,
+        modifier
+            .heightIn(max = 250.dp)
+            .clip(RoundedCornerShape(bottomEnd = 12.dp, bottomStart = 12.dp))
+    )
 }
