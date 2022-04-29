@@ -11,7 +11,6 @@ android {
         versionName = "1.0"
 
         vectorDrawables.useSupportLibrary = true
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     packagingOptions {
@@ -40,8 +39,4 @@ dependencies {
     implementation(Libs.Moshi.kotlin)
     implementation(Libs.Moshi.adapters)
     ksp(Libs.Moshi.compiler)
-
-    testImplementation(Libs.AndroidX.Test.junit)
-    androidTestImplementation(Libs.AndroidX.Test.junitExt)
-    androidTestImplementation(Libs.AndroidX.Test.espressoCore)
 }

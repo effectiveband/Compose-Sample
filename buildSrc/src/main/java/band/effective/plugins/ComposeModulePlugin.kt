@@ -1,5 +1,7 @@
 package band.effective.plugins
 
+import Libs
+import Versions
 import com.android.build.gradle.AppExtension
 import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.LibraryExtension
@@ -53,8 +55,6 @@ class ComposeModulePlugin: Plugin<Project> {
             add("implementation", Libs.Accompanist.placeholer)
 
             add("implementation", Libs.Coil.coil)
-
-            add("androidTestImplementation", Libs.AndroidX.Test.composeUiJunit)
         }
     }
 

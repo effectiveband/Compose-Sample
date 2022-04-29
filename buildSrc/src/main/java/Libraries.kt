@@ -71,13 +71,6 @@ object Libs {
             const val toolingPreview = "androidx.compose.ui:ui-tooling-preview:${Versions.AndroidX.Compose.version}"
             const val composeUiManifest = "androidx.compose.ui:ui-test-manifest:${Versions.AndroidX.Compose.version}"
         }
-
-        object Test {
-            const val junit = "junit:junit:${Versions.AndroidX.Test.junit}"
-            const val junitExt = "androidx.test.ext:junit:${Versions.AndroidX.Test.junitExt}"
-            const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.AndroidX.Compose.version}"
-            const val composeUiJunit = "androidx.compose.ui:ui-test-junit4:${Versions.AndroidX.Compose.version}"
-        }
     }
 
     object Navigation {
