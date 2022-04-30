@@ -12,13 +12,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.HeadlinesCompose"
+        android:theme="@style/Theme.HeadlinesCompose.Starting"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
             android:configChanges="colorMode|density|fontScale|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode"
             android:exported="true"
-            android:theme="@style/Theme.HeadlinesCompose"
+            android:theme="@style/Theme.HeadlinesCompose.Starting"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

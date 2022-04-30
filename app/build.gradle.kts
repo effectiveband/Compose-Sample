@@ -39,4 +39,6 @@ dependencies {
     implementation(Libs.Moshi.kotlin)
     implementation(Libs.Moshi.adapters)
     ksp(Libs.Moshi.compiler)
+
+    implementation(Libs.AndroidX.splashscreen)
 }

@@ -32,6 +32,7 @@ object Versions {
 
     object AndroidX {
         const val core = "1.7.0"
+        const val splashScreen = "1.0.0-beta02"
 
         object Paging {
             const val version = "3.1.1"
@@ -49,11 +50,6 @@ object Versions {
         object Compose {
             const val version = "1.1.1"
             const val material3 = "1.0.0-alpha09"
-        }
-
-        object Test {
-            const val junit = "4.13.2"
-            const val junitExt = "1.1.3"
         }
     }
 

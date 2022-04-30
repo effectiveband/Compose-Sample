@@ -44,6 +44,7 @@ object Libs {
 
     object AndroidX {
         const val coreKtx = "androidx.core:core-ktx:${Versions.AndroidX.core}"
+        const val splashscreen = "androidx.core:core-splashscreen:${Versions.AndroidX.splashScreen}"
 
         object Paging {
             const val runtime = "androidx.paging:paging-runtime:${Versions.AndroidX.Paging.version}"
