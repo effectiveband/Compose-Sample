@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Headlines Compose</string>
+    <string name="unknown_error">Unknown Error</string>
+    <string name="retry">Retry</string>
+    <string name="error_image">Error image</string>
+    <string name="error_icon">Error icon</string>
+    <string name="article_image">Article main image</string>
+</resources>
