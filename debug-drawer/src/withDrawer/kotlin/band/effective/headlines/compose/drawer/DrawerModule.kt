@@ -11,6 +11,7 @@ import au.com.gridstone.debugdrawer.retrofit.RetrofitModule
 import au.com.gridstone.debugdrawer.timber.TimberModule
 import band.effective.headlines.compose.core.di.ContentViewSetter
 import band.effective.headlines.compose.core.di.scope.AppScope
+import band.effective.headlines.compose.network.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoSet

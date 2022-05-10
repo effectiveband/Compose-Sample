@@ -36,12 +36,12 @@ dependencies {
     implementation(Libs.Retrofit.mock)
 
     implementation(Libs.OkHttp.client)
-    implementation(Libs.OkHttp.loggingInterceptor)
+    devImplementation(Libs.OkHttp.loggingInterceptor)
 
-    implementation(Libs.DebugDrawer.main)
-    implementation(Libs.DebugDrawer.retrofit)
-    implementation(Libs.DebugDrawer.okhttp)
-    implementation(Libs.DebugDrawer.timber)
+    withDrawerImplementation(Libs.DebugDrawer.main)
+    withDrawerImplementation(Libs.DebugDrawer.retrofit)
+    withDrawerImplementation(Libs.DebugDrawer.okhttp)
+    withDrawerImplementation(Libs.DebugDrawer.timber)
 
     implementation(Libs.Moshi.kotlin)
     implementation(Libs.Moshi.adapters)

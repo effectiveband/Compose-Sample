@@ -11,12 +11,15 @@ android {
 
     productFlavors {
         getByName("dev") {
-            // Duplication only for example
+            // Key duplication only for example
             buildConfigField("String", "NEWS_STAGE_API_KEY", apiKey)
             buildConfigField("String", "NEWS_API_KEY", apiKey)
+            buildConfigField("String", "NEWS_STAGE_URL", "\"https://newsapi.org/v2/\"")
+            buildConfigField("String", "NEWS_URL", "\"https://newsapi.org/v2/\"")
         }
         getByName("prod") {
             buildConfigField("String", "NEWS_API_KEY", apiKey)
+            buildConfigField("String", "NEWS_URL", "\"https://newsapi.org/v2/\"")
         }
     }
 }
@@ -24,15 +27,15 @@ android {
 dependencies {
     implementation(project(":core"))
 
-    implementation(Libs.DebugDrawer.retrofit)
-    implementation(Libs.DebugDrawer.okhttp)
-    implementation(Libs.DebugDrawer.main)
+    withDrawerImplementation(Libs.DebugDrawer.retrofit)
+    withDrawerImplementation(Libs.DebugDrawer.okhttp)
+    withDrawerImplementation(Libs.DebugDrawer.main)
 
     implementation(Libs.Retrofit.client)
     implementation(Libs.Retrofit.moshiConverter)
 
     implementation(Libs.OkHttp.client)
-    implementation(Libs.OkHttp.loggingInterceptor)
+    devImplementation(Libs.OkHttp.loggingInterceptor)
 
     implementation(Libs.Moshi.kotlin)
     implementation(Libs.Moshi.adapters)
