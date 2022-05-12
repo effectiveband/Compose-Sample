@@ -56,6 +56,7 @@ So, if you need to setup a new project, it can help you as an example how everyt
 
 ## How to run
 * You need Android Studio (at least Arctic Fox) with Kotlin plugin (at least 1.6.10)
+* Add `apiKey=<YourKey>` in `local.properties` file, for example `apiKey="85366ee982e642d7957abb89a7559431"`
 * Run -> Run 'app'
 
 ## Known issues
