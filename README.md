@@ -5,10 +5,13 @@
 
 ### Main screens
 
-|Headlines                     |Search                       |About                        |Article details              |
-|:----------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
-|<img src="assets/headlines_framed.png" height="400">|<img src="assets/search_framed.png" height="400">|<img src="assets/about_framed.png" height="400">|<img src="assets/article_details_framed.png" height="400">|
+|Headlines                     |Search                       |
+|:----------------------------:|:---------------------------:|
+|<img src="assets/headlines_framed.png" height="400">|<img src="assets/search_framed.png" height="400">|
 
+|About                        |Article details              |
+|:---------------------------:|:---------------------------:|
+|<img src="assets/about_framed.png" height="400">|<img src="assets/article_details_framed.png" height="400">|
 
 ### Theiming
 
