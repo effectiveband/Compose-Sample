@@ -5,9 +5,9 @@
 
 ### Main screens
 
-|Headlines                     |Search                       |About                        |
-|:----------------------------:|:---------------------------:|:---------------------------:|
-|<img src="assets/headlines_framed.png" height="400">|<img src="assets/search_framed.png" height="400">|<img src="assets/about_framed.png" height="400">|
+|Headlines                     |Search                       |About                        |Article details              |
+|:----------------------------:|:---------------------------:|:---------------------------:|:---------------------------:|
+|<img src="assets/headlines_framed.png" height="400">|<img src="assets/search_framed.png" height="400">|<img src="assets/about_framed.png" height="400">|<img src="assets/article_details_framed.png" height="400">|
 
 
 ### Theiming
@@ -20,7 +20,7 @@
 
 |                              |                             |                             |
 |------------------------------|-----------------------------|-----------------------------|
-|<img src="assets/headlines_framed.png" height="400">|<img src="assets/headlines_you_framed.png" height="400">|<img src="headlines_you_alt_framed.png" height="400">|
+|<img src="assets/headlines_framed.png" height="400">|<img src="assets/headlines_you_framed.png" height="400">|<img src="assets/headlines_you_alt_framed.png" height="400">|
 
 ### Debug Drawer
 
