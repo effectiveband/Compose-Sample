@@ -20,11 +20,11 @@
 
 |                              |                             |                             |
 |------------------------------|-----------------------------|-----------------------------|
-|<img src="assets/headlines_framed.png" height="400">|<img src="assets/headlines_you_framed.png" height="400">|<img src="assets/    headlines_you_alt_framed.png" height="400">|
+|<img src="assets/headlines_framed.png" height="400">|<img src="assets/headlines_you_framed.png" height="400">|<img src="headlines_you_alt_framed.png" height="400">|
 
 ### Debug Drawer
 
-|Light Theme                   |
+|                              |
 |:----------------------------:|
 |<img src="assets/debug_drawer_framed.png" height="400">|
 
