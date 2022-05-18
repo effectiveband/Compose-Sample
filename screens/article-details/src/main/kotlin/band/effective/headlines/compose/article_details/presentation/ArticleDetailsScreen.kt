@@ -1,14 +1,17 @@
 package band.effective.headlines.compose.article_details.presentation
 
 import android.app.Activity
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -18,18 +21,18 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import band.effective.headlines.compose.article_details.di.articleDetailsComponent
 import band.effective.headlines.compose.article_details.presentation.components.ArticleContent
 import band.effective.headlines.compose.article_details.presentation.components.ArticleFloatingActionButton
-import band.effective.headlines.compose.article_details.presentation.components.ArticleTopAppBar
+import band.effective.headlines.compose.article_details.presentation.components.BackButton
 import band.effective.headlines.compose.core_ui.di.daggerSavedStateViewModel
 import band.effective.headlines.compose.core_ui.rememberStateWithLifecycle
-import com.google.accompanist.insets.LocalWindowInsets
 import com.google.accompanist.insets.navigationBarsPadding
-import com.google.accompanist.insets.rememberInsetsPaddingValues
+import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ramcosta.composedestinations.annotation.Destination
 
@@ -63,12 +66,9 @@ private fun ArticleDetailsScreen(
     val state by rememberStateWithLifecycle(viewModel.state)
     val scrollBehavior = remember { TopAppBarDefaults.pinnedScrollBehavior() }
     val systemUiController = rememberSystemUiController()
-    val scrollFraction = scrollBehavior.scrollFraction
-    val appBarContainerColor by TopAppBarDefaults.smallTopAppBarColors()
-        .containerColor(scrollFraction)
 
     SideEffect {
-        systemUiController.setStatusBarColor(appBarContainerColor)
+        systemUiController.setStatusBarColor(Color.Transparent)
     }
 
     LaunchedEffect(Unit) {
@@ -86,17 +86,6 @@ private fun ArticleDetailsScreen(
                 .fillMaxWidth()
                 .nestedScroll(scrollBehavior.nestedScrollConnection)
         ) {
-            ArticleTopAppBar(
-                contentPadding = rememberInsetsPaddingValues(
-                    insets = LocalWindowInsets.current.statusBars,
-                    applyStart = true,
-                    applyTop = true,
-                    applyEnd = true,
-                ),
-                scrollBehavior = scrollBehavior
-            ) {
-                viewModel.sendEvent(ArticleDetailsUiEvent.OnBack)
-            }
             ArticleContent(
                 imageUrl = state.imageUrl,
                 title = state.title,
@@ -106,6 +95,18 @@ private fun ArticleDetailsScreen(
                     .fillMaxSize()
                     .verticalScroll(rememberScrollState())
             )
+        }
+        BackButton(
+            modifier = Modifier
+                .align(Alignment.TopStart)
+                .statusBarsPadding()
+                .padding(start = 16.dp, top = 16.dp)
+                .background(
+                    color = MaterialTheme.colorScheme.primaryContainer,
+                    shape = CircleShape
+                )
+        ) {
+            viewModel.sendEvent(ArticleDetailsUiEvent.OnBack)
         }
         ArticleFloatingActionButton(
             modifier = Modifier

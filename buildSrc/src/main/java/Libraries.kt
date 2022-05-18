@@ -10,12 +10,15 @@ object Libs {
 
     object Retrofit {
         const val client = "com.squareup.retrofit2:retrofit:${Versions.Retrofit.version}"
-        const val moshiConverter = "com.squareup.retrofit2:converter-moshi:${Versions.Retrofit.version}"
+        const val moshiConverter =
+            "com.squareup.retrofit2:converter-moshi:${Versions.Retrofit.version}"
+        const val mock = "com.squareup.retrofit2:retrofit-mock:${Versions.Retrofit.version}"
     }
 
     object OkHttp {
         const val client = "com.squareup.okhttp3:okhttp:${Versions.OkHttp.version}"
-        const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.OkHttp.version}"
+        const val loggingInterceptor =
+            "com.squareup.okhttp3:logging-interceptor:${Versions.OkHttp.version}"
     }
 
     object Moshi {
@@ -35,11 +38,16 @@ object Libs {
     }
 
     object Accompanist {
-        const val insets = "com.google.accompanist:accompanist-insets:${Versions.Accompanist.version}"
-        const val insetsUi ="com.google.accompanist:accompanist-insets-ui:${Versions.Accompanist.version}"
-        const val systemUiController = "com.google.accompanist:accompanist-systemuicontroller:${Versions.Accompanist.version}"
-        const val swipeRefreshLayout = "com.google.accompanist:accompanist-swiperefresh:${Versions.Accompanist.version}"
-        const val placeholer = "com.google.accompanist:accompanist-placeholder-material:${Versions.Accompanist.version}"
+        const val insets =
+            "com.google.accompanist:accompanist-insets:${Versions.Accompanist.version}"
+        const val insetsUi =
+            "com.google.accompanist:accompanist-insets-ui:${Versions.Accompanist.version}"
+        const val systemUiController =
+            "com.google.accompanist:accompanist-systemuicontroller:${Versions.Accompanist.version}"
+        const val swipeRefreshLayout =
+            "com.google.accompanist:accompanist-swiperefresh:${Versions.Accompanist.version}"
+        const val placeholer =
+            "com.google.accompanist:accompanist-placeholder-material:${Versions.Accompanist.version}"
     }
 
     object AndroidX {
@@ -52,30 +60,52 @@ object Libs {
         }
 
         object Activity {
-            const val activityCompose = "androidx.activity:activity-compose:${Versions.AndroidX.Activity.version}"
+            const val activityCompose =
+                "androidx.activity:activity-compose:${Versions.AndroidX.Activity.version}"
         }
 
         object Lifecycle {
-            const val runtime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.AndroidX.Lifecycle.version}"
-            const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.AndroidX.Lifecycle.version}"
-            const val viewModelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.AndroidX.Lifecycle.version}"
-            const val viewModelSavedState = "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.AndroidX.Lifecycle.version}"
+            const val runtime =
+                "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.AndroidX.Lifecycle.version}"
+            const val viewModel =
+                "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.AndroidX.Lifecycle.version}"
+            const val viewModelCompose =
+                "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.AndroidX.Lifecycle.version}"
+            const val viewModelSavedState =
+                "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.AndroidX.Lifecycle.version}"
         }
 
         object Compose {
             const val ui = "androidx.compose.ui:ui:${Versions.AndroidX.Compose.version}"
-            const val material = "androidx.compose.material:material:${Versions.AndroidX.Compose.version}"
-            const val material3 = "androidx.compose.material3:material3:${Versions.AndroidX.Compose.material3}"
-            const val materialIconsExtended = "androidx.compose.material:material-icons-extended:${Versions.AndroidX.Compose.version}"
+            const val material =
+                "androidx.compose.material:material:${Versions.AndroidX.Compose.version}"
+            const val material3 =
+                "androidx.compose.material3:material3:${Versions.AndroidX.Compose.material3}"
+            const val materialIconsExtended =
+                "androidx.compose.material:material-icons-extended:${Versions.AndroidX.Compose.version}"
 
-            const val tooling = "androidx.compose.ui:ui-tooling:${Versions.AndroidX.Compose.version}"
-            const val toolingPreview = "androidx.compose.ui:ui-tooling-preview:${Versions.AndroidX.Compose.version}"
-            const val composeUiManifest = "androidx.compose.ui:ui-test-manifest:${Versions.AndroidX.Compose.version}"
+            const val tooling =
+                "androidx.compose.ui:ui-tooling:${Versions.AndroidX.Compose.version}"
+            const val toolingPreview =
+                "androidx.compose.ui:ui-tooling-preview:${Versions.AndroidX.Compose.version}"
+            const val composeUiManifest =
+                "androidx.compose.ui:ui-test-manifest:${Versions.AndroidX.Compose.version}"
         }
     }
 
     object Navigation {
-        const val destinations = "io.github.raamcosta.compose-destinations:core:${Versions.Navigation.version}"
-        const val compiler = "io.github.raamcosta.compose-destinations:ksp:${Versions.Navigation.version}"
+        const val destinations =
+            "io.github.raamcosta.compose-destinations:core:${Versions.Navigation.version}"
+        const val compiler =
+            "io.github.raamcosta.compose-destinations:ksp:${Versions.Navigation.version}"
+    }
+
+    object DebugDrawer {
+        const val main = "au.com.gridstone.debugdrawer:debugdrawer:${Versions.debugDrawer}"
+        const val retrofit =
+            "au.com.gridstone.debugdrawer:debugdrawer-retrofit:${Versions.debugDrawer}"
+        const val timber = "au.com.gridstone.debugdrawer:debugdrawer-timber:${Versions.debugDrawer}"
+        const val okhttp =
+            "au.com.gridstone.debugdrawer:debugdrawer-okhttp-logger:${Versions.debugDrawer}"
     }
 }

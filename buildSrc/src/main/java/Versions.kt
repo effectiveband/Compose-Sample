@@ -5,6 +5,7 @@ object Versions {
     const val kotlin = "1.6.10"
     const val coroutines = "1.6.0"
     const val timber = "5.0.1"
+    const val debugDrawer = "0.9.8"
 
     object Coil {
         const val version = "2.0.0-rc03"

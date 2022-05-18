@@ -1,5 +1,4 @@
 plugins {
-    `java-gradle-plugin`
     `kotlin-dsl`
 }
 
@@ -20,10 +19,6 @@ gradlePlugin {
         register("compose-module-plugin") {
             id = "band.effective.module.compose"
             implementationClass = "band.effective.plugins.ComposeModulePlugin"
-        }
-        register("network-config-plugin") {
-            id = "band.effective.network.config"
-            implementationClass = "band.effective.plugins.NetworkConfigPlugin"
         }
     }
 }

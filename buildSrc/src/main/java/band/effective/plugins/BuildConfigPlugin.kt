@@ -22,10 +22,10 @@ class BuildConfigPlugin : Plugin<Project> {
         if (androidExtension is BaseExtension) {
             with(androidExtension) {
                 applyAndroidSettings()
-                applyJava8(project)
-                applySigningConfig(project)
                 applyBuildTypes()
+                applySigningConfig(project)
                 applyProguardSettings(project)
+                applyJava8(project)
                 applyBaseDependencies(project)
             }
         }
@@ -39,28 +39,18 @@ class BuildConfigPlugin : Plugin<Project> {
         }
     }
 
-    private fun BaseExtension.applySigningConfig(project: Project) {
-        signingConfigs {
-            create("internal") {
-                storeFile = File("${project.rootDir}/internalKeystore/headlineskey")
-                storePassword = "effectivepswd"
-                keyAlias = "effectivekey"
-                keyPassword = "effectivepswd"
-            }
-        }
-    }
-
-    @Suppress("USELESS_IS_CHECK")
     private fun BaseExtension.applyBuildTypes() {
         flavorDimensions("default", "drawer")
         productFlavors {
             create("dev") {
                 dimension = "default"
-                if (this is AppExtension) applicationIdSuffix = ".dev"
+                if (this@applyBuildTypes is AppExtension) {
+                    versionNameSuffix = "-dev"
+                    applicationIdSuffix = ".dev"
+                }
             }
             create("prod") {
                 dimension = "default"
-                signingConfig = signingConfigs.getByName("internal")
             }
             create("withDrawer") {
                 dimension = "drawer"
@@ -72,8 +62,20 @@ class BuildConfigPlugin : Plugin<Project> {
         variantFilter {
             val isNotDevDebugBuild = !name.contains("dev") && name.contains("Debug")
             val isPublicBuildDDrawer = name.contains("prod") && !name.contains("NoDrawer")
-            if (isNotDevDebugBuild || isPublicBuildDDrawer) {
+            val isDevBuildNoDDrawer = name.contains("dev") && name.contains("NoDrawer")
+            if (isNotDevDebugBuild || isPublicBuildDDrawer || isDevBuildNoDDrawer) {
                 ignore = true
+            }
+        }
+    }
+
+    private fun BaseExtension.applySigningConfig(project: Project) {
+        signingConfigs {
+            create("internal") {
+                storeFile = File("${project.rootDir}/internalKeystore/headlineskey")
+                storePassword = "effectivepswd"
+                keyAlias = "effectivekey"
+                keyPassword = "effectivepswd"
             }
         }
     }
@@ -96,6 +98,7 @@ class BuildConfigPlugin : Plugin<Project> {
             is AppExtension -> buildTypes {
                 getByName("release") {
                     isMinifyEnabled = true
+                    signingConfig = signingConfigs.getByName("internal")
                     proguardFiles(
                         getDefaultProguardFile("proguard-android-optimize.txt"),
                         coroutines,

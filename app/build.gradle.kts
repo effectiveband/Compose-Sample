@@ -22,6 +22,7 @@ android {
 
 dependencies {
 
+    implementation(project(":debug-drawer"))
     implementation(project(":network"))
     implementation(project(":news-api"))
 
@@ -32,9 +33,15 @@ dependencies {
 
     implementation(Libs.Retrofit.client)
     implementation(Libs.Retrofit.moshiConverter)
+    implementation(Libs.Retrofit.mock)
 
     implementation(Libs.OkHttp.client)
-    implementation(Libs.OkHttp.loggingInterceptor)
+    devImplementation(Libs.OkHttp.loggingInterceptor)
+
+    withDrawerImplementation(Libs.DebugDrawer.main)
+    withDrawerImplementation(Libs.DebugDrawer.retrofit)
+    withDrawerImplementation(Libs.DebugDrawer.okhttp)
+    withDrawerImplementation(Libs.DebugDrawer.timber)
 
     implementation(Libs.Moshi.kotlin)
     implementation(Libs.Moshi.adapters)
