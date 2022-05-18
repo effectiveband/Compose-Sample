@@ -1,6 +1,9 @@
 package band.effective.headlines.compose.network.di
 
 import band.effective.headlines.compose.core.di.scope.AppScope
+import band.effective.headlines.compose.network.BuildConfig
+import band.effective.headlines.compose.network.EitherNewsAdapterFactory
+import band.effective.headlines.compose.network.interceptors.NewsApiKeyInterceptor
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.adapters.Rfc3339DateJsonAdapter
 import com.squareup.moshi.addAdapter
@@ -9,38 +12,31 @@ import dagger.Provides
 import dagger.multibindings.IntoSet
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
-import javax.inject.Singleton
 
-@Module(includes = [NewsNetworkModule::class])
+@Module
 interface NetworkModule {
 
     companion object {
 
         @OptIn(ExperimentalStdlibApi::class)
         @Provides
-        @AppScope
         fun provideMoshi(): Moshi {
             return Moshi.Builder()
                 .addAdapter(Rfc3339DateJsonAdapter().nullSafe())
                 .build()
         }
 
-        @BaseNetwork
         @Provides
         @IntoSet
-        fun provideLoggingInterceptor(): Interceptor {
-            return HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-        }
+        fun provideNewsApiKeyInterceptor(): Interceptor = NewsApiKeyInterceptor()
 
-        @BaseNetwork
         @Provides
         @AppScope
         fun provideBaseOkHttpClient(
-            @BaseNetwork interceptors: Set<@JvmSuppressWildcards Interceptor>
+            interceptors: Set<@JvmSuppressWildcards Interceptor>
         ): OkHttpClient {
             return OkHttpClient.Builder()
                 .apply { interceptors.forEach(::addInterceptor) }
@@ -48,17 +44,17 @@ interface NetworkModule {
                 .build()
         }
 
-        @BaseNetwork
         @Provides
         @AppScope
         fun provideBaseRetrofit(
-            @BaseNetwork client: OkHttpClient,
+            client: OkHttpClient,
             moshi: Moshi
         ): Retrofit {
             return Retrofit.Builder()
                 .client(client)
-                .baseUrl("https://base.url")
+                .baseUrl(BuildConfig.NEWS_URL)
                 .addConverterFactory(MoshiConverterFactory.create(moshi))
+                .addCallAdapterFactory(EitherNewsAdapterFactory())
                 .build()
         }
     }
