@@ -1,5 +1,16 @@
 # Compose Based Android Sample
-![Logo](assets/app_icon.svg)
+
+## Why we created this sample
+This project has been created due to show our approach to everyone within the team.
+
+It's a quite simple android app, but it demonstrates core features of the way we develop big and scalable production apps.
+
+## How to use this sample
+This sample includes some basic cases that are needed almost for any android app.
+
+So, if you need to setup a new project, it can help you as an example how everything should work overall.
+
+**It's not a bootstrap project, don't use it as a template to start from.**
 
 ## Screenshots
 
@@ -30,18 +41,6 @@
 |                              |
 |:----------------------------:|
 |<img src="assets/debug_drawer_framed.png" height="400">|
-
-## Why we created this sample
-This project has been created due to show our approach to everyone within the team.
-
-It's a quite simple android app, but it demonstrates core features of the way we develop big and scalable production apps.
-
-## How to use this sample
-This sample includes some basic cases that are needed almost for any android app.
-
-So, if you need to setup a new project, it can help you as an example how everything should work overall.
-
-**It's not a bootstrap project, don't use it as a template to start from.**
 
 ## Topics
 * DI
