@@ -10,9 +10,9 @@ class ScreenModulePlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
         with(project.plugins) {
-            apply("band.effective.build.config")
-            apply("band.effective.module.dagger")
-            apply("band.effective.module.compose")
+            apply(BuildConfigPlugin::class.java)
+            apply(DaggerModulePlugin::class.java)
+            apply(ComposeModulePlugin::class.java)
         }
         val androidExtension = project.extensions.getByName("android")
         if (androidExtension is BaseExtension) {

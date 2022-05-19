@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.application")
+    alias(libs.plugins.android.application)
     id("band.effective.module.screen")
     id("band.effective.module.dagger")
 }
@@ -31,21 +31,16 @@ dependencies {
     implementation(project(":screens:about"))
     implementation(project(":screens:article-details"))
 
-    implementation(Libs.Retrofit.client)
-    implementation(Libs.Retrofit.moshiConverter)
-    implementation(Libs.Retrofit.mock)
+    implementation(libs.retrofit.client)
+    implementation(libs.retrofit.moshi)
+    withDrawerImplementation(libs.retrofit.mock)
 
-    implementation(Libs.OkHttp.client)
-    devImplementation(Libs.OkHttp.loggingInterceptor)
+    implementation(libs.okhttp.client)
+    devImplementation(libs.okhttp.logginginterceptor)
 
-    withDrawerImplementation(Libs.DebugDrawer.main)
-    withDrawerImplementation(Libs.DebugDrawer.retrofit)
-    withDrawerImplementation(Libs.DebugDrawer.okhttp)
-    withDrawerImplementation(Libs.DebugDrawer.timber)
+    withDrawerImplementation(libs.debug.drawer)
+    withDrawerImplementation(libs.debug.drawer.retrofit)
+    withDrawerImplementation(libs.debug.drawer.okhttp)
 
-    implementation(Libs.Moshi.kotlin)
-    implementation(Libs.Moshi.adapters)
-    ksp(Libs.Moshi.compiler)
-
-    implementation(Libs.AndroidX.splashscreen)
+    implementation(libs.androidx.splashscreen)
 }

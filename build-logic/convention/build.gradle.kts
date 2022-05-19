@@ -2,6 +2,11 @@ plugins {
     `kotlin-dsl`
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
 gradlePlugin {
     plugins {
         register("build-config-plugin") {
@@ -23,14 +28,9 @@ gradlePlugin {
     }
 }
 
-repositories {
-    google()
-    mavenCentral()
-    gradlePluginPortal()
-}
-
 dependencies {
-    implementation("com.android.tools.build:gradle:7.1.3")
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
-    implementation("com.google.devtools.ksp:symbol-processing-gradle-plugin:1.6.10-1.0.4")
+    implementation(libs.android.gradle)
+    implementation(libs.kotlin.gradle)
+    implementation(libs.google.ksp)
+    compileOnly(gradleApi())
 }
