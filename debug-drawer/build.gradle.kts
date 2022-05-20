@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.library")
+    alias(libs.plugins.android.library)
     id("band.effective.module.dagger")
 }
 
@@ -8,11 +8,11 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":network"))
 
-    implementation(Libs.Retrofit.client)
-    implementation(Libs.Retrofit.mock)
+    implementation(libs.retrofit.client)
+    withDrawerImplementation(libs.retrofit.mock)
 
-    withDrawerImplementation(Libs.DebugDrawer.main)
-    withDrawerImplementation(Libs.DebugDrawer.retrofit)
-    withDrawerImplementation(Libs.DebugDrawer.okhttp)
-    withDrawerImplementation(Libs.DebugDrawer.timber)
+    withDrawerImplementation(libs.debug.drawer)
+    withDrawerImplementation(libs.debug.drawer.retrofit)
+    withDrawerImplementation(libs.debug.drawer.okhttp)
+    withDrawerImplementation(libs.debug.drawer.timber)
 }

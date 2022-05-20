@@ -65,10 +65,11 @@ private fun ArticleDetailsScreen(
 ) {
     val state by rememberStateWithLifecycle(viewModel.state)
     val scrollBehavior = remember { TopAppBarDefaults.pinnedScrollBehavior() }
+    val surfaceColorWithScrim = MaterialTheme.colorScheme.surface.copy(0.8F)
     val systemUiController = rememberSystemUiController()
 
     SideEffect {
-        systemUiController.setStatusBarColor(Color.Transparent)
+        systemUiController.setStatusBarColor(surfaceColorWithScrim)
     }
 
     LaunchedEffect(Unit) {

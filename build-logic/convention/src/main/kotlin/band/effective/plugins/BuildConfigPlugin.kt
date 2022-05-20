@@ -1,12 +1,17 @@
 package band.effective.plugins
 
+import ANDROID_COMPILE_SDK_VERSION
+import ANDROID_MIN_SDK_VERSION
+import ANDROID_TARGET_SDK_VERSION
 import com.android.build.gradle.AppExtension
 import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.LibraryExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.io.File
@@ -21,7 +26,7 @@ class BuildConfigPlugin : Plugin<Project> {
         val androidExtension = project.extensions.getByName("android")
         if (androidExtension is BaseExtension) {
             with(androidExtension) {
-                applyAndroidSettings()
+                applyAndroidSettings(project)
                 applyBuildTypes()
                 applySigningConfig(project)
                 applyProguardSettings(project)
@@ -31,11 +36,11 @@ class BuildConfigPlugin : Plugin<Project> {
         }
     }
 
-    private fun BaseExtension.applyAndroidSettings() {
-        compileSdkVersion(Configs.compileSdk)
+    private fun BaseExtension.applyAndroidSettings(project: Project) {
+        compileSdkVersion(project.ANDROID_COMPILE_SDK_VERSION)
         defaultConfig {
-            minSdk = Configs.minSdk
-            targetSdk = Configs.targetSdk
+            minSdk = project.ANDROID_MIN_SDK_VERSION
+            targetSdk = project.ANDROID_TARGET_SDK_VERSION
         }
     }
 
@@ -129,9 +134,10 @@ class BuildConfigPlugin : Plugin<Project> {
     }
 
     private fun applyBaseDependencies(project: Project) {
+        val libs = project.extensions.getByType<VersionCatalogsExtension>().named("libs")
         project.dependencies {
-            add("implementation", Libs.Coroutines.android)
-            add("implementation", Libs.Timber.timber)
+            add("implementation", libs.findLibrary("kotlinx-coroutines").get())
+            add("implementation", libs.findLibrary("timber").get())
         }
     }
 }

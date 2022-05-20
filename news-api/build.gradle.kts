@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.library")
+    alias(libs.plugins.android.library)
     id("band.effective.module.dagger")
     id("com.google.devtools.ksp")
 }
@@ -8,12 +8,10 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":network"))
 
-    implementation(Libs.AndroidX.Paging.runtime)
+    implementation(libs.androidx.paging)
 
-    implementation(Libs.Retrofit.client)
-    implementation(Libs.Retrofit.moshiConverter)
+    implementation(libs.retrofit.client)
 
-    implementation(Libs.Moshi.kotlin)
-    implementation(Libs.Moshi.adapters)
-    ksp(Libs.Moshi.compiler)
+    implementation(libs.moshi.kotlin)
+    ksp(libs.moshi.compiler)
 }
