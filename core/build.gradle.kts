@@ -1,9 +1,9 @@
 plugins {
-    id("com.android.library")
+    alias(libs.plugins.android.library)
     id("band.effective.module.dagger")
 }
 
 dependencies {
-    implementation(Libs.AndroidX.Lifecycle.viewModel)
-    implementation(Libs.AndroidX.Lifecycle.viewModelSavedState)
+    implementation(libs.androidx.lifecycle.viewmodel)
+    implementation(libs.androidx.lifecycle.viewmodel.savedstate)
 }

@@ -1,7 +1,7 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 
 plugins {
-    id("com.android.library")
+    alias(libs.plugins.android.library)
     id("band.effective.module.dagger")
     id("com.google.devtools.ksp")
 }
@@ -27,17 +27,18 @@ android {
 dependencies {
     implementation(project(":core"))
 
-    withDrawerImplementation(Libs.DebugDrawer.retrofit)
-    withDrawerImplementation(Libs.DebugDrawer.okhttp)
-    withDrawerImplementation(Libs.DebugDrawer.main)
+    withDrawerImplementation(libs.debug.drawer)
+    withDrawerImplementation(libs.debug.drawer.retrofit)
+    withDrawerImplementation(libs.debug.drawer.okhttp)
+    withDrawerImplementation(libs.debug.drawer.timber)
 
-    implementation(Libs.Retrofit.client)
-    implementation(Libs.Retrofit.moshiConverter)
+    implementation(libs.retrofit.client)
+    implementation(libs.retrofit.moshi)
 
-    implementation(Libs.OkHttp.client)
-    devImplementation(Libs.OkHttp.loggingInterceptor)
+    implementation(libs.okhttp.client)
+    devImplementation(libs.okhttp.logginginterceptor)
 
-    implementation(Libs.Moshi.kotlin)
-    implementation(Libs.Moshi.adapters)
-    ksp(Libs.Moshi.compiler)
+    implementation(libs.moshi.kotlin)
+    implementation(libs.moshi.adapters)
+    ksp(libs.moshi.compiler)
 }

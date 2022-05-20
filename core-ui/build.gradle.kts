@@ -1,10 +1,10 @@
 plugins {
-    id("com.android.library")
+    alias(libs.plugins.android.library)
     id("band.effective.module.compose")
 }
 
 dependencies {
     implementation(project(":core"))
 
-    implementation(Libs.AndroidX.Paging.compose)
+    implementation(libs.androidx.paging.compose)
 }
