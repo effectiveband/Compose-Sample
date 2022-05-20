@@ -3,6 +3,7 @@ import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 plugins {
     alias(libs.plugins.android.library)
     id("band.effective.module.dagger")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -39,4 +40,5 @@ dependencies {
 
     implementation(libs.moshi.kotlin)
     implementation(libs.moshi.adapters)
+    ksp(libs.moshi.compiler)
 }
