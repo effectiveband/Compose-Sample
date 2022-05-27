@@ -87,7 +87,7 @@ private fun SearchScreen(viewModel: SearchViewModel, openArticle: (SearchItemNav
                 listState = listState,
                 modifier = Modifier
                     .then(topPaddingModifier)
-                    .padding(horizontal = 32.dp)
+                    .padding(horizontal = 16.dp)
                     .fillMaxSize(),
                 openArticle = {
                     viewModel.sendEvent(SearchUiEvent.OnNews(it.asNavArg()))

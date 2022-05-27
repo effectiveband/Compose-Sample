@@ -13,7 +13,7 @@ import band.effective.headlines.compose.navigation.models.mappers.asArticle
 import band.effective.headlines.compose.search.presentation.SearchScreenNavigation
 import band.effective.headlines.compose.search.presentation.models.SearchItemNavArg
 import com.ramcosta.composedestinations.dynamic.within
-import com.ramcosta.composedestinations.navigation.navigateTo
+import com.ramcosta.composedestinations.navigation.navigate
 import com.ramcosta.composedestinations.spec.NavGraphSpec
 
 class CommonNavGraphNavigator(
@@ -38,13 +38,13 @@ class CommonNavGraphNavigator(
     }
 
     override fun openArticleDetails(headlineNavArg: HeadlineNavArg) {
-        navController.navigateTo(
+        navController.navigate(
             ArticleDetailsScreenDestination(article = headlineNavArg.asArticle()) within navGraph
         )
     }
 
     override fun openArticleDetails(searchItemNavArg: SearchItemNavArg) {
-        navController.navigateTo(
+        navController.navigate(
             ArticleDetailsScreenDestination(article = searchItemNavArg.asArticle()) within navGraph
         )
     }

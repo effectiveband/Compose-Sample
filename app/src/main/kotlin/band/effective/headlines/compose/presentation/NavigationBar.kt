@@ -3,6 +3,10 @@ package band.effective.headlines.compose.presentation
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.animation.Crossfade
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Feed
 import androidx.compose.material.icons.filled.Info
@@ -12,6 +16,7 @@ import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
@@ -22,9 +27,12 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import band.effective.headlines.compose.R
+import band.effective.headlines.compose.core_ui.surfaceColorAtElevation
 import band.effective.headlines.compose.navigation.NavGraphs
 import band.effective.headlines.compose.ui.theme.NoRippleTheme
+import com.google.accompanist.insets.navigationBarsHeight
 import com.ramcosta.composedestinations.spec.NavGraphSpec
 
 @Composable
@@ -34,20 +42,28 @@ fun BottomNavigationBar(
     modifier: Modifier = Modifier
 ) {
     CompositionLocalProvider(LocalRippleTheme provides NoRippleTheme) {
-        NavigationBar(modifier = modifier) {
-            BottomNavigationItems.forEach { destination ->
-                NavigationBarItem(
-                    selected = selectedNavigation == destination.screen,
-                    onClick = { onNavigationSelected(destination.screen) },
-                    icon = {
-                        BottomNavigationItemIcon(
-                            item = destination,
-                            selected = selectedNavigation == destination.screen
-                        )
-                    },
-                    label = { Text(text = stringResource(id = destination.labelResId)) }
-                )
+        Column {
+            NavigationBar(modifier = modifier) {
+                BottomNavigationItems.forEach { destination ->
+                    NavigationBarItem(
+                        selected = selectedNavigation == destination.screen,
+                        onClick = { onNavigationSelected(destination.screen) },
+                        icon = {
+                            BottomNavigationItemIcon(
+                                item = destination,
+                                selected = selectedNavigation == destination.screen
+                            )
+                        },
+                        label = { Text(text = stringResource(id = destination.labelResId)) }
+                    )
+                }
             }
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .navigationBarsHeight()
+                    .background(MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp))
+            )
         }
     }
 }
