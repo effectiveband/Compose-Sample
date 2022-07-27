@@ -1,6 +1,5 @@
 package band.effective.headlines.compose.network.di
 
-import au.com.gridstone.debugdrawer.retrofit.DebugRetrofitConfig
 import band.effective.headlines.compose.core.di.scope.AppScope
 import band.effective.headlines.compose.network.EitherNewsAdapterFactory
 import band.effective.headlines.compose.network.interceptors.NewsApiKeyInterceptor
@@ -10,6 +9,7 @@ import com.squareup.moshi.addAdapter
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoSet
+import effective.band.compose.drawer_modules.retrofit.DebugRetrofitConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

@@ -18,6 +18,7 @@ android {
             buildConfigField("String", "NEWS_URL", "\"https://newsapi.org/v2/\"")
         }
         getByName("prod") {
+            buildConfigField("String", "NEWS_STAGE_URL", "\"https://newsapi.org/v2/\"")
             buildConfigField("String", "NEWS_API_KEY", apiKey)
             buildConfigField("String", "NEWS_URL", "\"https://newsapi.org/v2/\"")
         }
@@ -27,10 +28,9 @@ android {
 dependencies {
     implementation(project(":core"))
 
-    withDrawerImplementation(libs.debug.drawer)
-    withDrawerImplementation(libs.debug.drawer.retrofit)
-    withDrawerImplementation(libs.debug.drawer.okhttp)
-    withDrawerImplementation(libs.debug.drawer.timber)
+    withDrawerImplementation(libs.drawer.base)
+    withDrawerImplementation(libs.drawer.modules)
+    withDrawerImplementation(libs.drawer.location)
 
     implementation(libs.retrofit.client)
     implementation(libs.retrofit.moshi)

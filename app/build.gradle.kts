@@ -33,14 +33,14 @@ dependencies {
 
     implementation(libs.retrofit.client)
     implementation(libs.retrofit.moshi)
-    withDrawerImplementation(libs.retrofit.mock)
+    implementation(libs.retrofit.mock)
 
     implementation(libs.okhttp.client)
     devImplementation(libs.okhttp.logginginterceptor)
 
-    withDrawerImplementation(libs.debug.drawer)
-    withDrawerImplementation(libs.debug.drawer.retrofit)
-    withDrawerImplementation(libs.debug.drawer.okhttp)
+    implementation(libs.drawer.base)
+    implementation(libs.drawer.modules)
+    implementation(libs.drawer.location)
 
     implementation(libs.androidx.splashscreen)
 }
