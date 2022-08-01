@@ -9,7 +9,7 @@ import band.effective.headlines.compose.core.di.CommonDependencies
 import band.effective.headlines.compose.core.di.scope.AppScope
 import band.effective.headlines.compose.di.modules.AppModule
 import band.effective.headlines.compose.di.modules.ComponentDependenciesModule
-import band.effective.headlines.compose.drawer.DebugDrawerDependencies
+import band.effective.headlines.compose.drawer.DrawerDependencies
 import band.effective.headlines.compose.drawer.DrawerModule
 import band.effective.headlines.compose.feed.di.FeedDependencies
 import band.effective.headlines.compose.main.di.MainComponentDependencies
@@ -36,7 +36,8 @@ interface AppComponent :
     SearchDependencies,
     ArticleDetailsDependencies,
     AboutDependencies,
-    DebugDrawerDependencies {
+    DrawerDependencies {
+
 
     @Component.Factory
     interface Factory {

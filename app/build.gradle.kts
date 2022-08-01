@@ -38,9 +38,9 @@ dependencies {
     implementation(libs.okhttp.client)
     devImplementation(libs.okhttp.logginginterceptor)
 
-    implementation(libs.drawer.base)
-    implementation(libs.drawer.modules)
-    implementation(libs.drawer.location)
+    withDrawerImplementation(libs.drawer.base)
+    withDrawerImplementation(libs.drawer.modules)
+    withDrawerImplementation(libs.drawer.location)
 
     implementation(libs.androidx.splashscreen)
 }

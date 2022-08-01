@@ -14,15 +14,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import band.effective.drawer_location.LocationModule
+import band.effective.headlines.compose.di.DaggerAppComponent
 import effective.band.compose.drawer_modules.BuildModule
 import effective.band.compose.drawer_modules.DeviceModule
 import effective.band.compose.drawer_modules.design.DebugGridLayer
 import effective.band.compose.drawer_modules.design.DebugGridStateConfig
 import effective.band.compose.drawer_modules.design.DesignModule
 import effective.band.compose.drawer_modules.leak.LeakCanaryModule
-import effective.band.compose.drawer_modules.okhttp.HttpLogger
 import effective.band.compose.drawer_modules.okhttp.OkHttpLoggerModule
-import effective.band.compose.drawer_modules.retrofit.DebugRetrofitConfig
 import effective.band.compose.drawer_modules.retrofit.RetrofitModule
 import effective.band.drawer_base.ActionsModule
 import effective.band.drawer_base.DebugDrawerLayout
@@ -31,10 +30,14 @@ import effective.band.drawer_base.actions.SwitchAction
 
 @Composable
 fun ConfigureScreen(
-    debugRetrofitConfig: DebugRetrofitConfig,
-    httpLogger: HttpLogger,
+    application: android.app.Application,
     bodyContent: @Composable (isDrawerOpen: Boolean) -> Unit
 ) {
+
+    val debugRetrofitConfig =
+        DaggerAppComponent.factory().create(application).getDebugDrawerState()
+    val httpLogger = DaggerAppComponent.factory().create(application).getHttpLogger()
+
     val gridAlpha = LocalContentAlpha.current
 
     var debugGridLayerConfig: DebugGridStateConfig by remember {

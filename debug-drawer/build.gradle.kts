@@ -11,7 +11,7 @@ dependencies {
     implementation(libs.retrofit.client)
     implementation(libs.retrofit.mock)
 
-    implementation(libs.drawer.base)
-    implementation(libs.drawer.modules)
-    implementation(libs.drawer.location)
+    withDrawerImplementation(libs.drawer.base)
+    withDrawerImplementation(libs.drawer.modules)
+    withDrawerImplementation(libs.drawer.location)
 }

@@ -4,8 +4,8 @@ import band.effective.headlines.compose.core.di.CommonDependencies
 import effective.band.compose.drawer_modules.okhttp.HttpLogger
 import effective.band.compose.drawer_modules.retrofit.DebugRetrofitConfig
 
-interface DebugDrawerDependencies : CommonDependencies {
+interface DrawerDependencies : CommonDependencies {
 
-    fun getDebugRetrofitDrawer(): DebugRetrofitConfig
+    fun getDebugDrawerState(): DebugRetrofitConfig
     fun getHttpLogger(): HttpLogger
 }

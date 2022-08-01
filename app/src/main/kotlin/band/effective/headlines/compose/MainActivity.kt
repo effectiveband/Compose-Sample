@@ -1,6 +1,7 @@
 package band.effective.headlines.compose
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.platform.ComposeView
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -11,6 +12,7 @@ import band.effective.headlines.compose.presentation.AppHost
 import band.effective.headlines.compose.presentation.setOwners
 import band.effective.headlines.compose.ui.theme.HeadlinesComposeTheme
 import com.google.accompanist.insets.ProvideWindowInsets
+import java.io.File
 
 class MainActivity : ComponentActivity() {
 
@@ -19,13 +21,11 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         mainComponent.getInstance(this).inject(this)
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        val debugRetrofitConfig = DaggerAppComponent.factory().create(application).getDebugRetrofitDrawer()
-        val httpLogger = DaggerAppComponent.factory().create(application).getHttpLogger()
         val composeView = ComposeView(this).apply {
             setContent {
                 HeadlinesComposeTheme {
                     ProvideWindowInsets {
-                        ConfigureScreen(debugRetrofitConfig, httpLogger) {
+                        ConfigureScreen(application) {
                             AppHost()
                         }
                     }
