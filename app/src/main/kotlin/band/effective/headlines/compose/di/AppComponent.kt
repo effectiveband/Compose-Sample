@@ -5,7 +5,7 @@ import band.effective.headlines.compose.HeadlinesComposeApp
 import band.effective.headlines.compose.MainActivity
 import band.effective.headlines.compose.about.di.AboutDependencies
 import band.effective.headlines.compose.article_details.di.ArticleDetailsDependencies
-import band.effective.headlines.compose.core.di.CommonDependencies
+import band.effective.headlines.compose.core.di.*
 import band.effective.headlines.compose.core.di.scope.AppScope
 import band.effective.headlines.compose.di.modules.AppModule
 import band.effective.headlines.compose.di.modules.ComponentDependenciesModule
@@ -18,6 +18,10 @@ import band.effective.headlines.compose.news_api.di.NewsApiDependencies
 import band.effective.headlines.compose.search.di.SearchDependencies
 import dagger.BindsInstance
 import dagger.Component
+
+internal val appComponent = featureComponent<AppComponent, Application> { application ->
+    DaggerAppComponent.factory().create(application)
+}
 
 @AppScope
 @Component(

@@ -1,5 +1,6 @@
 package band.effective.headlines.compose
 
+import android.app.Application
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -12,9 +13,10 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import band.effective.drawer_location.LocationModule
-import band.effective.headlines.compose.di.DaggerAppComponent
+import band.effective.headlines.compose.di.appComponent
 import effective.band.compose.drawer_modules.BuildModule
 import effective.band.compose.drawer_modules.DeviceModule
 import effective.band.compose.drawer_modules.design.DebugGridLayer
@@ -30,13 +32,15 @@ import effective.band.drawer_base.actions.SwitchAction
 
 @Composable
 fun ConfigureScreen(
-    application: android.app.Application,
     bodyContent: @Composable (isDrawerOpen: Boolean) -> Unit
 ) {
 
     val debugRetrofitConfig =
-        DaggerAppComponent.factory().create(application).getDebugDrawerState()
-    val httpLogger = DaggerAppComponent.factory().create(application).getHttpLogger()
+        appComponent.getInstance(LocalContext.current.applicationContext as Application)
+            .getDebugDrawerState()
+    val httpLogger =
+        appComponent.getInstance(LocalContext.current.applicationContext as Application)
+            .getHttpLogger()
 
     val gridAlpha = LocalContentAlpha.current
 
