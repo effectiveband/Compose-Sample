@@ -1,7 +1,7 @@
 package band.effective.headlines.compose.network.interceptors
 
-import au.com.gridstone.debugdrawer.retrofit.DebugRetrofitConfig
 import band.effective.headlines.compose.network.BuildConfig
+import effective.band.compose.drawer_modules.retrofit.DebugRetrofitConfig
 import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject

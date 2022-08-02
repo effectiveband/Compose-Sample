@@ -126,7 +126,8 @@ class BuildConfigPlugin : Plugin<Project> {
                 freeCompilerArgs = freeCompilerArgs + listOf(
                     "-Xopt-in=kotlin.RequiresOptIn",
                     "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-                    "-opt-in=kotlinx.coroutines.ObsoleteCoroutinesApi"
+                    "-opt-in=kotlinx.coroutines.ObsoleteCoroutinesApi",
+                    "-Xjvm-default=enable"
                 )
                 jvmTarget = "1.8"
             }

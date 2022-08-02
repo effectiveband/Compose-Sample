@@ -2,6 +2,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url = uri("https://effective-android.bytesafe.dev/maven/drawer/")
+        }
     }
     versionCatalogs {
         create("libs") {
