@@ -17,14 +17,6 @@ fun Activity.findComponentDependenciesProvider(): ComponentDependenciesProvider 
     return hasDaggerProviders.dependencies
 }
 
-fun Application.findComponentDependenciesProvider(): ComponentDependenciesProvider {
-    val hasDaggerProviders = when (this) {
-        is HasComponentDependencies -> this
-        else -> throw IllegalStateException("Can not find suitable dagger provider for $this")
-    }
-    return hasDaggerProviders.dependencies
-}
-
 
 fun Service.findComponentDependenciesProvider(): ComponentDependenciesProvider {
     val hasDaggerProviders = when (application) {
@@ -39,9 +31,5 @@ inline fun <reified T : ComponentDependencies> Activity.findComponentDependencie
 }
 
 inline fun <reified T : ComponentDependencies> Service.findComponentDependencies(): T {
-    return findComponentDependenciesProvider()[T::class.java] as T
-}
-
-inline fun <reified T : ComponentDependencies> Application.findComponentDependencies(): T {
     return findComponentDependenciesProvider()[T::class.java] as T
 }

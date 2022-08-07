@@ -1,6 +1,6 @@
 package band.effective.headlines.compose
 
-import android.app.Application
+import android.app.Activity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -10,13 +10,17 @@ import androidx.compose.material.LocalContentAlpha
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import band.effective.drawer_location.LocationModule
-import band.effective.headlines.compose.di.appComponent
+import band.effective.headlines.compose.main.di.mainComponent
 import effective.band.compose.drawer_modules.BuildModule
 import effective.band.compose.drawer_modules.DeviceModule
 import effective.band.compose.drawer_modules.design.DebugGridLayer
@@ -34,13 +38,11 @@ import effective.band.drawer_base.actions.SwitchAction
 fun ConfigureScreen(
     bodyContent: @Composable (isDrawerOpen: Boolean) -> Unit
 ) {
-
+    val context = LocalContext.current as Activity
     val debugRetrofitConfig =
-        appComponent.getInstance(LocalContext.current.applicationContext as Application)
-            .getDebugDrawerState()
+        mainComponent.getInstance(context).getDebugDrawerState()
     val httpLogger =
-        appComponent.getInstance(LocalContext.current.applicationContext as Application)
-            .getHttpLogger()
+        mainComponent.getInstance(context).getHttpLogger()
 
     val gridAlpha = LocalContentAlpha.current
 

@@ -18,7 +18,6 @@ android {
             buildConfigField("String", "NEWS_URL", "\"https://newsapi.org/v2/\"")
         }
         getByName("prod") {
-            buildConfigField("String", "NEWS_STAGE_URL", "\"https://newsapi.org/v2/\"")
             buildConfigField("String", "NEWS_API_KEY", apiKey)
             buildConfigField("String", "NEWS_URL", "\"https://newsapi.org/v2/\"")
         }
