@@ -14,7 +14,6 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
-import androidx.savedstate.ViewTreeSavedStateRegistryOwner
 import band.effective.headlines.compose.navigation.CommonNavGraphNavigator
 import band.effective.headlines.compose.navigation.NavGraphs
 import com.ramcosta.composedestinations.scope.DestinationScope
@@ -71,8 +70,5 @@ fun ComponentActivity.setOwners() {
     }
     if (ViewTreeViewModelStoreOwner.get(decorView) == null) {
         ViewTreeViewModelStoreOwner.set(decorView, this)
-    }
-    if (ViewTreeSavedStateRegistryOwner.get(decorView) == null) {
-        ViewTreeSavedStateRegistryOwner.set(decorView, this)
     }
 }

@@ -14,6 +14,7 @@ class HeadlinesComposeApp : Application(), HasComponentDependencies {
 
     override fun onCreate() {
         super.onCreate()
+
         plantTimber()
         DaggerAppComponent.factory()
             .create(this)

@@ -1,6 +1,7 @@
 package band.effective.headlines.compose.core.di
 
 import android.app.Activity
+import android.app.Application
 import android.app.Service
 
 interface ComponentDependencies
@@ -15,6 +16,7 @@ fun Activity.findComponentDependenciesProvider(): ComponentDependenciesProvider 
     }
     return hasDaggerProviders.dependencies
 }
+
 
 fun Service.findComponentDependenciesProvider(): ComponentDependenciesProvider {
     val hasDaggerProviders = when (application) {

@@ -1,10 +1,10 @@
 package band.effective.headlines.compose.network.interceptors
 
-import au.com.gridstone.debugdrawer.retrofit.DebugRetrofitConfig
+import band.effective.compose.drawer_modules.retrofit.DebugRetrofitConfig
 import band.effective.headlines.compose.network.BuildConfig
+import javax.inject.Inject
 import okhttp3.Interceptor
 import okhttp3.Response
-import javax.inject.Inject
 
 internal class NewsApiKeyInterceptor @Inject constructor(
     private val debugRetrofitConfig: DebugRetrofitConfig

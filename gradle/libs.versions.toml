@@ -22,7 +22,7 @@ okhttp = "4.9.3"
 retrofit = "2.9.0"
 coil = "2.1.0"
 timber = "5.0.1"
-debug-drawer = "0.9.8"
+debug-drawer = "1.0.0"
 
 [libraries]
 kotlin-gradle = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -77,10 +77,9 @@ kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-androi
 
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 
-debug-drawer = { group = "au.com.gridstone.debugdrawer", name = "debugdrawer", version.ref = "debug-drawer" }
-debug-drawer-retrofit = { group = "au.com.gridstone.debugdrawer", name = "debugdrawer-retrofit", version.ref = "debug-drawer" }
-debug-drawer-timber = { group = "au.com.gridstone.debugdrawer", name = "debugdrawer-timber", version.ref = "debug-drawer" }
-debug-drawer-okhttp = { group = "au.com.gridstone.debugdrawer", name = "debugdrawer-okhttp-logger", version.ref = "debug-drawer" }
+drawer-base = { module = "band.effective:drawer-base", version.ref = "debug-drawer" }
+drawer-modules = { module = "band.effective:drawer-modules",  version.ref = "debug-drawer" }
+drawer-location = { module = "band.effective:drawer-location", version.ref = "debug-drawer" }
 
 
 [plugins]

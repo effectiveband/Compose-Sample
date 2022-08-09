@@ -27,16 +27,13 @@ android {
 dependencies {
     implementation(project(":core"))
 
-    withDrawerImplementation(libs.debug.drawer)
-    withDrawerImplementation(libs.debug.drawer.retrofit)
-    withDrawerImplementation(libs.debug.drawer.okhttp)
-    withDrawerImplementation(libs.debug.drawer.timber)
+    debugImplementation(libs.drawer.modules)
 
     implementation(libs.retrofit.client)
     implementation(libs.retrofit.moshi)
 
     implementation(libs.okhttp.client)
-    devImplementation(libs.okhttp.logginginterceptor)
+    implementation(libs.okhttp.logginginterceptor)
 
     implementation(libs.moshi.kotlin)
     implementation(libs.moshi.adapters)

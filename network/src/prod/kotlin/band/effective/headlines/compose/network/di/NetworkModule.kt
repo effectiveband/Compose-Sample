@@ -53,7 +53,7 @@ interface NetworkModule {
             return Retrofit.Builder()
                 .client(client)
                 .baseUrl(BuildConfig.NEWS_URL)
-                .addConverterFactory(MoshiConverterFactory.create(moshi))
+                .addConverterFactory(MoshiConverterFactory.create(moshi).asLenient())
                 .addCallAdapterFactory(EitherNewsAdapterFactory())
                 .build()
         }

@@ -4,6 +4,9 @@ import android.app.Activity
 import band.effective.headlines.compose.MainActivity
 import band.effective.headlines.compose.core.di.featureComponent
 import band.effective.headlines.compose.core.di.findComponentDependencies
+import band.effective.headlines.compose.core.di.scope.AppScope
+import band.effective.headlines.compose.drawer.DrawerDependencies
+import band.effective.headlines.compose.drawer.DrawerModule
 import dagger.Component
 
 val mainComponent = featureComponent<MainComponent, Activity> { activity ->
@@ -11,9 +14,11 @@ val mainComponent = featureComponent<MainComponent, Activity> { activity ->
 }
 
 @Component(
+    modules = [DrawerModule::class],
     dependencies = [MainComponentDependencies::class]
 )
-interface MainComponent {
+@AppScope
+interface MainComponent : DrawerDependencies {
 
     @Component.Factory
     interface Factory {

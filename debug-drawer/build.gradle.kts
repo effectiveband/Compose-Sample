@@ -9,10 +9,9 @@ dependencies {
     implementation(project(":network"))
 
     implementation(libs.retrofit.client)
-    withDrawerImplementation(libs.retrofit.mock)
+    implementation(libs.retrofit.mock)
 
-    withDrawerImplementation(libs.debug.drawer)
-    withDrawerImplementation(libs.debug.drawer.retrofit)
-    withDrawerImplementation(libs.debug.drawer.okhttp)
-    withDrawerImplementation(libs.debug.drawer.timber)
+    withDrawerImplementation(libs.drawer.base)
+    withDrawerImplementation(libs.drawer.modules)
+    withDrawerImplementation(libs.drawer.location)
 }
