@@ -19,20 +19,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import band.effective.compose.drawer_modules.BuildModule
+import band.effective.compose.drawer_modules.DeviceModule
+import band.effective.compose.drawer_modules.design.DebugGridLayer
+import band.effective.compose.drawer_modules.design.DebugGridStateConfig
+import band.effective.compose.drawer_modules.design.DesignModule
+import band.effective.compose.drawer_modules.leak.LeakCanaryModule
+import band.effective.compose.drawer_modules.okhttp.OkHttpLoggerModule
+import band.effective.compose.drawer_modules.retrofit.RetrofitModule
+import band.effective.drawer_base.ActionsModule
+import band.effective.drawer_base.DebugDrawerLayout
+import band.effective.drawer_base.actions.ButtonAction
+import band.effective.drawer_base.actions.SwitchAction
 import band.effective.drawer_location.LocationModule
 import band.effective.headlines.compose.main.di.mainComponent
-import effective.band.compose.drawer_modules.BuildModule
-import effective.band.compose.drawer_modules.DeviceModule
-import effective.band.compose.drawer_modules.design.DebugGridLayer
-import effective.band.compose.drawer_modules.design.DebugGridStateConfig
-import effective.band.compose.drawer_modules.design.DesignModule
-import effective.band.compose.drawer_modules.leak.LeakCanaryModule
-import effective.band.compose.drawer_modules.okhttp.OkHttpLoggerModule
-import effective.band.compose.drawer_modules.retrofit.RetrofitModule
-import effective.band.drawer_base.ActionsModule
-import effective.band.drawer_base.DebugDrawerLayout
-import effective.band.drawer_base.actions.ButtonAction
-import effective.band.drawer_base.actions.SwitchAction
 
 @Composable
 fun ConfigureScreen(

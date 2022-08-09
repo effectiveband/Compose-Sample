@@ -77,9 +77,9 @@ kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-androi
 
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 
-drawer-base = { module = "effective.band:drawer-base", version.ref = "debug-drawer" }
-drawer-modules = { module = "effective.band:drawer-modules",  version.ref = "debug-drawer" }
-drawer-location = { module = "effective.band:drawer-location", version.ref = "debug-drawer" }
+drawer-base = { module = "band.effective:drawer-base", version.ref = "debug-drawer" }
+drawer-modules = { module = "band.effective:drawer-modules",  version.ref = "debug-drawer" }
+drawer-location = { module = "band.effective:drawer-location", version.ref = "debug-drawer" }
 
 
 [plugins]

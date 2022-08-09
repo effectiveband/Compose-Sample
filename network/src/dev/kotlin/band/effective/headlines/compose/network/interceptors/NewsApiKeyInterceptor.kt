@@ -1,10 +1,10 @@
 package band.effective.headlines.compose.network.interceptors
 
+import band.effective.compose.drawer_modules.retrofit.DebugRetrofitConfig
 import band.effective.headlines.compose.network.BuildConfig
-import effective.band.compose.drawer_modules.retrofit.DebugRetrofitConfig
+import javax.inject.Inject
 import okhttp3.Interceptor
 import okhttp3.Response
-import javax.inject.Inject
 
 internal class NewsApiKeyInterceptor @Inject constructor(
     private val debugRetrofitConfig: DebugRetrofitConfig

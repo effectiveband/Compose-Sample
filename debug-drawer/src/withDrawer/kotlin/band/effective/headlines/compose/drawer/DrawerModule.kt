@@ -1,14 +1,14 @@
 package band.effective.headlines.compose.drawer
 
 import android.content.Context
+import band.effective.compose.drawer_modules.okhttp.HttpLogger
+import band.effective.compose.drawer_modules.retrofit.DebugRetrofitConfig
+import band.effective.compose.drawer_modules.retrofit.Endpoint
 import band.effective.headlines.compose.core.di.scope.AppScope
 import band.effective.headlines.compose.network.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoSet
-import effective.band.compose.drawer_modules.okhttp.HttpLogger
-import effective.band.compose.drawer_modules.retrofit.DebugRetrofitConfig
-import effective.band.compose.drawer_modules.retrofit.Endpoint
 import okhttp3.Interceptor
 import retrofit2.mock.NetworkBehavior
 
