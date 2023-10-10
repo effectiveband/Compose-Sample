@@ -3,20 +3,17 @@ package band.effective.headlines.compose.presentation
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.navigation.NavControllerVisibleEntries
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.rememberNavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ramcosta.composedestinations.navigation.navigate
 
-@OptIn(NavControllerVisibleEntries::class)
 @Composable
 fun AppHost() {
     val navController = rememberNavController()
@@ -30,6 +27,10 @@ fun AppHost() {
 
     SideEffect {
         systemUiController.setNavigationBarColor(color = Color.Transparent)
+    }
+
+    SideEffect {
+        navController.currentBackStack.value.print()
     }
 
     HeadlinesScaffold(
@@ -54,10 +55,10 @@ fun AppHost() {
                 )
             }
         }
-    ) { paddingValues ->
+    ) { _ ->
         AppNavigation(
             navController = navController,
-            modifier = Modifier.padding(paddingValues)
+            modifier = Modifier
         )
     }
 }

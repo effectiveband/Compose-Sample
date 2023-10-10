@@ -23,7 +23,8 @@ inline fun <reified VM : ViewModel> daggerSavedStateViewModel(
 ): VM {
     return viewModel(
         viewModelStoreOwner = viewModelStoreOwner,
-        factory = savedStateRegistryOwner.createSavedStateViewModelFactory(
+        factory = createSavedStateViewModelFactory(
+            owner = savedStateRegistryOwner,
             arguments = (savedStateRegistryOwner as? NavBackStackEntry)?.arguments,
             creator = viewModelProducer
         )
@@ -53,9 +54,7 @@ inline fun <reified VM : ViewModel> argumentViewModel(
     )
 }
 
-class LambdaViewModelFactory(
-    private val create: () -> ViewModel
-) : ViewModelProvider.Factory {
+class LambdaViewModelFactory(private val create: () -> ViewModel) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

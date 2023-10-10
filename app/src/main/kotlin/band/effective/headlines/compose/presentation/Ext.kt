@@ -8,16 +8,19 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.lifecycle.ViewTreeLifecycleOwner
-import androidx.lifecycle.ViewTreeViewModelStoreOwner
+import androidx.lifecycle.findViewTreeLifecycleOwner
+import androidx.lifecycle.findViewTreeViewModelStoreOwner
+import androidx.lifecycle.setViewTreeLifecycleOwner
+import androidx.lifecycle.setViewTreeViewModelStoreOwner
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
-import androidx.savedstate.ViewTreeSavedStateRegistryOwner
+import androidx.savedstate.findViewTreeSavedStateRegistryOwner
+import androidx.savedstate.setViewTreeSavedStateRegistryOwner
 import band.effective.headlines.compose.navigation.CommonNavGraphNavigator
 import band.effective.headlines.compose.navigation.NavGraphs
-import com.ramcosta.composedestinations.scope.DestinationScope
+import com.ramcosta.composedestinations.navigation.DependenciesContainerBuilder
 import com.ramcosta.composedestinations.spec.NavGraphSpec
 import timber.log.Timber
 
@@ -28,7 +31,6 @@ fun NavController.currentBottomItemToState(): State<NavGraphSpec> {
 
     DisposableEffect(this) {
         val listener = NavController.OnDestinationChangedListener { _, destination, _ ->
-            backQueue.print()
             selectedItem.value = destination.navGraph()
         }
         addOnDestinationChangedListener(listener)
@@ -49,14 +51,12 @@ fun NavDestination.navGraph(): NavGraphSpec {
     throw RuntimeException("Unknown nav graph for destination $route")
 }
 
-fun ArrayDeque<NavBackStackEntry>.print(prefix: String = "stack") {
-    val stack = toMutableList()
-        .map { it.destination.route }
-        .toTypedArray().contentToString()
-    Timber.d("Nav stack: $prefix = $stack")
+fun List<NavBackStackEntry>.print(prefix: String = "stack") {
+    val stack = map { it.destination.route }
+    Timber.tag("Navigation").d("$prefix = $stack")
 }
 
-fun DestinationScope<*>.currentNavigator(context: Context): CommonNavGraphNavigator {
+fun DependenciesContainerBuilder<*>.currentNavigator(context: Context): CommonNavGraphNavigator {
     return CommonNavGraphNavigator(
         context,
         navBackStackEntry.destination.navGraph(),
@@ -66,13 +66,13 @@ fun DestinationScope<*>.currentNavigator(context: Context): CommonNavGraphNaviga
 
 fun ComponentActivity.setOwners() {
     val decorView = window.decorView
-    if (ViewTreeLifecycleOwner.get(decorView) == null) {
-        ViewTreeLifecycleOwner.set(decorView, this)
+    if (decorView.findViewTreeLifecycleOwner() == null) {
+        decorView.setViewTreeLifecycleOwner(this)
     }
-    if (ViewTreeViewModelStoreOwner.get(decorView) == null) {
-        ViewTreeViewModelStoreOwner.set(decorView, this)
+    if (decorView.findViewTreeViewModelStoreOwner() == null) {
+        decorView.setViewTreeViewModelStoreOwner(this)
     }
-    if (ViewTreeSavedStateRegistryOwner.get(decorView) == null) {
-        ViewTreeSavedStateRegistryOwner.set(decorView, this)
+    if (decorView.findViewTreeSavedStateRegistryOwner() == null) {
+        decorView.setViewTreeSavedStateRegistryOwner(this)
     }
 }

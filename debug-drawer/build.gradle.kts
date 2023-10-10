@@ -3,6 +3,10 @@ plugins {
     id("band.effective.module.dagger")
 }
 
+android {
+    namespace = "band.effective.headlines.compose.drawer"
+}
+
 dependencies {
 
     implementation(project(":core"))

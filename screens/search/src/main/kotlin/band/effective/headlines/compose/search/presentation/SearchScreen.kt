@@ -2,11 +2,18 @@ package band.effective.headlines.compose.search.presentation
 
 import android.app.Activity
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.displayCutout
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -26,10 +33,6 @@ import band.effective.headlines.compose.search.presentation.components.ArticlesL
 import band.effective.headlines.compose.search.presentation.components.SearchField
 import band.effective.headlines.compose.search.presentation.models.SearchItemNavArg
 import band.effective.headlines.compose.search.presentation.models.asNavArg
-import com.google.accompanist.insets.LocalWindowInsets
-import com.google.accompanist.insets.statusBarsPadding
-import com.google.accompanist.swiperefresh.SwipeRefresh
-import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.launch
@@ -44,6 +47,7 @@ fun SearchScreen(navigator: SearchScreenNavigation) {
     )
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun SearchScreen(viewModel: SearchViewModel, openArticle: (SearchItemNavArg) -> Unit) {
     val uiState by rememberStateWithLifecycle(viewModel.state)
@@ -52,6 +56,10 @@ private fun SearchScreen(viewModel: SearchViewModel, openArticle: (SearchItemNav
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
     val systemUiController = rememberSystemUiController()
+    val pullRefreshState = rememberPullRefreshState(
+        refreshing = uiState.isRefreshing,
+        onRefresh = { viewModel.sendEvent(SearchUiEvent.OnRetry) }
+    )
     val focusManager = LocalFocusManager.current
     val topPaddingModifier = Modifier
         .statusBarsPadding()
@@ -74,14 +82,7 @@ private fun SearchScreen(viewModel: SearchViewModel, openArticle: (SearchItemNav
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
-        SwipeRefresh(
-            state = rememberSwipeRefreshState(isRefreshing = uiState.isRefreshing),
-            onRefresh = { viewModel.sendEvent(SearchUiEvent.OnRetry) },
-            indicatorPadding = PaddingValues(top = LocalWindowInsets.current.statusBars.top.dp),
-            modifier = Modifier
-                .align(Alignment.Center)
-                .fillMaxSize()
-        ) {
+        Box(modifier = Modifier.pullRefresh(pullRefreshState)) {
             ArticlesListPagingHolder(
                 articlesItems = articlesItems,
                 listState = listState,
@@ -96,14 +97,24 @@ private fun SearchScreen(viewModel: SearchViewModel, openArticle: (SearchItemNav
                     articlesItems.retry()
                 }
             )
+            PullRefreshIndicator(
+                refreshing = uiState.isRefreshing,
+                state = pullRefreshState,
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .padding(
+                        WindowInsets.displayCutout
+                            .asPaddingValues()
+                            .calculateTopPadding()
+                    )
+            )
         }
         SearchField(
             text = uiState.searchQuery,
-            modifier = Modifier
-                .align(Alignment.TopCenter)
+            modifier = Modifier.align(Alignment.TopCenter)
                 .statusBarsPadding()
                 .padding(top = 16.dp)
-                .padding(horizontal = 32.dp)
+                .padding(horizontal = 16.dp)
                 .fillMaxWidth(),
             onType = {
                 viewModel.sendEvent(SearchUiEvent.OnSearchType(it))

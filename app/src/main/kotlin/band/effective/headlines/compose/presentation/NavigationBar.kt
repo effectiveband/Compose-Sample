@@ -32,7 +32,6 @@ import band.effective.headlines.compose.R
 import band.effective.headlines.compose.core_ui.surfaceColorAtElevation
 import band.effective.headlines.compose.navigation.NavGraphs
 import band.effective.headlines.compose.ui.theme.NoRippleTheme
-import com.google.accompanist.insets.navigationBarsHeight
 import com.ramcosta.composedestinations.spec.NavGraphSpec
 
 @Composable
@@ -61,7 +60,6 @@ fun BottomNavigationBar(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .navigationBarsHeight()
                     .background(MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp))
             )
         }

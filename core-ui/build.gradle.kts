@@ -3,6 +3,10 @@ plugins {
     id("band.effective.module.compose")
 }
 
+android {
+    namespace = "band.effective.headlines.compose.core_ui"
+}
+
 dependencies {
     implementation(project(":core"))
 

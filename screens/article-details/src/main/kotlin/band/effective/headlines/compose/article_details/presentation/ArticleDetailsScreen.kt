@@ -6,7 +6,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
@@ -18,7 +20,6 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -30,8 +31,6 @@ import band.effective.headlines.compose.article_details.presentation.components.
 import band.effective.headlines.compose.article_details.presentation.components.BackButton
 import band.effective.headlines.compose.core_ui.di.daggerSavedStateViewModel
 import band.effective.headlines.compose.core_ui.rememberStateWithLifecycle
-import com.google.accompanist.insets.navigationBarsPadding
-import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ramcosta.composedestinations.annotation.Destination
 
@@ -63,7 +62,7 @@ private fun ArticleDetailsScreen(
     openLinkInBrowser: (String) -> Unit
 ) {
     val state by rememberStateWithLifecycle(viewModel.state)
-    val scrollBehavior = remember { TopAppBarDefaults.pinnedScrollBehavior() }
+    val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
     val surfaceColorWithScrim = MaterialTheme.colorScheme.surface.copy(0.8F)
     val systemUiController = rememberSystemUiController()
 

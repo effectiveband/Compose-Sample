@@ -4,6 +4,10 @@ plugins {
     id("com.google.devtools.ksp")
 }
 
+android {
+    namespace = "band.effective.headlines.compose.news_api"
+}
+
 dependencies {
     implementation(project(":core"))
     implementation(project(":network"))

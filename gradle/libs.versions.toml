@@ -1,26 +1,26 @@
 [versions]
-android-compile-sdk = "32"
-android-target-sdk = "32"
+android-compile-sdk = "34"
+android-target-sdk = "34"
 android-min-sdk = "21"
-kotlin = "1.6.10"
-coroutines = "1.6.1"
-ksp = "1.6.10-1.0.4"
-agp = "7.2.0"
-core = "1.7.0"
-splashscreen = "1.0.0-rc01"
-activity = "1.4.0"
-paging = "3.1.1"
-paging-compose = "1.0.0-alpha14"
-lifecycle = "2.4.1"
-compose = "1.1.1"
-material3 = "1.0.0-alpha09"
-destinations = "1.5.5-beta"
-accompanist = "0.23.1"
-dagger2 = "2.42"
-moshi = "1.13.0"
-okhttp = "4.9.3"
+agp = "8.1.2"
+kotlin = "1.9.10"
+coroutines = "1.7.1"
+ksp = "1.9.10-1.0.13"
+core = "1.12.0"
+splashscreen = "1.0.1"
+activity = "1.8.0"
+paging = "3.2.1"
+lifecycle = "2.6.2"
+compose = "1.5.3"
+compose-compiler = "1.5.3"
+material3 = "1.1.2"
+destinations = "1.9.52"
+accompanist = "0.32.0"
+dagger2 = "2.47"
+moshi = "1.15.0"
+okhttp = "4.11.0"
 retrofit = "2.9.0"
-coil = "2.1.0"
+coil = "2.4.0"
 timber = "5.0.1"
 debug-drawer = "0.9.8"
 
@@ -34,7 +34,7 @@ androidx-splashscreen = { group = "androidx.core", name = "core-splashscreen", v
 androidx-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
 
 androidx-paging = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging" }
-androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "paging-compose" }
+androidx-paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "paging" }
 
 androidx-lifecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
 androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
@@ -81,7 +81,6 @@ debug-drawer = { group = "au.com.gridstone.debugdrawer", name = "debugdrawer", v
 debug-drawer-retrofit = { group = "au.com.gridstone.debugdrawer", name = "debugdrawer-retrofit", version.ref = "debug-drawer" }
 debug-drawer-timber = { group = "au.com.gridstone.debugdrawer", name = "debugdrawer-timber", version.ref = "debug-drawer" }
 debug-drawer-okhttp = { group = "au.com.gridstone.debugdrawer", name = "debugdrawer-okhttp-logger", version.ref = "debug-drawer" }
-
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

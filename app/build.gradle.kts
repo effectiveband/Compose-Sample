@@ -5,6 +5,8 @@ plugins {
 }
 
 android {
+    namespace = "band.effective.headlines.compose"
+
     defaultConfig {
         applicationId = "band.effective.headlines.compose"
         versionCode = 1
@@ -13,10 +15,14 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
 
-    packagingOptions {
+    packaging {
         resources {
             excludes.add("/META-INF/{AL2.0,LGPL2.1}")
         }
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 }
 

@@ -21,14 +21,16 @@ class DaggerViewModelFactory(
     }
 }
 
-inline fun <reified VM : ViewModel> SavedStateRegistryOwner.createSavedStateViewModelFactory(
+inline fun <reified VM : ViewModel> createSavedStateViewModelFactory(
+    owner: SavedStateRegistryOwner,
     arguments: Bundle?,
     crossinline creator: (SavedStateHandle) -> VM,
-): ViewModelProvider.Factory = object : AbstractSavedStateViewModelFactory(this, arguments) {
+): ViewModelProvider.Factory = object : AbstractSavedStateViewModelFactory(owner, arguments) {
+
     @Suppress("UNCHECKED_CAST")
-    override fun <VM : ViewModel?> create(
+    override fun <VM : ViewModel> create(
         key: String,
         modelClass: Class<VM>,
-        handle: SavedStateHandle,
+        handle: SavedStateHandle
     ): VM = creator(handle) as VM
 }

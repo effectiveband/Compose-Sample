@@ -10,7 +10,7 @@ import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 
-class ComposeModulePlugin: Plugin<Project> {
+class ComposeModulePlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
         with(project.plugins) {
@@ -30,7 +30,8 @@ class ComposeModulePlugin: Plugin<Project> {
         val libs = project.extensions.getByType<VersionCatalogsExtension>().named("libs")
 
         buildFeatures.compose = true
-        composeOptions.kotlinCompilerExtensionVersion = libs.findVersion("compose").get().toString()
+        composeOptions.kotlinCompilerExtensionVersion =
+            libs.findVersion("compose-compiler").get().toString()
 
         project.dependencies {
             add("implementation", libs.findLibrary("androidx-core-ktx").get())
@@ -49,8 +50,8 @@ class ComposeModulePlugin: Plugin<Project> {
             add("implementation", libs.findLibrary("androidx-compose-tooling-preview").get())
             add("debugImplementation", libs.findLibrary("androidx-compose-tooling").get())
 
-            add("implementation", libs.findLibrary("accompanist-insets").get())
-            add("implementation", libs.findLibrary("accompanist-insets-ui").get())
+            //add("implementation", libs.findLibrary("accompanist-insets").get())
+            //add("implementation", libs.findLibrary("accompanist-insets-ui").get())
             add("implementation", libs.findLibrary("accompanist-systemuicontroller").get())
             add("implementation", libs.findLibrary("accompanist-switerefreshlayout").get())
             add("implementation", libs.findLibrary("accompanist-placeholder").get())
@@ -67,6 +68,7 @@ class ComposeModulePlugin: Plugin<Project> {
             is LibraryExtension -> libraryVariants.all {
                 kotlin.sourceSets.getByName(name).kotlin.srcDir("build/generated/ksp/$name/kotlin")
             }
+
             is AppExtension -> applicationVariants.all {
                 kotlin.sourceSets.getByName(name).kotlin.srcDir("build/generated/ksp/$name/kotlin")
             }

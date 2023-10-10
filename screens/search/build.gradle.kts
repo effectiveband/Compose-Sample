@@ -3,6 +3,10 @@ plugins {
     id("band.effective.module.screen")
 }
 
+android {
+    namespace = "band.effective.headlines.compose.search"
+}
+
 dependencies {
     implementation(project(":news-api"))
 

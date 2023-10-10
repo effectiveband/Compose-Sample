@@ -4,6 +4,7 @@ import android.app.Activity
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -14,11 +15,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import band.effective.headlines.compose.about.di.aboutComponent
-import band.effective.headlines.compose.about.presentation.components.AboutFloatingActionButton
 import band.effective.headlines.compose.about.presentation.components.AboutBody
+import band.effective.headlines.compose.about.presentation.components.AboutFloatingActionButton
 import band.effective.headlines.compose.core_ui.di.daggerViewModel
 import band.effective.headlines.compose.core_ui.rememberStateWithLifecycle
-import com.google.accompanist.insets.statusBarsPadding
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.ramcosta.composedestinations.annotation.Destination
 

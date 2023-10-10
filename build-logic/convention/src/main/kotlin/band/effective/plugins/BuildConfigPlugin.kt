@@ -1,8 +1,7 @@
 package band.effective.plugins
 
-import ANDROID_COMPILE_SDK_VERSION
-import ANDROID_MIN_SDK_VERSION
-import ANDROID_TARGET_SDK_VERSION
+import com.android.build.api.variant.ApplicationAndroidComponentsExtension
+import com.android.build.api.variant.LibraryAndroidComponentsExtension
 import com.android.build.gradle.AppExtension
 import com.android.build.gradle.BaseExtension
 import com.android.build.gradle.LibraryExtension
@@ -27,10 +26,10 @@ class BuildConfigPlugin : Plugin<Project> {
         if (androidExtension is BaseExtension) {
             with(androidExtension) {
                 applyAndroidSettings(project)
-                applyBuildTypes()
+                applyBuildTypes(project)
                 applySigningConfig(project)
                 applyProguardSettings(project)
-                applyJava8(project)
+                applyJava11(project)
                 applyBaseDependencies(project)
             }
         }
@@ -44,7 +43,8 @@ class BuildConfigPlugin : Plugin<Project> {
         }
     }
 
-    private fun BaseExtension.applyBuildTypes() {
+    private fun BaseExtension.applyBuildTypes(project: Project) {
+        val isApplicationModule = this@applyBuildTypes is AppExtension
         flavorDimensions("default", "drawer")
         productFlavors {
             create("dev") {
@@ -64,12 +64,21 @@ class BuildConfigPlugin : Plugin<Project> {
                 dimension = "drawer"
             }
         }
-        variantFilter {
+
+        val appComponents = if (isApplicationModule) {
+            project.extensions.getByName("androidComponents") as ApplicationAndroidComponentsExtension
+        } else {
+            project.extensions.getByName("androidComponents") as LibraryAndroidComponentsExtension
+        }
+
+        appComponents.beforeVariants { variantBuilder ->
+            val name = variantBuilder.name
             val isNotDevDebugBuild = !name.contains("dev") && name.contains("Debug")
             val isPublicBuildDDrawer = name.contains("prod") && !name.contains("NoDrawer")
             val isDevBuildNoDDrawer = name.contains("dev") && name.contains("NoDrawer")
-            if (isNotDevDebugBuild || isPublicBuildDDrawer || isDevBuildNoDDrawer) {
-                ignore = true
+            val isQABuildNoDDrawer = name.contains("qa") && name.contains("NoDrawer")
+            if (isNotDevDebugBuild || isPublicBuildDDrawer || isDevBuildNoDDrawer || isQABuildNoDDrawer) {
+                variantBuilder.enable = false
             }
         }
     }
@@ -86,7 +95,7 @@ class BuildConfigPlugin : Plugin<Project> {
     }
 
     private fun BaseExtension.applyProguardSettings(project: Project) {
-        val proguardFolder = "${project.projectDir}/proguard"
+        val proguardFolder = "${project.rootDir}/proguard"
         val coroutines = "$proguardFolder/coroutines.pro"
         val okhttp = "$proguardFolder/okhttp3.pro"
         val okio = "$proguardFolder/okio.pro"
@@ -100,6 +109,7 @@ class BuildConfigPlugin : Plugin<Project> {
                     retrofit2
                 )
             }
+
             is AppExtension -> buildTypes {
                 getByName("release") {
                     isMinifyEnabled = true
@@ -116,19 +126,19 @@ class BuildConfigPlugin : Plugin<Project> {
         }
     }
 
-    private fun BaseExtension.applyJava8(project: Project) {
+    private fun BaseExtension.applyJava11(project: Project) {
         compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_1_8
-            targetCompatibility = JavaVersion.VERSION_1_8
+            sourceCompatibility = JavaVersion.VERSION_11
+            targetCompatibility = JavaVersion.VERSION_11
         }
         project.tasks.withType<KotlinCompile>().configureEach {
             kotlinOptions {
                 freeCompilerArgs = freeCompilerArgs + listOf(
-                    "-Xopt-in=kotlin.RequiresOptIn",
+                    "-opt-in=kotlin.RequiresOptIn",
                     "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
                     "-opt-in=kotlinx.coroutines.ObsoleteCoroutinesApi"
                 )
-                jvmTarget = "1.8"
+                jvmTarget = "11"
             }
         }
     }
