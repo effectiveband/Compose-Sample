@@ -11,4 +11,5 @@ dependencies {
     implementation(project(":core"))
 
     implementation(libs.androidx.paging.compose)
+    implementation(libs.androidx.navigation.common)
 }

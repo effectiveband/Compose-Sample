@@ -20,16 +20,14 @@ import band.effective.headlines.compose.about.presentation.components.AboutFloat
 import band.effective.headlines.compose.core_ui.di.daggerViewModel
 import band.effective.headlines.compose.core_ui.rememberStateWithLifecycle
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.ramcosta.composedestinations.annotation.Destination
 
-@Destination
 @Composable
-fun AboutScreen(navigation: AboutScreenNavigation) {
+fun AboutScreen(onOpenLinkInBrowser: (String) -> Unit) {
     val activity = LocalContext.current as Activity
 
     AboutScreen(
         viewModel = daggerViewModel(factory = aboutComponent.getInstance(activity).viewModelFactory),
-        onOpenLink = navigation::openLinkInBrowser
+        onOpenLink = onOpenLinkInBrowser
     )
 }
 

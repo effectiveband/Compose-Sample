@@ -21,7 +21,7 @@ class ComposeModulePlugin : Plugin<Project> {
         if (androidExtension is BaseExtension) {
             with(androidExtension) {
                 applyCompose(project)
-                applyNavigation(project)
+                applyKsp(project)
             }
         }
     }
@@ -40,6 +40,7 @@ class ComposeModulePlugin : Plugin<Project> {
             add("implementation", libs.findLibrary("androidx-lifecycle-viewmodel").get())
             add("implementation", libs.findLibrary("androidx-lifecycle-viewmodel-compose").get())
             add("implementation", libs.findLibrary("androidx-lifecycle-viewmodel-savedstate").get())
+            add("implementation", libs.findLibrary("androidx-lifecycle-runtime-compose").get())
 
             add("implementation", libs.findLibrary("androidx-activity").get())
 
@@ -50,8 +51,8 @@ class ComposeModulePlugin : Plugin<Project> {
             add("implementation", libs.findLibrary("androidx-compose-tooling-preview").get())
             add("debugImplementation", libs.findLibrary("androidx-compose-tooling").get())
 
-            //add("implementation", libs.findLibrary("accompanist-insets").get())
-            //add("implementation", libs.findLibrary("accompanist-insets-ui").get())
+            add("implementation", libs.findLibrary("androidx-navigation-compose").get())
+
             add("implementation", libs.findLibrary("accompanist-systemuicontroller").get())
             add("implementation", libs.findLibrary("accompanist-switerefreshlayout").get())
             add("implementation", libs.findLibrary("accompanist-placeholder").get())
@@ -60,10 +61,8 @@ class ComposeModulePlugin : Plugin<Project> {
         }
     }
 
-    private fun BaseExtension.applyNavigation(project: Project) {
-        val libs = project.extensions.getByType<VersionCatalogsExtension>().named("libs")
+    private fun BaseExtension.applyKsp(project: Project) {
         val kotlin = project.extensions.getByName("kotlin") as KotlinAndroidProjectExtension
-        val ksp = project.extensions.getByName("ksp") as com.google.devtools.ksp.gradle.KspExtension
         when (this) {
             is LibraryExtension -> libraryVariants.all {
                 kotlin.sourceSets.getByName(name).kotlin.srcDir("build/generated/ksp/$name/kotlin")
@@ -72,15 +71,6 @@ class ComposeModulePlugin : Plugin<Project> {
             is AppExtension -> applicationVariants.all {
                 kotlin.sourceSets.getByName(name).kotlin.srcDir("build/generated/ksp/$name/kotlin")
             }
-        }
-
-        ksp.apply {
-            arg("compose-destinations.generateNavGraphs", "false")
-        }
-
-        project.dependencies {
-            add("implementation", libs.findLibrary("compose-destinations").get())
-            add("ksp", libs.findLibrary("compose-destinations-compiler").get())
         }
     }
 }

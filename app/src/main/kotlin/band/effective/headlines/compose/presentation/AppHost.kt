@@ -3,62 +3,47 @@ package band.effective.headlines.compose.presentation
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.navigation.compose.rememberNavController
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.ramcosta.composedestinations.navigation.navigate
 
 @Composable
-fun AppHost() {
-    val navController = rememberNavController()
+fun AppHost(appState: AppState = rememberAppState()) {
+    val isBottomBarVisible by appState.isBottomBarVisible.collectAsStateWithLifecycle()
     val systemUiController = rememberSystemUiController()
-    val visibleEntries by navController.visibleEntries.collectAsState()
-    val isBottomNavigationBarVisible = visibleEntries.any { entry ->
-        BottomNavigationItems.any { bottomItem ->
-            bottomItem.screen.startRoute.route == entry.destination.route
-        }
-    }
 
     SideEffect {
         systemUiController.setNavigationBarColor(color = Color.Transparent)
     }
 
-    SideEffect {
-        navController.currentBackStack.value.print()
-    }
-
-    HeadlinesScaffold(
+    Scaffold(
         bottomBar = {
             AnimatedVisibility(
-                visible = isBottomNavigationBarVisible,
+                visible = isBottomBarVisible,
                 enter = expandVertically(),
                 exit = shrinkVertically()
             ) {
-                val currentSelectedItem by navController.currentBottomItemToState()
+                val currentSelectedItem by appState.currentBottomItemAsState()
                 BottomNavigationBar(
-                    selectedNavigation = currentSelectedItem,
-                    onNavigationSelected = { selected ->
-                        navController.navigate(selected) {
-                            launchSingleTop = true
-                            restoreState = true
-                            popUpTo(navController.graph.findStartDestination().id) {
-                                saveState = true
-                            }
-                        }
-                    }
+                    destinations = appState.topLevelDestinations,
+                    selectedItem = currentSelectedItem,
+                    onNavigationSelected = appState::navigateToTopLevelDestination
                 )
             }
-        }
-    ) { _ ->
-        AppNavigation(
-            navController = navController,
-            modifier = Modifier
+        },
+        contentWindowInsets = WindowInsets(0, 0, 0, 0),
+    ) { innerPadding ->
+        AppNavHost(
+            navController = appState.navController,
+            modifier = Modifier.padding(innerPadding),
+            onChangeBottomBarVisibility = appState::changeBottomBarVisibility
         )
     }
 }

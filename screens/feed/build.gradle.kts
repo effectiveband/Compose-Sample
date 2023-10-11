@@ -9,6 +9,7 @@ android {
 
 dependencies {
     implementation(project(":news-api"))
+    implementation(project(":screens:article-details:shared"))
 
     implementation(libs.androidx.paging.compose)
 }

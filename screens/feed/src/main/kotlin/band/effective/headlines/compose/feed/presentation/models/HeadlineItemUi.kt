@@ -1,5 +1,7 @@
 package band.effective.headlines.compose.feed.presentation.models
 
+import band.effective.headlines.compose.article_details.shared.ArticleNavArg
+
 internal class HeadlineItemUi(
     val title: String,
     val source: String,
@@ -10,6 +12,6 @@ internal class HeadlineItemUi(
     val content: String?
 )
 
-internal fun HeadlineItemUi.asNavArg(): HeadlineNavArg {
-    return HeadlineNavArg(title, source, url, imageUrl, date, description, content)
+internal fun HeadlineItemUi.asNavArg(): ArticleNavArg {
+    return ArticleNavArg(title, source, url, imageUrl, date, description, content)
 }

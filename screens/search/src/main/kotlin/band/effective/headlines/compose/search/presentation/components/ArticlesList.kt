@@ -48,12 +48,14 @@ internal fun ArticlesList(
             count = articles.itemCount,
             key = articles.itemKey(),
             contentType = articles.itemContentType(),
-        ) {index ->
+        ) { index ->
             val item = articles[index]
             item?.let {
-                ArticleCard(article = item, modifier = modifier.fillMaxWidth()) {
-                    openArticle(it)
-                }
+                ArticleCard(
+                    article = item,
+                    modifier = modifier.fillMaxWidth(),
+                    openArticle = openArticle
+                )
             }
         }
         pagingLoadStateItem(
@@ -69,13 +71,12 @@ internal fun ArticlesList(
             },
             errorContent = { message ->
                 ErrorMessageWithButton(
-                    message = message  ?: stringResource(id = R.string.unknown_error),
+                    message = message ?: stringResource(id = R.string.unknown_error),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 16.dp)
-                ) {
-                    onRetry()
-                }
+                        .padding(vertical = 16.dp),
+                    onRetry = onRetry
+                )
             }
         )
     }

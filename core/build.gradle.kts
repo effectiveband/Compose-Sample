@@ -10,4 +10,7 @@ android {
 dependencies {
     implementation(libs.androidx.lifecycle.viewmodel)
     implementation(libs.androidx.lifecycle.viewmodel.savedstate)
+
+    implementation(libs.androidx.navigation.common)
+    implementation(libs.androidx.navigation.compose)
 }

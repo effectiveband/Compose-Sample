@@ -26,30 +26,32 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.collectAsLazyPagingItems
+import band.effective.headlines.compose.article_details.shared.ArticleNavArg
 import band.effective.headlines.compose.core_ui.di.daggerViewModel
 import band.effective.headlines.compose.core_ui.rememberStateWithLifecycle
 import band.effective.headlines.compose.search.di.searchComponent
 import band.effective.headlines.compose.search.presentation.components.ArticlesListPagingHolder
+import band.effective.headlines.compose.search.presentation.components.EmptySearch
 import band.effective.headlines.compose.search.presentation.components.SearchField
-import band.effective.headlines.compose.search.presentation.models.SearchItemNavArg
 import band.effective.headlines.compose.search.presentation.models.asNavArg
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.launch
 
-@Destination
 @Composable
-fun SearchScreen(navigator: SearchScreenNavigation) {
+fun SearchScreen(onOpenArticleDetails: (ArticleNavArg) -> Unit) {
     val activity = LocalContext.current as Activity
     SearchScreen(
         viewModel = daggerViewModel(factory = searchComponent.getInstance(activity).viewModelFactory),
-        openArticle = navigator::openArticleDetails
+        onOpenArticleDetails = onOpenArticleDetails
     )
 }
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-private fun SearchScreen(viewModel: SearchViewModel, openArticle: (SearchItemNavArg) -> Unit) {
+private fun SearchScreen(
+    viewModel: SearchViewModel,
+    onOpenArticleDetails: (ArticleNavArg) -> Unit
+) {
     val uiState by rememberStateWithLifecycle(viewModel.state)
     val articlesItems = uiState.searchResult.collectAsLazyPagingItems()
     val surfaceColorWithScrim = MaterialTheme.colorScheme.surface.copy(0.8F)
@@ -76,27 +78,35 @@ private fun SearchScreen(viewModel: SearchViewModel, openArticle: (SearchItemNav
     LaunchedEffect(Unit) {
         viewModel.effect.collect { effect ->
             when (effect) {
-                is SearchUiEffect.NavigateToArticle -> openArticle(effect.article)
+                is SearchUiEffect.NavigateToArticle -> onOpenArticleDetails(effect.article)
             }
         }
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Box(modifier = Modifier.pullRefresh(pullRefreshState)) {
-            ArticlesListPagingHolder(
-                articlesItems = articlesItems,
-                listState = listState,
-                modifier = Modifier
-                    .then(topPaddingModifier)
-                    .padding(horizontal = 16.dp)
-                    .fillMaxSize(),
-                openArticle = {
-                    viewModel.sendEvent(SearchUiEvent.OnNews(it.asNavArg()))
-                },
-                onRetry = {
-                    articlesItems.retry()
-                }
-            )
+            if (uiState.searchQuery.isNotEmpty()) {
+                ArticlesListPagingHolder(
+                    articlesItems = articlesItems,
+                    listState = listState,
+                    modifier = Modifier
+                        .then(topPaddingModifier)
+                        .padding(horizontal = 16.dp)
+                        .fillMaxSize(),
+                    openArticle = {
+                        viewModel.sendEvent(SearchUiEvent.OnNews(it.asNavArg()))
+                    },
+                    onRetry = {
+                        articlesItems.retry()
+                    }
+                )
+            } else {
+                EmptySearch(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .align(Alignment.Center)
+                )
+            }
             PullRefreshIndicator(
                 refreshing = uiState.isRefreshing,
                 state = pullRefreshState,
@@ -107,11 +117,13 @@ private fun SearchScreen(viewModel: SearchViewModel, openArticle: (SearchItemNav
                             .asPaddingValues()
                             .calculateTopPadding()
                     )
+                    .padding(top = 72.dp)
             )
         }
         SearchField(
             text = uiState.searchQuery,
-            modifier = Modifier.align(Alignment.TopCenter)
+            modifier = Modifier
+                .align(Alignment.TopCenter)
                 .statusBarsPadding()
                 .padding(top = 16.dp)
                 .padding(horizontal = 16.dp)

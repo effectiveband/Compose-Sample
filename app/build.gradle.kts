@@ -35,7 +35,8 @@ dependencies {
     implementation(project(":screens:feed"))
     implementation(project(":screens:search"))
     implementation(project(":screens:about"))
-    implementation(project(":screens:article-details"))
+    implementation(project(":screens:article-details:screen"))
+    implementation(project(":screens:article-details:shared"))
 
     implementation(libs.retrofit.client)
     implementation(libs.retrofit.moshi)

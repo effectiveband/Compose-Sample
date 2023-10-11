@@ -33,8 +33,11 @@ internal class FeedViewModel @Inject constructor(
     fun sendEvent(event: FeedUiEvent) {
         when (event) {
             is FeedUiEvent.OnHeadline -> {
-                viewModelScope.launch { _effect.emit(FeedUiEffect.NavigateToArticle(event.article)) }
+                viewModelScope.launch {
+                    _effect.emit(FeedUiEffect.NavigateToArticle(event.article))
+                }
             }
+
             FeedUiEvent.OnRetry -> {
                 _state.update { it.copy(isRefreshing = true) }
                 loadFeed()
@@ -44,9 +47,11 @@ internal class FeedViewModel @Inject constructor(
 
     private fun loadFeed() {
         val feed =
-            newsRepository.getHeadlinesPagedFlow().cachedIn(viewModelScope).mapLatest { data ->
-                data.map(ArticleDomain::asHeadlineItemUI)
-            }
+            newsRepository.getHeadlinesPagedFlow()
+                .cachedIn(viewModelScope)
+                .mapLatest { data ->
+                    data.map(ArticleDomain::asHeadlineItemUI)
+                }
         _state.update { it.copy(isLoading = false, isRefreshing = false, feed = feed) }
     }
 }
