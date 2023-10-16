@@ -7,6 +7,7 @@ plugins {
 }
 
 android {
+    namespace = "band.effective.headlines.compose.network"
     val apiKey = gradleLocalProperties(project.rootDir).getProperty("apiKey")
 
     productFlavors {
@@ -21,6 +22,10 @@ android {
             buildConfigField("String", "NEWS_API_KEY", apiKey)
             buildConfigField("String", "NEWS_URL", "\"https://newsapi.org/v2/\"")
         }
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 }
 

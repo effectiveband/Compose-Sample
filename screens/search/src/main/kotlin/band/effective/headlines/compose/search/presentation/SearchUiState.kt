@@ -2,7 +2,7 @@ package band.effective.headlines.compose.search.presentation
 
 import androidx.compose.runtime.Immutable
 import androidx.paging.PagingData
-import band.effective.headlines.compose.search.presentation.models.SearchItemNavArg
+import band.effective.headlines.compose.article_details.shared.ArticleNavArg
 import band.effective.headlines.compose.search.presentation.models.SearchItemUi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
@@ -20,11 +20,11 @@ internal data class SearchUiState(
 }
 
 internal sealed class SearchUiEvent {
-    object OnRetry : SearchUiEvent()
+    data object OnRetry : SearchUiEvent()
     class OnSearchType(val query: String) : SearchUiEvent()
-    class OnNews(val article: SearchItemNavArg) : SearchUiEvent()
+    class OnNews(val article: ArticleNavArg) : SearchUiEvent()
 }
 
 internal sealed class SearchUiEffect {
-    class NavigateToArticle(val article: SearchItemNavArg) : SearchUiEffect()
+    class NavigateToArticle(val article: ArticleNavArg) : SearchUiEffect()
 }

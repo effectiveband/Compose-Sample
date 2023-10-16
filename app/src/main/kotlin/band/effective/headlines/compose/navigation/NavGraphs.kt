@@ -1,45 +1,80 @@
 package band.effective.headlines.compose.navigation
 
-import band.effective.headlines.compose.about.presentation.destinations.AboutScreenDestination
-import band.effective.headlines.compose.article_details.presentation.destinations.ArticleDetailsScreenDestination
-import band.effective.headlines.compose.feed.presentation.destinations.FeedScreenDestination
-import band.effective.headlines.compose.search.presentation.destinations.SearchScreenDestination
-import com.ramcosta.composedestinations.dynamic.routedIn
-import com.ramcosta.composedestinations.spec.DestinationSpec
-import com.ramcosta.composedestinations.spec.NavGraphSpec
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.navigation
+import band.effective.headlines.compose.about.presentation.AboutScreenDestination
+import band.effective.headlines.compose.about.presentation.aboutScreen
+import band.effective.headlines.compose.article_details.screen.presentation.articleDetailsScreen
+import band.effective.headlines.compose.article_details.screen.presentation.navigateToArticleDetails
+import band.effective.headlines.compose.feed.presentation.FeedScreenDestination
+import band.effective.headlines.compose.feed.presentation.feedScreen
+import band.effective.headlines.compose.search.presentation.SearchScreenDestination
+import band.effective.headlines.compose.search.presentation.searchScreen
 
-object NavGraphs {
-
-    val feed = object : NavGraphSpec {
-        override val route = "feed"
-        override val startRoute = FeedScreenDestination routedIn this
-        override val destinationsByRoute = listOf<DestinationSpec<*>>(
-            FeedScreenDestination,
-            ArticleDetailsScreenDestination
-        ).routedIn(this).associateBy { it.route }
+fun NavGraphBuilder.headlinesGraph(
+    navController: NavController,
+    onOpenLinkInBrowser: (String) -> Unit,
+    onChangeBottomBarVisibility: (Boolean) -> Unit
+) {
+    navigation(
+        startDestination = FeedScreenDestination.screenRoute,
+        route = HeadlinesTopLevelDestination.route
+    ) {
+        feedScreen(
+            onOpenArticleDetails = {
+                onChangeBottomBarVisibility(false)
+                navController.navigateToArticleDetails(
+                    article = it,
+                    graphRoute = HeadlinesTopLevelDestination.route
+                )
+            }
+        )
+        articleDetailsScreen(
+            graphRoute = HeadlinesTopLevelDestination.route,
+            onBackClick = {
+                navController.navigateUp()
+                onChangeBottomBarVisibility(true)
+            },
+            onOpenLinkInBrowser = onOpenLinkInBrowser
+        )
     }
+}
 
-    val search = object : NavGraphSpec {
-        override val route = "search"
-        override val startRoute = SearchScreenDestination routedIn this
-        override val destinationsByRoute = listOf<DestinationSpec<*>>(
-            SearchScreenDestination,
-            ArticleDetailsScreenDestination
-        ).routedIn(this).associateBy { it.route }
+fun NavGraphBuilder.searchGraph(
+    navController: NavController,
+    onOpenLinkInBrowser: (String) -> Unit,
+    onChangeBottomBarVisibility: (Boolean) -> Unit
+) {
+    navigation(
+        startDestination = SearchScreenDestination.screenRoute,
+        route = SearchTopLevelDestination.route
+    ) {
+        searchScreen(
+            onOpenArticleDetails = {
+                onChangeBottomBarVisibility(false)
+                navController.navigateToArticleDetails(
+                    article = it,
+                    graphRoute = SearchTopLevelDestination.route
+                )
+            }
+        )
+        articleDetailsScreen(
+            graphRoute = SearchTopLevelDestination.route,
+            onBackClick = {
+                navController.navigateUp()
+                onChangeBottomBarVisibility(true)
+            },
+            onOpenLinkInBrowser = onOpenLinkInBrowser
+        )
     }
+}
 
-    val about = object : NavGraphSpec {
-        override val route = "about"
-        override val startRoute = AboutScreenDestination routedIn this
-        override val destinationsByRoute = listOf<DestinationSpec<*>>(
-            AboutScreenDestination
-        ).routedIn(this).associateBy { it.route }
-    }
-
-    val root = object : NavGraphSpec {
-        override val route = "root"
-        override val startRoute = feed
-        override val destinationsByRoute = emptyMap<String, DestinationSpec<*>>()
-        override val nestedNavGraphs = listOf(feed, search, about)
+fun NavGraphBuilder.aboutGraph(onOpenLinkInBrowser: (String) -> Unit) {
+    navigation(
+        startDestination = AboutScreenDestination.screenRoute,
+        route = AboutTopLevelDestination.route
+    ) {
+        aboutScreen(onOpenLinkInBrowser = onOpenLinkInBrowser)
     }
 }

@@ -42,10 +42,9 @@ internal fun ArticlesListPagingHolder(
             ErrorMessageWithIconAndButton(
                 message = apiMessage ?: stringResource(R.string.unknown_error),
                 modifier = modifier,
-                iconModifier = Modifier.size(160.dp)
-            ) {
-                onRetry()
-            }
+                iconModifier = Modifier.size(160.dp),
+                onRetry = onRetry
+            )
         }
         LoadState.Loading -> {
             Box(modifier = modifier) {

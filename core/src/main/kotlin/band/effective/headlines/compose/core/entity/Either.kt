@@ -1,5 +1,8 @@
 package band.effective.headlines.compose.core.entity
 
+import androidx.annotation.Keep
+
+@Keep
 sealed class Either<out Error, out Data> {
     class Failure<out Error>(val error: Error) : Either<Error, Nothing>()
     class Success<out Data>(val data: Data) : Either<Nothing, Data>()

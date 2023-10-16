@@ -5,6 +5,8 @@ plugins {
 }
 
 android {
+    namespace = "band.effective.headlines.compose"
+
     defaultConfig {
         applicationId = "band.effective.headlines.compose"
         versionCode = 1
@@ -13,10 +15,14 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
 
-    packagingOptions {
+    packaging {
         resources {
             excludes.add("/META-INF/{AL2.0,LGPL2.1}")
         }
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 }
 
@@ -29,7 +35,8 @@ dependencies {
     implementation(project(":screens:feed"))
     implementation(project(":screens:search"))
     implementation(project(":screens:about"))
-    implementation(project(":screens:article-details"))
+    implementation(project(":screens:article-details:screen"))
+    implementation(project(":screens:article-details:shared"))
 
     implementation(libs.retrofit.client)
     implementation(libs.retrofit.moshi)

@@ -1,5 +1,7 @@
 package band.effective.headlines.compose.search.presentation.models
 
+import band.effective.headlines.compose.article_details.shared.ArticleNavArg
+
 internal class SearchItemUi(
     val title: String,
     val source: String,
@@ -10,6 +12,6 @@ internal class SearchItemUi(
     val content: String?
 )
 
-internal fun SearchItemUi.asNavArg(): SearchItemNavArg {
-    return SearchItemNavArg(title, source, url, imageUrl, date, description, content)
+internal fun SearchItemUi.asNavArg(): ArticleNavArg {
+    return ArticleNavArg(title, source, url, imageUrl, date, description, content)
 }

@@ -3,7 +3,14 @@ plugins {
     id("band.effective.module.dagger")
 }
 
+android {
+    namespace = "band.effective.headlines.compose.core"
+}
+
 dependencies {
     implementation(libs.androidx.lifecycle.viewmodel)
     implementation(libs.androidx.lifecycle.viewmodel.savedstate)
+
+    implementation(libs.androidx.navigation.common)
+    implementation(libs.androidx.navigation.compose)
 }

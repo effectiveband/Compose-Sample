@@ -16,7 +16,7 @@ internal data class AboutUiState(
 }
 
 internal sealed class AboutUiEvent {
-    object OnOpenLink : AboutUiEvent()
+    data object OnOpenLink : AboutUiEvent()
 }
 
 internal sealed class AboutUiEffect {

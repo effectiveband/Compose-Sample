@@ -4,16 +4,16 @@ pluginManagement {
     includeBuild("build-logic")
     repositories {
         gradlePluginPortal()
-        google()
         mavenCentral()
+        google()
     }
 }
 
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()
         mavenCentral()
+        google()
     }
 }
 
@@ -21,4 +21,10 @@ rootProject.name = "Headlines Compose"
 
 include(":app")
 include(":core", ":core-ui", ":debug-drawer", ":network", ":news-api")
-include(":screens:feed", ":screens:search", ":screens:about", ":screens:article-details")
+include(
+    ":screens:feed",
+    ":screens:search",
+    ":screens:about",
+    ":screens:article-details:screen",
+    ":screens:article-details:shared"
+)
